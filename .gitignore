@@ -1,0 +1,3 @@
+*.exe
+./Debug_Win32
+/Debug_Win32
