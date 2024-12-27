@@ -12,7 +12,6 @@
 #define copa 4
 
 
-
 //
 #define CARTA1 "./images/espada1.png", 1, espada, 1
 #define CARTA2 "./images/basto1.png", 2, basto, 1
@@ -63,7 +62,7 @@
 #define CARTA37 "./images/oro4.png", 13, oro, 4   
 #define CARTA38 "./images/copa4.png", 13, copa, 4
 
-#define TODAS Carta(CARTA1), Carta(CARTA2), Carta(CARTA3), Carta(CARTA4), Carta(CARTA5), Carta(CARTA6), Carta(CARTA7), Carta(CARTA8), Carta(CARTA9), Carta(CARTA9), Carta(CARTA10), Carta(CARTA11), Carta(CARTA12), Carta(CARTA13), Carta(CARTA14), Carta(CARTA15), Carta(CARTA16), Carta(CARTA17), Carta(CARTA18), Carta(CARTA19), Carta(CARTA20), Carta(CARTA21), Carta(CARTA22), Carta(CARTA23), Carta(CARTA24), Carta(CARTA25), Carta(CARTA26), Carta(CARTA27), Carta(CARTA28), Carta(CARTA29), Carta(CARTA30), Carta(CARTA31), Carta(CARTA32), Carta(CARTA33), Carta(CARTA34), Carta(CARTA35), Carta(CARTA36), Carta(CARTA37), Carta(CARTA38) 
+#define TODAS Carta(CARTA1), Carta(CARTA2), Carta(CARTA3), Carta(CARTA4), Carta(CARTA5), Carta(CARTA6), Carta(CARTA7), Carta(CARTA8), Carta(CARTA9), Carta(CARTA10), Carta(CARTA11), Carta(CARTA12), Carta(CARTA13), Carta(CARTA14), Carta(CARTA15), Carta(CARTA16), Carta(CARTA17), Carta(CARTA18), Carta(CARTA19), Carta(CARTA20), Carta(CARTA21), Carta(CARTA22), Carta(CARTA23), Carta(CARTA24), Carta(CARTA25), Carta(CARTA26), Carta(CARTA27), Carta(CARTA28), Carta(CARTA29), Carta(CARTA30), Carta(CARTA31), Carta(CARTA32), Carta(CARTA33), Carta(CARTA34), Carta(CARTA35), Carta(CARTA36), Carta(CARTA37), Carta(CARTA38) 
 	
 
 #endif

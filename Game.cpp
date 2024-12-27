@@ -10,8 +10,8 @@ Game::Game() : player1(true, &mazo), player2(false, &mazo) {
 	
 	//Inicializar players con sus valores
 	player2.setRival(&player1);
-	player1.obtener3cartas();
 	player2.obtener3cartas();
+	player1.obtener3cartas();
 
 }
 

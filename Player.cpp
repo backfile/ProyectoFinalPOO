@@ -22,9 +22,9 @@ void Player::cambiarTurno(bool aux){
 
 void Player::obtener3cartas(){
 	cartas = m_mazo->Obtener3cartas();
-	cartas[0].actualizarTextura(Vector2f(200, 600));
+	cartas[0].actualizarTextura(Vector2f(180, 600));
 	cartas[1].actualizarTextura(Vector2f(400, 600));
-	cartas[2].actualizarTextura(Vector2f(600, 600));
+	cartas[2].actualizarTextura(Vector2f(620, 600));
 }
 
 int Player::verCartasEnMano(){

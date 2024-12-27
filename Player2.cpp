@@ -7,7 +7,6 @@ using namespace std;
 
 Player2::Player2(bool turno, Mazo *mazo) : m_turno(turno), m_mazo(mazo){
 	
-	
 }
 
 void Player2::dibujar(RenderWindow &m){
