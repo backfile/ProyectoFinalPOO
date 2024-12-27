@@ -8,6 +8,9 @@ Game::Game() {
 	background_s.setTexture(background);
 }
 
+void Game::actualizar(){
+	player1.actualizar();
+}
 
 void Game::Dibujar(RenderWindow &w) {
 	w.clear(Color(255,255,255,255));

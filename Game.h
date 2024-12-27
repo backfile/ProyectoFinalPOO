@@ -14,7 +14,7 @@ public:
 	
 	//Cambiar turno
 	void CambiarTurno();
-	
+	void actualizar();
 	void Dibujar(RenderWindow &w);
 	
 private:

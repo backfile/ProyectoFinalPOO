@@ -19,7 +19,7 @@ int main(int argc, char *argv[]){
 				w.close();	
 		}
 		
-		
+		game.actualizar();
 		game.Dibujar(w);
 		w.display();
 		
