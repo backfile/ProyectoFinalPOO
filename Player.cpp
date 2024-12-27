@@ -31,9 +31,9 @@ void Player::dibujar(RenderWindow &m){
 		x.actualizar();
 		x.dibujar(m);
 	}
-	int i = 50;
+	int i = 230;
 	for(Carta &x : en_mesa){
-		i+=60;
+		i-=45;
 		x.actualizar_mesa(i);
 		x.dibujar(m);
 	}
