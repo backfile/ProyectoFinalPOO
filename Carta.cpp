@@ -13,22 +13,22 @@ Carta::Carta(string imageFile, int power, int tipo, int numero, Vector2f posicio
 	m_s.setOrigin(104, 159.5);
 }
 
-void Carta::actualizar(int cartas){
+void Carta::actualizar(){
 	if(m_en_mano){		
-		if(cartas == 1){
-			m_s.setPosition(Vector2f(400,550));
-		}
 		if(m_is_selected){
 			m_s.setScale(Vector2f(1.3, 1.3));
 		}else{
 			m_s.setScale(Vector2f(1, 1));
 		}
 	}else{
-		m_s.setScale(Vector2f(0.7, 0.7));
-		m_s.setPosition(Vector2f(400, 300));
+		m_s.setScale(Vector2f(0, 0));
 	}
 }
 
+void Carta::actualizar_mesa(int i){
+	m_s.setScale(Vector2f(0.7, 0.7));
+	m_s.setPosition(Vector2f(400+i, 300));
+}
 
 void Carta::is_selected(bool aux){
 	m_is_selected = aux;

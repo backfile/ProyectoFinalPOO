@@ -4,6 +4,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include "Player.h"
+#include "Player2.h"
 
 using namespace sf;
 
@@ -13,7 +14,7 @@ public:
 	Game();
 	
 	//Cambiar turno
-	void CambiarTurno();
+	void getTurno();
 	void actualizar();
 	void Dibujar(RenderWindow &w);
 	
@@ -21,8 +22,8 @@ private:
 	Texture background;
 	Sprite background_s;
 	bool m_turno_player = true;
-	Player player1; // Estos accede
-
+	Player player1;
+	Player2 player2;
 };
 
 #endif

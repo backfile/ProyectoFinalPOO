@@ -13,7 +13,8 @@ class Carta {
 public:
 	Carta(string texureFile, int power, int tipo, int numero, Vector2f posicion);
 	void dibujar(RenderWindow &m);
-	void actualizar(int cartas);
+	void actualizar();
+	void actualizar_mesa(int i);
 	void tirar();
 	void is_selected(bool aux);
 private:
