@@ -5,6 +5,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include "Player.h"
 #include "Player2.h"
+#include "Mazo.h"
 
 using namespace sf;
 
@@ -22,6 +23,7 @@ private:
 	Texture background;
 	Sprite background_s;
 	bool m_turno_player = true;
+	Mazo mazo;
 	Player player1;
 	Player2 player2;
 };

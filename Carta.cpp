@@ -2,27 +2,40 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 using namespace std;
 
-Carta::Carta(string imageFile, int power, int tipo, int numero, Vector2f posicion) {
-	m_t.loadFromFile(imageFile);
+Carta::Carta(string imageFile, int power, int tipo, int numero) {
 	m_power = power;
 	m_tipo = tipo;
-	m_s.setTexture(m_t);
-	m_s.setPosition(posicion);
 	m_is_selected = false;
 	m_en_mano = true;
+	m_textureFile = imageFile;
 	m_s.setOrigin(104, 159.5);
+}
+
+void Carta::actualizarTextura(Vector2f posicion){
+	m_t.loadFromFile(m_textureFile);
+	m_s.setTexture(m_t);
+	m_s.setPosition(posicion);
 }
 
 void Carta::actualizar(){
 	if(m_en_mano){		
 		if(m_is_selected){
-			m_s.setScale(Vector2f(1.3, 1.3));
+			m_s.setScale(Vector2f(1.2, 1.2));
 		}else{
 			m_s.setScale(Vector2f(1, 1));
 		}
 	}else{
 		m_s.setScale(Vector2f(0, 0));
 	}
+}
+
+
+Texture Carta::obtenerTextura(){
+	return m_t;
+}
+
+int Carta::verPoder(){
+	return m_power;
 }
 
 void Carta::actualizar_mesa(int i){

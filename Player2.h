@@ -9,20 +9,22 @@ using namespace std;
 
 class Player2 {
 public:
-	Player2(bool turno);
+	Player2(bool turno, Mazo *mazo);
 	void dibujar(RenderWindow &m);
 	void actualizar();
 	void seleccionarCarta();
 	bool obtenerTurno();
+	void obtener3cartas();
+	int verCartasEnMano();
 	void cambiarTurno(bool aux);
 	void setRival(Player *aux);
+	
 private:
-	Carta carta1;
-	Carta carta2;
-	Carta carta3;
+	
 	bool m_turno;
 	Player* rival;
-	int carta_selected;
+	Mazo* m_mazo;
+	int carta_selected = -1;
 	int cartas_en_mano = 3;
 	vector<Carta>cartas;
 	vector<Carta>en_mesa;

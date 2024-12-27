@@ -1,14 +1,18 @@
 #include "Game.h"
 
+#include <iostream>
 using namespace std;
 using namespace sf;
-Game::Game() : player1(true), player2(false) {
+Game::Game() : player1(true, &mazo), player2(false, &mazo) {
 	//Fondo
 	background.loadFromFile("./images/fondo.png");
 	background_s.setTexture(background);
+	
+	//Inicializar players con sus valores
 	player2.setRival(&player1);
-//	player1.setOponente(&player2);
-//	player2.setOponente(&player1);
+	player1.obtener3cartas();
+	player2.obtener3cartas();
+
 }
 
 void Game::actualizar(){

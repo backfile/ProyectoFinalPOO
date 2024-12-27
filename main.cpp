@@ -3,6 +3,8 @@
 #include "Mazo.h"
 #include "Game.h"
 
+#include <iostream>
+using namespace std;
 using namespace sf;
 
 int main(int argc, char *argv[]){
@@ -11,13 +13,13 @@ int main(int argc, char *argv[]){
 	
 	//Fondo
     Game game;
-	
 	while(w.isOpen()) {
 		Event e;
 		while(w.pollEvent(e)) {
 			if(e.type == Event::Closed)
 				w.close();	
 		}
+		
 		
 		game.actualizar();
 		game.Dibujar(w);

@@ -1,19 +1,13 @@
 #include "Player.h"
 
-#define CARTA1 "./images/oro4.png", 1, 1, 2
-#define CARTA2 "./images/espada2.png", 2, 2, 2
-#define CARTA3 "./images/basto1.png", 2, 2, 2
-
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
 
 using namespace std;
 
-Player::Player(bool turno) : m_turno(turno), carta1(CARTA1, Vector2f(180, 600)), carta2(CARTA2, Vector2f(400,600)), carta3(CARTA3, Vector2f(620, 600)), carta_selected(-1) {
-	cartas.push_back(carta1);
-	cartas.push_back(carta2);
-	cartas.push_back(carta3);
+Player::Player(bool turno, Mazo *mazo) : m_turno(turno),  m_mazo(mazo){
+
 }
 
 
@@ -25,8 +19,20 @@ void Player::cambiarTurno(bool aux){
 	m_turno = aux;
 }
 
+
+void Player::obtener3cartas(){
+	cartas = m_mazo->Obtener3cartas();
+	cartas[0].actualizarTextura(Vector2f(200, 600));
+	cartas[1].actualizarTextura(Vector2f(400, 600));
+	cartas[2].actualizarTextura(Vector2f(600, 600));
+}
+
+int Player::verCartasEnMano(){
+	return cartas_en_mano;
+}
+
+
 void Player::dibujar(RenderWindow &m){
-	
 	for(Carta &x : cartas){
 		x.actualizar();
 		x.dibujar(m);

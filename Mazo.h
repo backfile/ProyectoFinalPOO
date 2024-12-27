@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Carta.h"
+#include "ValoresCartas.h"
 
 using namespace std;
 
@@ -11,7 +12,9 @@ public:
 	Mazo();
 	vector<Carta> Obtener3cartas();
 private:
-	vector<Carta>mazo;
+	vector<Carta>m_mazo;
+	vector<Carta>m_mazo_respaldo;
+	void reiniciar_mazo();
 };
 
 #endif
