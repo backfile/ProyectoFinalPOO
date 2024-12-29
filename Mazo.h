@@ -11,10 +11,11 @@ class Mazo {
 public:
 	Mazo();
 	vector<Carta> Obtener3cartas();
+	void reiniciar_mazo();
 private:
 	vector<Carta>m_mazo;
 	vector<Carta>m_mazo_respaldo;
-	void reiniciar_mazo();
+	
 };
 
 #endif

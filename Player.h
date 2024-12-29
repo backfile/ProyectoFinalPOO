@@ -6,29 +6,41 @@
 #include <string>
 #include "ValoresCartas.h"
 #include "Mazo.h"
+#include "Truco.h"
 
 
 
 using namespace std;
 
+
 class Player {
 public:
-	Player(bool turno, Mazo *mazo);
+	Player(bool turno, Mazo *mazo, Truco *truco);
+	
 	void dibujar(RenderWindow &m);
 	void actualizar();
+	
 	void seleccionarCarta();
-	void obtener3cartas();
+	void iniciar();
 	bool obtenerTurno();
 	int verCartasEnMano();
 	void cambiarTurno(bool aux);
+	vector<Carta> obtener_en_mesa();
+	void set_tiene_responder();
 	
 private:
 	bool m_turno;
 	int carta_selected = -1;
 	int cartas_en_mano = 3;
+	bool tiene_responder = false;
+	
+	//Se comparten
 	Mazo *m_mazo;
+	Truco *m_truco;
+	
 	vector<Carta>cartas;
 	vector<Carta>en_mesa;
+
 };
 
 #endif

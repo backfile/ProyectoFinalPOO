@@ -3,32 +3,20 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
 #include "ValoresCartas.h"
+#include "Player.h"
 using namespace std;
 
-Player2::Player2(bool turno, Mazo *mazo) : m_turno(turno), m_mazo(mazo){
-	
+Player2::Player2(bool turno, Mazo *mazo, Truco *truco, Player* rival) : m_rival(rival), m_turno(turno), m_mazo(mazo), m_truco(truco){
+	iniciar();
 }
 
-void Player2::dibujar(RenderWindow &m){
-	for(Carta &x : cartas){
-		x.actualizar();
-		x.dibujar(m);
-	}
-	int i = -230;
-	for(Carta &x : en_mesa){
-		i+=45;
-		x.actualizar_mesa(i);
-		x.dibujar(m);
-	}
-	
-	i = 0;
+
+vector<Carta> Player2::obtener_en_mesa(){
+	return en_mesa;
 }
 
-void Player2::setRival(Player *aux){
-	rival = aux;
-}
 
-void Player2::obtener3cartas(){
+void Player2::iniciar(){
 	cartas = m_mazo->Obtener3cartas();
 	cartas[0].actualizarTextura(Vector2f(180, -10));
 	cartas[1].actualizarTextura(Vector2f(400, -10));
@@ -48,6 +36,27 @@ void Player2::cambiarTurno(bool aux){
 }
 
 void Player2::actualizar(){
+	
+	if(m_truco->obtenerStatus() == 1){
+		if(m_truco->obtenerGenerated_by() == 1){
+			if(Keyboard::isKeyPressed(Keyboard::Num7)){
+				m_truco->aceptar();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::Num8)){
+				m_truco->rechazar();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::Num9)){
+				m_truco->redisputar();
+				return;
+			}
+			return;
+		}
+	}
+	
+	
+	
 	if(Keyboard::isKeyPressed(Keyboard::Num1)){
 		carta_selected = 0;
 		cartas[0].is_selected(true);
@@ -75,8 +84,24 @@ void Player2::actualizar(){
 			cartas_en_mano --;
 			en_mesa.push_back(cartas[carta_selected]);
 			carta_selected = -1;
-			rival->cambiarTurno(true);
+			m_rival->cambiarTurno(true);
+			m_truco->modificar_turno_player(true);
 		}
 	}
 	
+}
+
+void Player2::dibujar(RenderWindow &m){
+	for(Carta &x : cartas){
+		x.actualizar();
+		x.dibujar(m);
+	}
+	int i = -230;
+	for(Carta &x : en_mesa){
+		i+=45;
+		x.actualizar_mesa(i);
+		x.dibujar(m);
+	}
+	
+	i = 0;
 }

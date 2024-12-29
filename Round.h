@@ -9,23 +9,32 @@
 
 using namespace sf;
 
-class Game {
+
+class Round {
 public:
 	//Empezar partida en el constructor
-	Game();
 	
-	//Cambiar turno
-	void getTurno();
+	Round(bool turn_player1);
+	void actualizarStatus();
 	void actualizar();
-	void Dibujar(RenderWindow &w);
+	void dibujar(RenderWindow &w);
+	bool getStatus();
+	int getStatusTruco();
 	
 private:
-	Texture background;
-	Sprite background_s;
-	bool m_turno_player = true;
+	
+	//generales
+	bool status = true;
 	Mazo mazo;
+	
+	int puntos_ganador;
+	int player1puntos;
+	int player2puntos;
+	
+	Truco truco;
 	Player player1;
 	Player2 player2;
+	
 };
 
 #endif

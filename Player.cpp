@@ -6,8 +6,8 @@
 
 using namespace std;
 
-Player::Player(bool turno, Mazo *mazo) : m_turno(turno),  m_mazo(mazo){
-
+Player::Player(bool turno, Mazo *mazo, Truco *truco) : m_turno(turno),  m_mazo(mazo), m_truco(truco){
+	iniciar();
 }
 
 
@@ -19,8 +19,15 @@ void Player::cambiarTurno(bool aux){
 	m_turno = aux;
 }
 
+//void Player::set_tiene_responder(bool aux){
+//	tiene_responder = true;
+//}
+//	
+vector<Carta> Player::obtener_en_mesa(){
+	return en_mesa;
+}
 
-void Player::obtener3cartas(){
+void Player::iniciar(){
 	cartas = m_mazo->Obtener3cartas();
 	cartas[0].actualizarTextura(Vector2f(180, 600));
 	cartas[1].actualizarTextura(Vector2f(400, 600));
@@ -32,23 +39,28 @@ int Player::verCartasEnMano(){
 }
 
 
-void Player::dibujar(RenderWindow &m){
-	for(Carta &x : cartas){
-		x.actualizar();
-		x.dibujar(m);
-	}
-	int i = 230;
-	for(Carta &x : en_mesa){
-		i-=45;
-		x.actualizar_mesa(i);
-		x.dibujar(m);
+
+
+//Escuchar inputs
+void Player::actualizar(){
+	if(m_truco->obtenerStatus() == 1){
+		if(m_truco->obtenerGenerated_by() == 2){
+			if(Keyboard::isKeyPressed(Keyboard::Num7)){
+				m_truco->aceptar();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::Num8)){
+				m_truco->rechazar();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::Num9)){
+				m_truco->redisputar();
+				return;
+			}
+			return;
+		}
 	}
 	
-	i = 0;
-}
-
-
-void Player::actualizar(){
 	if(Keyboard::isKeyPressed(Keyboard::Num1)){
 		carta_selected = 0;
 		cartas[0].is_selected(true);
@@ -76,8 +88,33 @@ void Player::actualizar(){
 			cartas_en_mano --;
 			en_mesa.push_back(cartas[carta_selected]);
 			carta_selected = -1;
+			
 			m_turno = false;
+			m_truco->modificar_turno_player(false);
+			
 		}
 	}
 	
+}
+
+//Dibuja segun los inputs
+void Player::dibujar(RenderWindow &m){
+	for(Carta &x : cartas){
+		x.actualizar();
+		x.dibujar(m);
+	}
+	int i = 230;
+	for(Carta &x : en_mesa){
+		i-=45;
+		x.actualizar_mesa(i);
+		x.dibujar(m);
+	}
+	i = 0;
+	
+//	if(/*logic_puedo_cantar_algo*/){
+//		m_logic_ese_algo.dibujar();
+//	}
+//	if(logic_debo_aceptar_algo){
+//		m_logic
+//	}
 }

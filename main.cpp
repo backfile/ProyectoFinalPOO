@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Carta.h"
 #include "Mazo.h"
-#include "Game.h"
+#include "Match.h"
 
 #include <iostream>
 using namespace std;
@@ -12,17 +12,17 @@ int main(int argc, char *argv[]){
 	w.setFramerateLimit(60);
 	
 	//Fondo
-    Game game;
+    Match match;
 	while(w.isOpen()) {
 		Event e;
 		while(w.pollEvent(e)) {
 			if(e.type == Event::Closed)
 				w.close();	
 		}
+
 		
-		
-		game.actualizar();
-		game.Dibujar(w);
+		match.actualizar();
+		match.dibujar(w);
 		w.display();
 		
 	}
