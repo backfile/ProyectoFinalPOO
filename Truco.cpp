@@ -9,7 +9,7 @@ Truco::Truco(bool turno_player_1) : m_turno_player_1(turno_player_1){
 	t_truco.loadFromFile("./images/truco.png");
 	s_truco.setTexture(t_truco);
 	s_truco.setPosition(Vector2f(400, 300));
-	font.loadFromFile("fast99.ttf");
+	font.loadFromFile("nueva.otf");
 	text.setStyle(sf::Text::Bold);
 	text.setFillColor(sf::Color::Black);
 	text.setFont(font);
@@ -42,21 +42,49 @@ void Truco::actualizar(){
 	}
 	
 	
-	if(status == 3){
-		text.setString("Truco en juego!!!!");
+	if(status == 3 and max_redisputar == 2){
+		if(m_generated_by == 1 and m_turno_player_1 == false){
+			text.setString("Re-truco");
+			return;
+		}
+		else if(m_generated_by == 2 and m_turno_player_1 == true){
+			text.setString("Re-truco");
+			return;
+		}else{
+			text.setString("");
+		}
+		
 		return;
 	}
+	
+	if(status == 3 and max_redisputar == 1){
+		if(m_generated_by == 1 and m_turno_player_1 == false){
+			text.setString("Vale cuatro");
+			return;
+		}
+		else if(m_generated_by == 2 and m_turno_player_1 == true){
+			text.setString("Vale cuatro");
+			return;
+		}else{
+			text.setString("");
+		}
+		
+		return;
+	}
+	
+	if(status == 3 and max_redisputar == 0){
+		text.setString(" ");
+	}
+	
 
 }
 
 void Truco::aceptar(){
 	status = 3;
-	cout << status << "Este es el status";
 }
 
 void Truco::rechazar(){
 	status = 2;
-	cout << status << "Este es el status";
 }
 
 void Truco::cantar(){

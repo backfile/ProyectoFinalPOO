@@ -63,6 +63,15 @@ void Player2::actualizar(){
 		return;
 	}
 	
+	if(m_truco->obtenerStatus() == 3 and (m_truco->obtenerRedisputar() == 2 or m_truco->obtenerRedisputar() == 1)){
+		if(Keyboard::isKeyPressed(Keyboard::Num6)){
+			m_truco->redisputar();
+			m_truco->setGenerated_by(2);
+			m_rival->cambiarTurno(true);
+			m_truco->modificar_turno_player(true);
+		}
+	}
+	
 	if(m_truco->obtenerStatus() == 0){
 		if(Keyboard::isKeyPressed(Keyboard::Num6)){
 			m_truco->cantar();
