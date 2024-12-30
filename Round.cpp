@@ -23,13 +23,6 @@ void Round::actualizar(){
 		}
 	}
 	
-	if(truco.obtenerStatus() == 1){
-		if(truco.obtenerGenerated_by() == 1){
-			player1.cambiarTurno(false);
-		}else{
-			player1.cambiarTurno(true);
-		}
-	}
 	
 	if(truco.obtenerStatus() == 3){
 		puntos_ganador = truco.obtenerValor();

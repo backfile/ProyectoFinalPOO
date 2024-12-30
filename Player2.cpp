@@ -41,21 +41,37 @@ void Player2::actualizar(){
 		if(m_truco->obtenerGenerated_by() == 1){
 			if(Keyboard::isKeyPressed(Keyboard::Num7)){
 				m_truco->aceptar();
+				m_rival->cambiarTurno(true);
+				m_truco->modificar_turno_player(true);
 				return;
 			}
 			if(Keyboard::isKeyPressed(Keyboard::Num8)){
 				m_truco->rechazar();
+				m_rival->cambiarTurno(true);
+				m_truco->modificar_turno_player(true);
 				return;
 			}
-			if(Keyboard::isKeyPressed(Keyboard::Num9)){
+			if(Keyboard::isKeyPressed(Keyboard::Num0) and m_truco->obtenerRedisputar() > 0){
 				m_truco->redisputar();
+				m_truco->setGenerated_by(2);
+				m_rival->cambiarTurno(true);
+				m_truco->modificar_turno_player(true);
 				return;
 			}
-			return;
+			
 		}
+		return;
 	}
 	
-	
+	if(m_truco->obtenerStatus() == 0){
+		if(Keyboard::isKeyPressed(Keyboard::Num6)){
+			m_truco->cantar();
+			m_rival->cambiarTurno(true);
+			m_truco->modificar_turno_player(true);
+			m_truco->setGenerated_by(2);
+		}
+		
+	}
 	
 	if(Keyboard::isKeyPressed(Keyboard::Num1)){
 		carta_selected = 0;

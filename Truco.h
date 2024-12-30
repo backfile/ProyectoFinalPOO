@@ -7,6 +7,7 @@
 #include <SFML/Graphics/Text.hpp>
 
 
+#include <iostream>
 using namespace std;
 using namespace sf;
 
@@ -19,18 +20,14 @@ public:
 	
 	void actualizar();
 	void dibujar(RenderWindow &w);
-	void aceptar(){status=3;}
-	void rechazar(){status=2;}
-	void cantar(){status=1;}
+	void aceptar();
+	void rechazar();
+	void cantar();
 	void redisputar(){
-	  if(max_redisputar > 0){		  
+	  if(max_redisputar > 0){	
+		  status = 1;
 		  castigo = valor;	
 		  valor+=valor;
-		  if(m_generated_by == 1){
-			  m_generated_by = 0;
-		  }else{
-			  m_generated_by = 1;
-		  }
 	   }
 	  max_redisputar --;
 	}
@@ -70,7 +67,7 @@ private:
 	int valor = 2;
 	int castigo = 1;
 	int m_generated_by;	
-	bool status = 0; // 0 no iniciado // 1 en espera de respuesta  // 2 rechazado // 3 aceptado
+	int status = 0; // 0 no iniciado // 1 en espera de respuesta  // 2 rechazado // 3 aceptado
 	
 	Text text;
 	Font font;
