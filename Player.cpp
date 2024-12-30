@@ -19,10 +19,7 @@ void Player::cambiarTurno(bool aux){
 	m_turno = aux;
 }
 
-//void Player::set_tiene_responder(bool aux){
-//	tiene_responder = true;
-//}
-//	
+
 vector<Carta> Player::obtener_en_mesa(){
 	return en_mesa;
 }
@@ -103,7 +100,7 @@ void Player::actualizar(){
 		return;
 	} 
 	if(Keyboard::isKeyPressed(Keyboard::Space)){
-		if(carta_selected != -1){	
+		if(carta_selected != -1 and cartas[carta_selected].obtenerEnMano() == true){	
 			cartas[carta_selected].tirar();
 			cartas_en_mano --;
 			en_mesa.push_back(cartas[carta_selected]);
@@ -117,7 +114,6 @@ void Player::actualizar(){
 	
 }
 
-//Dibuja segun los inputs
 void Player::dibujar(RenderWindow &m){
 	for(Carta &x : cartas){
 		x.actualizar();
@@ -130,11 +126,4 @@ void Player::dibujar(RenderWindow &m){
 		x.dibujar(m);
 	}
 	i = 0;
-	
-//	if(/*logic_puedo_cantar_algo*/){
-//		m_logic_ese_algo.dibujar();
-//	}
-//	if(logic_debo_aceptar_algo){
-//		m_logic
-//	}
-}
+}	

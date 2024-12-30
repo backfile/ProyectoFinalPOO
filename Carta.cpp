@@ -51,6 +51,10 @@ void Carta::tirar(){
 	m_en_mano = false;
 }
 
+bool Carta::obtenerEnMano(){
+	return m_en_mano;
+}
+
 void Carta::dibujar(RenderWindow &m){
 	m.draw(m_s);
 }

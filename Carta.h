@@ -16,6 +16,7 @@ public:
 	void actualizar();
 	void actualizar_mesa(int i);
 	void actualizarTextura(Vector2f posicion);
+	bool obtenerEnMano();
 	Texture obtenerTextura();
 	void tirar();
 	void is_selected(bool aux);
