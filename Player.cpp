@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Player::Player(bool turno, Mazo *mazo, Truco *truco) : m_turno(turno),  m_mazo(mazo), m_truco(truco){
+Player::Player(bool turno, Mazo *mazo, Truco *truco, Envido *envido) : m_turno(turno),  m_mazo(mazo), m_truco(truco), m_envido(envido){
 	iniciar();
 }
 
@@ -114,6 +114,7 @@ void Player::actualizar(){
 			
 			m_turno = false;
 			m_truco->modificar_turno_player(false);
+			m_envido->modificar_turno_player(false);
 			
 		}
 	}

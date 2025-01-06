@@ -23,6 +23,7 @@ public:
 	bool ver_tiro_carta_player1();
 	bool ver_tiro_carta_player2();
 	int ver_generated_by();
+	void modificar_turno_player(bool aux);
 	int ver_status();
 	int ver_tipo_en_juego();
 	

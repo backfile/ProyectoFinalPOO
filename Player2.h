@@ -9,7 +9,7 @@ using namespace std;
 
 class Player2 {
 public:
-	Player2(bool turno, Mazo *mazo, Truco *truco, Player *rival);
+	Player2(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Player *rival);
 	void dibujar(RenderWindow &m);
 	void actualizar();
 	void seleccionarCarta();
@@ -30,6 +30,7 @@ private:
 	//Se comparten	
 	Mazo *m_mazo;
 	Truco *m_truco;
+	Envido *m_envido;
 	
 	vector<Carta>cartas;
 	vector<Carta>en_mesa;

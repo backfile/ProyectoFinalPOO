@@ -7,6 +7,7 @@
 #include "ValoresCartas.h"
 #include "Mazo.h"
 #include "Truco.h"
+#include "Envido.h"
 
 
 
@@ -15,7 +16,7 @@ using namespace std;
 
 class Player {
 public:
-	Player(bool turno, Mazo *mazo, Truco *truco);
+	Player(bool turno, Mazo *mazo, Truco *truco, Envido *envido);
 	
 	void dibujar(RenderWindow &m);
 	void actualizar();
@@ -37,6 +38,7 @@ private:
 	//Se comparten
 	Mazo *m_mazo;
 	Truco *m_truco;
+	Envido *m_envido;
 	
 	vector<Carta>cartas;
 	vector<Carta>en_mesa;

@@ -6,7 +6,7 @@
 #include "Player.h"
 using namespace std;
 
-Player2::Player2(bool turno, Mazo *mazo, Truco *truco, Player* rival) : m_rival(rival), m_turno(turno), m_mazo(mazo), m_truco(truco){
+Player2::Player2(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Player* rival) : m_rival(rival), m_turno(turno), m_mazo(mazo), m_truco(truco), m_envido(envido){
 	iniciar();
 }
 
@@ -70,6 +70,7 @@ void Player2::actualizar(){
 			m_truco->setGenerated_by(2);
 			m_rival->cambiarTurno(true);
 			m_truco->modificar_turno_player(true);
+		
 		}
 	}
 	
@@ -105,13 +106,14 @@ void Player2::actualizar(){
 		return;
 	} 
 	if(Keyboard::isKeyPressed(Keyboard::Space)){
-		if(carta_selected != -1){	
+		if(carta_selected != -1 and cartas[carta_selected].obtenerEnMano() == true){	
 			cartas[carta_selected].tirar();
 			cartas_en_mano --;
 			en_mesa.push_back(cartas[carta_selected]);
 			carta_selected = -1;
 			m_rival->cambiarTurno(true);
 			m_truco->modificar_turno_player(true);
+			m_envido->modificar_turno_player(true);
 		}
 	}
 	

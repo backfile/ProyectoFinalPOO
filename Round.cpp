@@ -1,6 +1,6 @@
 #include "Round.h"
 
-Round::Round(bool turn_player1) : player1(turn_player1, &mazo, &truco), player2(!turn_player1, &mazo, &truco, &player1), truco(turn_player1), envido(turn_player1){
+Round::Round(bool turn_player1) : player1(turn_player1, &mazo, &truco, &envido), player2(!turn_player1, &mazo, &truco, &envido, &player1), truco(turn_player1), envido(turn_player1){
 	
 }
 

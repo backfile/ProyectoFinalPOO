@@ -11,14 +11,70 @@ void Envido::actualizar(){
 	
 	if(!finalizado){
 		if(m_turno_player_1 == true){
-			text.setPosition(600, 500);
+			text.setPosition(400, 500);
 		}else{
-			text.setPosition(600, 100);
+			text.setPosition(400, 100);
 		}
 		
-		text.setString("envido");
+		
+		if(tiro_carta_player1 == false and m_turno_player_1 and status == 0){
+			text.setString("Envido - Real Envido - Falta Envido");
+			return;
+		}
+		
+		if(tiro_carta_player2 == false and m_turno_player_1 == false and status == 0){
+			text.setString("Envido - Real Envido - Falta Envido");
+			return;
+		}
+		
+		if(status == 1){
+			if(m_generated_by == 1 and m_turno_player_1 == false){
+				if(tipo_en_juego == 1){
+					text.setString("Aceptar Envido - Envido envido - Real Envido - Falta envido");
+					return;
+				}
+				if(tipo_en_juego == 2){
+					text.setString("Aceptar Real envido - Quiero Falta envido");
+					return;
+				}
+				if(tipo_en_juego == 3){
+					text.setString("Aceptar Envido Envido - Quiero Falta envido");
+					return;
+				}
+				if(tipo_en_juego == 4){
+					text.setString("Quiero falta envido");
+					return;
+				}
+			}
+			if(m_generated_by == 2 and m_turno_player_1 == true){
+				if(tipo_en_juego == 1){
+					text.setString("Aceptar Envido - Envido envido - Real Envido - Falta envido");
+					return;
+				}
+				if(tipo_en_juego == 2){
+					text.setString("Aceptar Real envido - Quiero Falta envido");
+					return;
+				}
+				if(tipo_en_juego == 3){
+					text.setString("Aceptar Envido Envido - Quiero Falta envido");
+					return;
+				}
+				if(tipo_en_juego == 4){
+					text.setString("Quiero falta envido");
+					return;
+				}
+			}
+		}
+		
+		
+	}else{
+		text.setString("Terminado");
 	}
 	
+}
+
+void Envido::modificar_turno_player(bool aux){
+	m_turno_player_1 = aux;
 }
 
 void Envido::dibujar(RenderWindow &w){
