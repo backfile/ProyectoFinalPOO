@@ -1,6 +1,6 @@
 #include "Round.h"
 
-Round::Round(bool turn_player1) : player1(turn_player1, &mazo, &truco), player2(!turn_player1, &mazo, &truco, &player1), truco(turn_player1){
+Round::Round(bool turn_player1) : player1(turn_player1, &mazo, &truco), player2(!turn_player1, &mazo, &truco, &player1), truco(turn_player1), envido(turn_player1){
 	
 }
 
@@ -40,6 +40,7 @@ void Round::actualizar(){
 	}
 	
 	truco.actualizar();
+	envido.actualizar();
 }
 
 bool Round::getStatus(){
@@ -50,5 +51,6 @@ void Round::dibujar(RenderWindow &w){
 	player1.dibujar(w);
 	player2.dibujar(w);
 	truco.dibujar(w);
+	envido.dibujar(w);
 }
 

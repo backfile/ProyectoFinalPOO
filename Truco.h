@@ -23,43 +23,15 @@ public:
 	void aceptar();
 	void rechazar();
 	void cantar();
-	void redisputar(){
-	  if(max_redisputar > 0){	
-		  status = 1;
-		  castigo = valor;	
-		  valor+=valor;
-	   }
-	  max_redisputar --;
-	}
-	  
-	void setGenerated_by(int generated_by){
-		m_generated_by = generated_by;
-	}
-	  
-	int obtenerGenerated_by(){
-		return m_generated_by;
-	}
+	void redisputar();
+	void setGenerated_by(int generated_by);
+	int obtenerGenerated_by();
+	int obtenerStatus();
+	int obtenerCastigo();
+	int obtenerValor();
+	int obtenerRedisputar();
+	void modificar_turno_player(bool turno_player_1);
 	
-	int obtenerStatus(){
-		return status;
-	}
-		
-	int obtenerCastigo(){
-		return castigo;
-	}	
-	
-	int obtenerValor(){
-		return valor;
-	}	
-	
-	int obtenerRedisputar(){
-		return max_redisputar;
-	}
-		
-	void modificar_turno_player(bool turno_player_1){
-		m_turno_player_1 = turno_player_1;
-	}
-		
 private:
 	
 	bool m_turno_player_1;

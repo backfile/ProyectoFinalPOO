@@ -3,7 +3,9 @@
 #include <SFML/Graphics/Font.hpp>
 #include <atomic>
 #include <iostream>
+
 using namespace std;
+using namespace sf;
 
 Truco::Truco(bool turno_player_1) : m_turno_player_1(turno_player_1){
 	t_truco.loadFromFile("./images/truco.png");
@@ -77,6 +79,44 @@ void Truco::actualizar(){
 	}
 	
 
+}
+
+int Truco::obtenerGenerated_by(){
+	return m_generated_by;
+}
+	
+
+void Truco::redisputar(){
+	if(max_redisputar > 0){	
+		status = 1;
+		castigo = valor;	
+		valor+=1;
+	}
+	max_redisputar --;
+}
+
+void Truco::modificar_turno_player(bool turno_player_1){
+	m_turno_player_1 = turno_player_1;
+}
+
+int Truco::obtenerRedisputar(){
+	return max_redisputar;
+}
+
+int Truco::obtenerValor(){
+	return valor;
+}	
+
+int Truco::obtenerCastigo(){
+	return castigo;
+}	
+
+void Truco::setGenerated_by(int generated_by){
+	m_generated_by = generated_by;
+}
+	
+int Truco::obtenerStatus(){
+	return status;
 }
 
 void Truco::aceptar(){

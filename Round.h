@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Player2.h"
 #include "Mazo.h"
+#include "Envido.h"
 
 using namespace sf;
 
@@ -31,6 +32,7 @@ private:
 	int player1puntos;
 	int player2puntos;
 	
+	Envido envido;
 	Truco truco;
 	Player player1;
 	Player2 player2;
