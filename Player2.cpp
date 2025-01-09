@@ -23,6 +23,14 @@ void Player2::iniciar(){
 	cartas[2].actualizarTextura(Vector2f(620, -10));
 }
 
+
+void Player2::cederTurno(){
+	m_rival->cambiarTurno(true);
+	m_truco->modificar_turno_player(true);
+	m_envido->modificar_turno_player(true);
+};
+
+
 int Player2::verCartasEnMano(){
 	return cartas_en_mano;
 }
@@ -61,6 +69,106 @@ void Player2::actualizar(){
 			
 		}
 		return;
+	}
+	
+	if(m_envido->ver_status() == 1){
+		
+		//
+		if(m_envido->ver_tipo_en_juego() == 1){
+			if(Keyboard::isKeyPressed(Keyboard::A)){
+				m_envido->aceptar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::S)){
+				m_envido->rechazar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::D)){
+				m_envido->cantar_envido_envido();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::F)){
+				m_envido->cantar_falta_envido();
+				cederTurno();
+				return;
+			}
+			return;
+		}
+		
+		//
+		
+		if(m_envido->ver_tipo_en_juego() == 2){
+			if(Keyboard::isKeyPressed(Keyboard::A)){
+				m_envido->aceptar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::S)){
+				m_envido->rechazar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::D)){
+				m_envido->cantar_falta_envido();
+				cederTurno();
+				return;
+			}
+		}
+		//
+		if(m_envido->ver_tipo_en_juego() == 3){
+			
+			if(Keyboard::isKeyPressed(Keyboard::A)){
+				m_envido->aceptar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::S)){
+				m_envido->rechazar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::D)){
+				m_envido->cantar_falta_envido();
+				cederTurno();
+				return;
+			}
+		}
+		//
+		if(m_envido->ver_tipo_en_juego() == 4){
+			if(Keyboard::isKeyPressed(Keyboard::A)){
+				m_envido->aceptar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::S)){
+				m_envido->rechazar();
+				cederTurno();
+				return;
+			}
+		}
+		
+	}
+	
+	
+	if(m_envido->ver_status() == 0){
+		if(Keyboard::isKeyPressed(Keyboard::A)){
+			m_envido->cantar_envido();
+			cederTurno();
+			return;
+		}
+		if(Keyboard::isKeyPressed(Keyboard::S)){
+			m_envido->cantar_real_envido();
+			cederTurno();
+			return;
+		}
+		if(Keyboard::isKeyPressed(Keyboard::D)){
+			m_envido->cantar_falta_envido();
+			cederTurno();
+			return;
+		}
 	}
 	
 	if(m_truco->obtenerStatus() == 3 and (m_truco->obtenerRedisputar() == 2 or m_truco->obtenerRedisputar() == 1)){
@@ -114,6 +222,9 @@ void Player2::actualizar(){
 			m_rival->cambiarTurno(true);
 			m_truco->modificar_turno_player(true);
 			m_envido->modificar_turno_player(true);
+			if(m_envido->ver_finalizado() == false){
+				m_envido->modificar_tiro_carta_player2();
+			}
 		}
 	}
 	

@@ -36,8 +36,8 @@ private:
 	
 	bool m_turno_player_1;
 	int max_redisputar = 2;
-	int valor = 2;
-	int castigo = 1;
+	int valor = 1;
+	int castigo = 0;
 	int m_generated_by;	
 	int status = 0; // 0 no iniciado // 1 en espera de respuesta  // 2 rechazado // 3 aceptado
 	

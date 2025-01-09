@@ -16,21 +16,26 @@ public:
 	//Empezar partida en el constructor
 	
 	Round(bool turn_player1);
-	void actualizarStatus();
+	void verificar_estado();
 	void actualizar();
 	void dibujar(RenderWindow &w);
 	bool getStatus();
 	int getStatusTruco();
+	int getPuntosPlayer1();
+	int getPuntosPlayer2();
+	int getPuntosGanador();
+	bool getPlayer1ganador();
 	
 private:
 	
 	//generales
 	bool status = true;
+	bool player1ganador;
 	Mazo mazo;
 	
-	int puntos_ganador;
-	int player1puntos;
-	int player2puntos;
+	int puntos_ganador = 0;
+	int player1puntos = 0;
+	int player2puntos = 0;
 	
 	Envido envido;
 	Truco truco;

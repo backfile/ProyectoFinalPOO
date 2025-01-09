@@ -36,6 +36,11 @@ int Player::verCartasEnMano(){
 }
 
 
+void Player::cederTurno(){
+	m_turno = false;
+	m_truco->modificar_turno_player(false);
+	m_envido->modificar_turno_player(false);
+};
 
 
 //Escuchar inputs
@@ -44,32 +49,128 @@ void Player::actualizar(){
 		if(m_truco->obtenerGenerated_by() == 2){
 			if(Keyboard::isKeyPressed(Keyboard::Num7)){
 				m_truco->aceptar();
-				m_turno = false;
-				m_truco->modificar_turno_player(false);
+				cederTurno();
 				return;
 			}
 			if(Keyboard::isKeyPressed(Keyboard::Num8)){
 				m_truco->rechazar();
-				m_turno = false;
-				m_truco->modificar_turno_player(false);
+				cederTurno();
 				return;
 			}
 			if(Keyboard::isKeyPressed(Keyboard::Num9) and m_truco->obtenerRedisputar() > 0) {
 				m_truco->redisputar();
 				m_truco->setGenerated_by(1);
-				m_turno = false;
-				m_truco->modificar_turno_player(false);
+				cederTurno();
 				return;
 			}
 		}
 		return;
 	}
 	
+	if(m_envido->ver_status() == 1){
+		
+		//
+		if(m_envido->ver_tipo_en_juego() == 1){
+			if(Keyboard::isKeyPressed(Keyboard::Z)){
+				m_envido->aceptar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::X)){
+				m_envido->rechazar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::C)){
+				m_envido->cantar_envido_envido();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::V)){
+				m_envido->cantar_falta_envido();
+				cederTurno();
+				return;
+			}
+			return;
+		}
+		
+		//
+		
+		if(m_envido->ver_tipo_en_juego() == 2){
+			if(Keyboard::isKeyPressed(Keyboard::Z)){
+				m_envido->aceptar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::X)){
+				m_envido->rechazar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::V)){
+				m_envido->cantar_falta_envido();
+				cederTurno();
+				return;
+			}
+		}
+		//
+		if(m_envido->ver_tipo_en_juego() == 3){
+			
+			if(Keyboard::isKeyPressed(Keyboard::Z)){
+				m_envido->aceptar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::X)){
+				m_envido->rechazar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::V)){
+				m_envido->cantar_falta_envido();
+				cederTurno();
+				return;
+			}
+		}
+		//
+		if(m_envido->ver_tipo_en_juego() == 4){
+			if(Keyboard::isKeyPressed(Keyboard::Z)){
+				m_envido->aceptar();
+				cederTurno();
+				return;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::X)){
+				m_envido->rechazar();
+				cederTurno();
+				return;
+			}
+		}
+		
+	}
+	
+	
+	if(m_envido->ver_status() == 0){
+		if(Keyboard::isKeyPressed(Keyboard::Z)){
+			m_envido->cantar_envido();
+			cederTurno();
+			return;
+		}
+		if(Keyboard::isKeyPressed(Keyboard::X)){
+			m_envido->cantar_real_envido();
+			cederTurno();
+			return;
+		}
+		if(Keyboard::isKeyPressed(Keyboard::C)){
+			m_envido->cantar_falta_envido();
+			cederTurno();
+			return;
+		}
+	}
+	
 	if(m_truco->obtenerStatus() == 0){
 		if(Keyboard::isKeyPressed(Keyboard::Num6)){
 			m_truco->cantar();
-			m_turno = false;
-			m_truco->modificar_turno_player(false);
+			cederTurno();
 			m_truco->setGenerated_by(1);
 		}
 		
@@ -79,8 +180,7 @@ void Player::actualizar(){
 		if(Keyboard::isKeyPressed(Keyboard::Num6)){			
 			m_truco->redisputar();
 			m_truco->setGenerated_by(1);
-			m_turno = false;
-			m_truco->modificar_turno_player(false);
+			cederTurno();
 		}
 	}
 	
@@ -112,10 +212,10 @@ void Player::actualizar(){
 			en_mesa.push_back(cartas[carta_selected]);
 			carta_selected = -1;
 			
-			m_turno = false;
-			m_truco->modificar_turno_player(false);
-			m_envido->modificar_turno_player(false);
-			
+			if(m_envido->ver_finalizado() == false){
+				m_envido->modificar_tiro_carta_player1();
+			}
+			cederTurno();
 		}
 	}
 	

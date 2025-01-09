@@ -14,6 +14,7 @@ public:
 	void actualizar();
 	void seleccionarCarta();
 	bool obtenerTurno();
+	void cederTurno();
 	void iniciar();
 	int verCartasEnMano();
 	void cambiarTurno(bool aux);

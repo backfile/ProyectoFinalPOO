@@ -9,28 +9,94 @@ int Round::getStatusTruco(){
 	return truco.obtenerStatus();
 }
 
-void Round::actualizar(){
+bool Round::getPlayer1ganador(){
+	return player1ganador;
+}
+
+int Round::getPuntosGanador(){
+	return puntos_ganador;
+}
+
+
+void Round::verificar_estado(){
+	vector<Carta>player1tiradas = player1.obtener_en_mesa();
+	vector<Carta>player2tiradas = player2.obtener_en_mesa();
 	
 	
-	// Analizar truco
 	if(truco.obtenerStatus() == 2){
 		if(truco.obtenerGenerated_by() == 1){
 			player1puntos = truco.obtenerCastigo();
 			status = false;
+			return;
 		}else{
 			player2puntos = truco.obtenerCastigo();
 			status = false;
+			return;
 		}
 	}
 	
 	
-	if(truco.obtenerStatus() == 3){
-		puntos_ganador = truco.obtenerValor();
+	
+	if(player1tiradas.size() == 2 and player2tiradas.size() == 2 and player1tiradas[0].verPoder() != player2tiradas[0].verPoder()){
+		
+		if(player1tiradas[0].verPoder() < player2tiradas[0].verPoder()){
+			if(player1tiradas[1].verPoder() <= player2tiradas[1].verPoder()){
+				puntos_ganador = truco.obtenerValor();
+				status = false;
+				player1ganador = true;
+				return;
+			}
+		}else{
+			if(player2tiradas[1].verPoder() <= player1tiradas[1].verPoder()){
+				puntos_ganador = truco.obtenerValor();
+				status = false;
+				player1ganador = false;
+				return;
+			}
+		}
+		
+		return;
 	}
+	
+	if(player1tiradas.size() == 3 and player2tiradas.size() == 3 and player1tiradas[0].verPoder() != player2tiradas[0].verPoder()){
+		
+		if(player1tiradas[0].verPoder() < player2tiradas[0].verPoder()){
+			if(player1tiradas[2].verPoder() <= player2tiradas[2].verPoder()){
+				puntos_ganador = truco.obtenerValor();
+				status = false;
+				player1ganador = true;
+				return;
+			}else{
+				puntos_ganador = truco.obtenerValor();
+				status = false;
+				player1ganador = false;
+				return;
+			}
+		}else{
+			if(player2tiradas[2].verPoder() <= player1tiradas[2].verPoder()){
+				puntos_ganador = truco.obtenerValor();
+				status = false;
+				player1ganador = false;
+				return;
+			}else{
+				puntos_ganador = truco.obtenerValor();
+				status = false;
+				player1ganador = true;
+				return;
+			}
+		}
+		
+		return;
+	}
+	
+}
 
-	if(player1.verCartasEnMano() == 0 and player2.verCartasEnMano() == 0){
-		status = false;
-	}
+void Round::actualizar(){
+	
+	
+	// Analizar truco
+	verificar_estado();
+	
 	
 	
 	if(player1.obtenerTurno()){
@@ -41,6 +107,14 @@ void Round::actualizar(){
 	
 	truco.actualizar();
 	envido.actualizar();
+}
+
+int Round::getPuntosPlayer1(){
+	return player1puntos;
+}
+
+int Round::getPuntosPlayer2(){
+	return player2puntos;
 }
 
 bool Round::getStatus(){

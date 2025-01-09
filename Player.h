@@ -20,7 +20,7 @@ public:
 	
 	void dibujar(RenderWindow &m);
 	void actualizar();
-	
+	void cederTurno();
 	void seleccionarCarta();
 	void iniciar();
 	bool obtenerTurno();

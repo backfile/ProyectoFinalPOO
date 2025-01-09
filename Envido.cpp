@@ -28,50 +28,43 @@ void Envido::actualizar(){
 		}
 		
 		if(status == 1){
-			if(m_generated_by == 1 and m_turno_player_1 == false){
-				if(tipo_en_juego == 1){
-					text.setString("Aceptar Envido - Envido envido - Real Envido - Falta envido");
-					return;
-				}
-				if(tipo_en_juego == 2){
-					text.setString("Aceptar Real envido - Quiero Falta envido");
-					return;
-				}
-				if(tipo_en_juego == 3){
-					text.setString("Aceptar Envido Envido - Quiero Falta envido");
-					return;
-				}
-				if(tipo_en_juego == 4){
-					text.setString("Quiero falta envido");
-					return;
-				}
+			if(tipo_en_juego == 1){
+				text.setString("Aceptar Envido - Envido envido - Real Envido - Falta envido");
+				return;
 			}
-			if(m_generated_by == 2 and m_turno_player_1 == true){
-				if(tipo_en_juego == 1){
-					text.setString("Aceptar Envido - Envido envido - Real Envido - Falta envido");
-					return;
-				}
-				if(tipo_en_juego == 2){
-					text.setString("Aceptar Real envido - Quiero Falta envido");
-					return;
-				}
-				if(tipo_en_juego == 3){
-					text.setString("Aceptar Envido Envido - Quiero Falta envido");
-					return;
-				}
-				if(tipo_en_juego == 4){
-					text.setString("Quiero falta envido");
-					return;
-				}
+			if(tipo_en_juego == 2){
+				text.setString("Aceptar Real envido - Quiero Falta envido");
+				return;
+			}
+			if(tipo_en_juego == 3){
+				text.setString("Aceptar Envido Envido - Quiero Falta envido");
+				return;
+			}
+			if(tipo_en_juego == 4){
+				text.setString("Aceptar falta envido - Rechazar falta envido");
+				return;
 			}
 		}
-		
-		
 	}else{
-		text.setString("Terminado");
+		text.setString(" ");
 	}
 	
 }
+
+void Envido::modificar_tiro_carta_player1(){
+	tiro_carta_player1 = true;
+	if(tiro_carta_player2 == true){
+		finalizado = true;
+	}
+}
+
+void Envido::modificar_tiro_carta_player2(){
+	tiro_carta_player2 = true;
+	if(tiro_carta_player1 == true){
+		finalizado = true;
+	}
+}
+
 
 void Envido::modificar_turno_player(bool aux){
 	m_turno_player_1 = aux;
@@ -82,26 +75,26 @@ void Envido::dibujar(RenderWindow &w){
 }
 
 void Envido::cantar_envido(){
-	status = 0;
+	status = 1;
 	valor = 2;
 	tipo_en_juego = 1;
 }
 
 void Envido::cantar_envido_envido(){
-	status = 0;
+	status = 1;
 	tipo_en_juego = 3;
 	prev = 2;
 	valor = 4;
 }
 
 void Envido::cantar_real_envido(){
-	status = 0;
+	status = 1;
 	tipo_en_juego = 2;
 	valor = 3;
 }
 
 void Envido::cantar_falta_envido(){
-	status = 0;
+	status = 1;
 	tipo_en_juego = 4;
 	prev = valor;
 	valor = -1;

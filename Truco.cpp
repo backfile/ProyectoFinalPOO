@@ -129,6 +129,8 @@ void Truco::rechazar(){
 
 void Truco::cantar(){
 	status = 1; 
+	valor = 2;
+	castigo = 1;
 }
 void Truco::dibujar(RenderWindow &w){
 	w.draw(text);
