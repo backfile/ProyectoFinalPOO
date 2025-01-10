@@ -15,14 +15,16 @@ private:
 	int player1_puntos = 0;
 	int player2_puntos = 0;
 	bool jugar_primero = true;
-
+	int cont = 0;
 	
 	//Texturas
 	Text text_player1;
+	Text espera;
 	Text text_player2;
 	Font font;
 	Texture t_background;
 	Sprite s_background;
+	
 };
 
 #endif

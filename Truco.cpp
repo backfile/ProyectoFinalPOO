@@ -11,7 +11,7 @@ Truco::Truco(bool turno_player_1) : m_turno_player_1(turno_player_1){
 	t_truco.loadFromFile("./images/truco.png");
 	s_truco.setTexture(t_truco);
 	s_truco.setPosition(Vector2f(400, 300));
-	font.loadFromFile("nueva.otf");
+	font.loadFromFile("rara.ttf");
 	text.setStyle(sf::Text::Bold);
 	text.setFillColor(sf::Color::Black);
 	text.setFont(font);

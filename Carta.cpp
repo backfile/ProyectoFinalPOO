@@ -18,6 +18,7 @@ void Carta::actualizarTextura(Vector2f posicion){
 }
 
 void Carta::actualizar(){
+	
 	if(m_en_mano){		
 		if(m_is_selected){
 			m_s.setScale(Vector2f(1.2, 1.2));

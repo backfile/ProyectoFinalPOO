@@ -89,7 +89,47 @@ void Round::verificar_estado(){
 		return;
 	}
 	
+	
+	if(player1tiradas.size() == 2 and player2tiradas.size() == 2 and player1tiradas[0].verPoder() == player2tiradas[0].verPoder()){
+		
+		if(player1tiradas[1].verPoder() < player2tiradas[1].verPoder()){
+				puntos_ganador = truco.obtenerValor();
+				status = false;
+				player1ganador = true;
+				return;
+		}else{
+			if(player2tiradas[1].verPoder() < player1tiradas[1].verPoder()){
+				puntos_ganador = truco.obtenerValor();
+				status = false;
+				player1ganador = false;
+				return;
+			}
+		}
+		
+		return;
+	}
+	
+	if(player1tiradas.size() == 3 and player2tiradas.size() == 3 and player1tiradas[0].verPoder() == player2tiradas[0].verPoder() and player1tiradas[1].verPoder() == player2tiradas[1].verPoder()){
+		
+		if(player1tiradas[2].verPoder() < player2tiradas[2].verPoder()){
+			puntos_ganador = truco.obtenerValor();
+			status = false;
+			player1ganador = true;
+			return;
+		}else if(player2tiradas[2].verPoder() < player1tiradas[2].verPoder()){
+			puntos_ganador = truco.obtenerValor();
+			status = false;
+			player1ganador = false;
+			return;
+		}else{
+			status = false;
+		}
+	}
+	
 }
+	
+	
+
 
 void Round::actualizar(){
 	

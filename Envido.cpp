@@ -1,7 +1,7 @@
 #include "Envido.h"
 
 Envido::Envido(bool turno_player1) : m_turno_player_1(turno_player1) {
-	font.loadFromFile("nueva.otf");
+	font.loadFromFile("rara.ttf");
 	text.setStyle(sf::Text::Bold);
 	text.setFillColor(sf::Color::Black);
 	text.setFont(font);
