@@ -16,7 +16,8 @@ public:
 	//Empezar partida en el constructor
 	
 	Round(bool turn_player1);
-	void verificar_estado();
+	void verificar_estado_truco();
+	void verificar_estado_envido();
 	void actualizar();
 	void dibujar(RenderWindow &w);
 	bool getStatus();
@@ -32,7 +33,7 @@ private:
 	//generales
 	bool status = true;
 	bool player1ganador;
-	
+	int aux_envido_stats = 180;
 	
 	
 	//Puntos del truco
@@ -47,6 +48,8 @@ private:
 	
 	
 	//Objetos
+	Text text;
+	Font font;
 	Mazo mazo;
 	Envido envido;
 	Truco truco;

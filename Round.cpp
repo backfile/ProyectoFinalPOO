@@ -4,6 +4,11 @@
 Round::Round(bool turn_player1) : player1(turn_player1, &mazo, &truco, &envido), player2(!turn_player1, &mazo, &truco, &envido, &player1), truco(turn_player1), envido(turn_player1){
   calcularPuntosEnvidoP1();
   calcularPuntosEnvidoP2();
+  font.loadFromFile("rara.ttf");
+  text.setStyle(sf::Text::Bold);
+  text.setFillColor(sf::Color::Black);
+  text.setFont(font);
+  text.setPosition(200, 300);
 }
 
 
@@ -207,7 +212,20 @@ void Round::calcularPuntosEnvidoP2(){
 }
 
 
-void Round::verificar_estado(){
+void Round::verificar_estado_envido(){
+	if(envido.ver_status() == 3 and aux_envido_stats > 0){
+		aux_envido_stats--;
+		if(puntos_envido_player1 > puntos_envido_player2){
+			text.setString("Gana el jugador 1 con: " + to_string(puntos_envido_player1) + " sobre: " + to_string(puntos_envido_player2));
+		}else{
+			text.setString("Gana el jugador 2 con: " + to_string(puntos_envido_player2) + " sobre: " + to_string(puntos_envido_player1));
+		}
+	}else{
+		text.setString(" ");
+	}
+}
+
+void Round::verificar_estado_truco(){
 	vector<Carta>player1tiradas = player1.obtener_en_mesa();
 	vector<Carta>player2tiradas = player2.obtener_en_mesa();
 	
@@ -324,8 +342,8 @@ void Round::actualizar(){
 	
 	
 	// Analizar truco
-	verificar_estado();
-	
+	verificar_estado_truco();
+	verificar_estado_envido();
 	
 	
 	if(player1.obtenerTurno()){
@@ -355,5 +373,7 @@ void Round::dibujar(RenderWindow &w){
 	player2.dibujar(w);
 	truco.dibujar(w);
 	envido.dibujar(w);
+	w.draw(text);
+
 }
 
