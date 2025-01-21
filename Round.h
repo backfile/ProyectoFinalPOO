@@ -25,18 +25,29 @@ public:
 	int getPuntosPlayer2();
 	int getPuntosGanador();
 	bool getPlayer1ganador();
-	
+	void calcularPuntosEnvidoP1();
+	void calcularPuntosEnvidoP2();
 private:
 	
 	//generales
 	bool status = true;
 	bool player1ganador;
-	Mazo mazo;
 	
+	
+	
+	//Puntos del truco
 	int puntos_ganador = 0;
 	int player1puntos = 0;
 	int player2puntos = 0;
 	
+	//Puntos del envido
+	
+	int puntos_envido_player1 = 0;
+	int puntos_envido_player2 = 0;
+	
+	
+	//Objetos
+	Mazo mazo;
 	Envido envido;
 	Truco truco;
 	Player player1;

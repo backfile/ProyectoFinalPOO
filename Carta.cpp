@@ -5,6 +5,7 @@ using namespace std;
 Carta::Carta(string imageFile, int power, int tipo, int numero) {
 	m_power = power;
 	m_tipo = tipo;
+	m_numero = numero;
 	m_is_selected = false;
 	m_en_mano = true;
 	m_textureFile = imageFile;
@@ -33,6 +34,14 @@ void Carta::actualizar(){
 
 Texture Carta::obtenerTextura(){
 	return m_t;
+}
+
+int Carta::verTipo(){
+	return m_tipo;
+}
+
+int Carta::verNumero(){
+	return m_numero;
 }
 
 int Carta::verPoder(){

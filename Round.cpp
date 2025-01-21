@@ -1,7 +1,9 @@
 #include "Round.h"
+#include <iostream>
 
 Round::Round(bool turn_player1) : player1(turn_player1, &mazo, &truco, &envido), player2(!turn_player1, &mazo, &truco, &envido, &player1), truco(turn_player1), envido(turn_player1){
-	
+  calcularPuntosEnvidoP1();
+  calcularPuntosEnvidoP2();
 }
 
 
@@ -15,6 +17,193 @@ bool Round::getPlayer1ganador(){
 
 int Round::getPuntosGanador(){
 	return puntos_ganador;
+}
+
+
+
+void Round::calcularPuntosEnvidoP1(){
+	
+	//Player 1 puntos
+	
+	vector<Carta>p1 = player1.obtener_cartas();
+	std::map<int, int> frecuencia;
+	int aux = 0;
+	bool auxbool = true;
+	
+	for(auto carta : p1) {
+		frecuencia[carta.verTipo()]++;
+	}
+	
+	std::cout << frecuencia.size()<<endl;
+	
+	if(frecuencia.size() == 3){
+		for(auto carta : p1){
+			if(carta.verNumero() > aux and carta.verNumero() != -1){
+				aux = carta.verNumero();
+			}
+		}
+		puntos_envido_player1 = aux;
+	}
+	
+	int valores[2];
+	if(frecuencia.size() == 2){
+		int tipo;
+		for(auto par : frecuencia){
+			if(par.second > 1){
+				tipo = par.first;
+			}
+		}
+		
+		int aux2 = 0;
+		for(auto carta : p1){
+			if(carta.verTipo() == tipo){
+				valores[aux2] = carta.verNumero();
+				aux2++;
+			}
+		}
+		
+		
+		if(valores[0] == -1 and valores[1] == -1){
+			puntos_envido_player1 = 20;
+			auxbool = false;
+		}
+		
+		if(valores[0] != -1 and valores[1] != -1 ){
+			puntos_envido_player1 = 20 + valores[0] + valores [1];
+		}
+		
+		if((valores[0] == -1 or valores[1] == -1) and auxbool == true){
+			puntos_envido_player1 = valores[0] + valores [1] + 21;
+		}
+		
+	}
+	
+	if(frecuencia.size() == 1){
+		int mayor = -2;
+		int segundo = -2;
+		for(auto carta : p1){
+			if(carta.verNumero() > aux){
+				segundo = aux;
+				aux = carta.verNumero();				
+			}else{
+				if(carta.verNumero() > segundo){
+					segundo = carta.verNumero(); 
+				}
+			}
+		}
+		
+		valores[0] = aux;
+		valores[1] = segundo;
+		
+		auxbool = true;
+		if(valores[0] == -1 and valores[1] == -1){
+			puntos_envido_player1 = 20;
+			auxbool = false;
+		}
+		
+		if(valores[0] != -1 and valores[1] != -1 ){
+			puntos_envido_player1 = 20 + valores[0] + valores [1];
+		}
+		
+		if(valores[0] == -1 or valores[1] == -1 and auxbool){
+			puntos_envido_player1 = valores[0] + valores [1] + 10;
+		}
+	}
+	
+	std::cout << puntos_envido_player1 << " <-- Puntos player 1" <<endl;;
+}
+
+void Round::calcularPuntosEnvidoP2(){
+	
+	//Player 2 puntos
+	
+	vector<Carta>p2 = player2.obtener_cartas();
+	std::map<int, int> frecuencia;
+	int aux = 0;
+	bool auxbool = true;
+	
+	for(auto carta : p2) {
+		frecuencia[carta.verTipo()]++;
+	}
+
+	
+	if(frecuencia.size() == 3){
+		for(auto carta : p2){
+			if(carta.verNumero() > aux and carta.verNumero() != -1){
+				aux = carta.verNumero();
+			}
+		}
+		puntos_envido_player2 = aux;
+	}
+	
+	int valores[2];
+	if(frecuencia.size() == 2){
+		int tipo;
+		for(auto par : frecuencia){
+			if(par.second > 1){
+				tipo = par.first;
+			}
+		}
+		
+		
+		int aux2 = 0;
+		for(auto carta : p2){
+			if(carta.verTipo() == tipo){
+				valores[aux2] = carta.verNumero();
+				aux2++;
+			}
+		}
+		
+		
+		if(valores[0] == -1 and valores[1] == -1){
+			puntos_envido_player2 = 20;
+			auxbool = false;
+		}
+		
+		if(valores[0] != -1 and valores[1] != -1 ){
+			puntos_envido_player2 = 20 + valores[0] + valores [1];
+		}
+		
+		if((valores[0] == -1 or valores[1] == -1) and auxbool == true){
+			puntos_envido_player2 = valores[0] + valores [1] + 21;
+		}
+		
+	}
+	
+	if(frecuencia.size() == 1){
+		int mayor = -2;
+		int segundo = -2;
+		for(auto carta : p2){
+			if(carta.verNumero() > aux){
+				segundo = aux;
+				aux = carta.verNumero();				
+			}else{
+				if(carta.verNumero() > segundo){
+					segundo = carta.verNumero(); 
+				}
+			}
+		}
+		
+		valores[0] = aux;
+		valores[1] = segundo;
+		
+		auxbool = true;
+		if(valores[0] == -1 and valores[1] == -1){
+			puntos_envido_player2 = 20;
+			auxbool = false;
+		}
+		
+		if(valores[0] != -1 and valores[1] != -1 ){
+			puntos_envido_player2 = 20 + valores[0] + valores [1];
+		}
+		
+		if(valores[0] == -1 or valores[1] == -1 and auxbool){
+			puntos_envido_player2 = valores[0] + valores [1] + 10;
+		}
+	}
+	
+	std::cout << puntos_envido_player2 << " <-- Puntos player 2";
+	
 }
 
 

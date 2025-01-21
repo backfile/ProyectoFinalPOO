@@ -20,6 +20,7 @@ public:
 	void cambiarTurno(bool aux);
 	void setRival(Player *aux);
 	vector<Carta> obtener_en_mesa();
+	vector<Carta> obtener_cartas();
 	
 private:
 	

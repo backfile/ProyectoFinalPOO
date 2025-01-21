@@ -27,7 +27,7 @@ public:
 	int verCartasEnMano();
 	void cambiarTurno(bool aux);
 	vector<Carta> obtener_en_mesa();
-	void set_tiene_responder();
+	vector<Carta> obtener_cartas();
 	
 private:
 	bool m_turno;

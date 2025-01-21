@@ -24,6 +24,10 @@ vector<Carta> Player::obtener_en_mesa(){
 	return en_mesa;
 }
 
+vector<Carta> Player::obtener_cartas(){
+	return cartas;
+};
+
 void Player::iniciar(){
 	cartas = m_mazo->Obtener3cartas();
 	cartas[0].actualizarTextura(Vector2f(180, 600));

@@ -22,7 +22,7 @@
 #define CARTA5 "./images/espada3.png", 5, espada, 3
 #define CARTA6 "./images/basto3.png", 5, basto, 3
 #define CARTA7 "./images/oro3.png", 5, oro, 3   
-#define CARTA8 "./images/copa7.png", 5, copa, 3   
+#define CARTA8 "./images/copa3.png", 5, copa, 3   
 //
 #define CARTA9 "./images/espada2.png", 6, espada, 2
 #define CARTA10 "./images/basto2.png", 6, basto, 2
@@ -32,20 +32,20 @@
 #define CARTA13 "./images/copa1.png", 7, copa, 1
 #define CARTA14 "./images/oro1.png", 7, oro, 1
 //
-#define CARTA15 "./images/espada12.png", 8, espada, 12
-#define CARTA16 "./images/basto12.png", 8, basto, 12
-#define CARTA17 "./images/oro12.png", 8, oro, 12   
-#define CARTA18 "./images/copa12.png", 8, copa, 12
+#define CARTA15 "./images/espada12.png", 8, espada, -1
+#define CARTA16 "./images/basto12.png", 8, basto, -1 
+#define CARTA17 "./images/oro12.png", 8, oro, -1   
+#define CARTA18 "./images/copa12.png", 8, copa, -1
 //
-#define CARTA19 "./images/espada11.png", 9, espada, 11
-#define CARTA20 "./images/basto11.png", 9, basto, 11
-#define CARTA21 "./images/oro11.png", 9, oro, 11   
-#define CARTA22 "./images/copa11.png", 9, copa, 11
+#define CARTA19 "./images/espada11.png", 9, espada, -1
+#define CARTA20 "./images/basto11.png", 9, basto, -1
+#define CARTA21 "./images/oro11.png", 9, oro, -1
+#define CARTA22 "./images/copa11.png", 9, copa, -1
 //
-#define CARTA23 "./images/espada10.png", 10, espada, 10
-#define CARTA24 "./images/basto10.png", 10, basto, 10
-#define CARTA25 "./images/oro10.png", 10, oro, 10   
-#define CARTA26 "./images/copa10.png", 10, copa, 10
+#define CARTA23 "./images/espada10.png", 10, espada, -1
+#define CARTA24 "./images/basto10.png", 10, basto, -1
+#define CARTA25 "./images/oro10.png", 10, oro, -1   
+#define CARTA26 "./images/copa10.png", 10, copa, -1
 //
 
 #define CARTA27 "./images/basto7.png", 11, basto, 7

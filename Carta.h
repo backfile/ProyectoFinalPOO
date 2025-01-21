@@ -21,6 +21,8 @@ public:
 	void tirar();
 	void is_selected(bool aux);
 	int verPoder();
+	int verTipo();
+	int verNumero();
 	
 private:
 	int m_power;
