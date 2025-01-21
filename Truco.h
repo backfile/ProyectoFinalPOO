@@ -30,6 +30,8 @@ public:
 	int obtenerCastigo();
 	int obtenerValor();
 	int obtenerRedisputar();
+	void cambiarUltimoEnTirar(int aux);
+	int verUltimoEnTirar();
 	void modificar_turno_player(bool turno_player_1);
 	
 private:
@@ -39,6 +41,7 @@ private:
 	int valor = 1;
 	int castigo = 0;
 	int m_generated_by;	
+	int ultimo_en_tirar;
 	int status = 0; // 0 no iniciado // 1 en espera de respuesta  // 2 rechazado // 3 aceptado
 	
 	Text text;

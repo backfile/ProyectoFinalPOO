@@ -49,6 +49,7 @@ void Player::actualizar(){
 		if(m_truco->obtenerGenerated_by() == 2){
 			if(Keyboard::isKeyPressed(Keyboard::Num7)){
 				m_truco->aceptar();
+				m_envido->finalizarEnvido();
 				cederTurno();
 				return;
 			}
@@ -60,6 +61,7 @@ void Player::actualizar(){
 			if(Keyboard::isKeyPressed(Keyboard::Num9) and m_truco->obtenerRedisputar() > 0) {
 				m_truco->redisputar();
 				m_truco->setGenerated_by(1);
+				m_envido->finalizarEnvido();
 				cederTurno();
 				return;
 			}
@@ -145,9 +147,14 @@ void Player::actualizar(){
 				return;
 			}
 		}
-		
+		return;
 	}
 	
+	
+	if(m_truco->verUltimoEnTirar() == 1){
+		cederTurno();
+		return;
+	}
 	
 	if(m_envido->ver_status() == 0){
 		if(Keyboard::isKeyPressed(Keyboard::Z)){
@@ -211,7 +218,7 @@ void Player::actualizar(){
 			cartas_en_mano --;
 			en_mesa.push_back(cartas[carta_selected]);
 			carta_selected = -1;
-			
+			m_truco->cambiarUltimoEnTirar(1);
 			if(m_envido->ver_finalizado() == false){
 				m_envido->modificar_tiro_carta_player1();
 			}

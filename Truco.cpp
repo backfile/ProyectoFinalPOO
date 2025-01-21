@@ -15,6 +15,11 @@ Truco::Truco(bool turno_player_1) : m_turno_player_1(turno_player_1){
 	text.setStyle(sf::Text::Bold);
 	text.setFillColor(sf::Color::Black);
 	text.setFont(font);
+	if(turno_player_1){
+		ultimo_en_tirar = 2;
+	}else{
+		ultimo_en_tirar = 1;
+	}
 }
 
 void Truco::actualizar(){
@@ -110,6 +115,15 @@ int Truco::obtenerValor(){
 int Truco::obtenerCastigo(){
 	return castigo;
 }	
+
+void Truco::cambiarUltimoEnTirar(int aux){
+	ultimo_en_tirar = aux;
+}
+
+int Truco::verUltimoEnTirar(){
+	return ultimo_en_tirar;
+}
+
 
 void Truco::setGenerated_by(int generated_by){
 	m_generated_by = generated_by;

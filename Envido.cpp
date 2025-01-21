@@ -65,6 +65,9 @@ void Envido::modificar_tiro_carta_player2(){
 	}
 }
 
+void Envido::finalizarEnvido(){
+	finalizado = true;
+}
 
 void Envido::modificar_turno_player(bool aux){
 	m_turno_player_1 = aux;

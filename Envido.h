@@ -28,7 +28,7 @@ public:
 	void modificar_turno_player(bool aux);
 	int ver_status();
 	int ver_tipo_en_juego();
-	
+	void finalizarEnvido();
 private:
 	
 	bool m_turno_player_1;
