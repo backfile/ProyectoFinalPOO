@@ -1,4 +1,5 @@
 #include "Envido.h"
+#include <iostream>
 
 Envido::Envido(bool turno_player1) : m_turno_player_1(turno_player1) {
 	font.loadFromFile("rara.ttf");
@@ -8,7 +9,8 @@ Envido::Envido(bool turno_player1) : m_turno_player_1(turno_player1) {
 }
 
 void Envido::actualizar(){
-	
+//	std::cout << valor << " <- Valor" << std::endl;
+//	std::cout << prev << "  <- Previo" << std::endl;
 	if(!finalizado){
 		if(m_turno_player_1 == true){
 			text.setPosition(400, 500);

@@ -155,12 +155,11 @@ void Player2::actualizar(){
 				return;
 			}
 		}
-		
+		return;
 	}
 	
-	if(m_truco->verUltimoEnTirar() == 2){
+	if(m_truco->verUltimoEnTirar()==2){
 		cederTurno();
-		return;
 	}
 	
 	if(m_envido->ver_status() == 0){
@@ -180,6 +179,7 @@ void Player2::actualizar(){
 			return;
 		}
 	}
+	
 	
 	if(m_truco->obtenerStatus() == 3 and (m_truco->obtenerRedisputar() == 2 or m_truco->obtenerRedisputar() == 1)){
 		if(Keyboard::isKeyPressed(Keyboard::Num6)){

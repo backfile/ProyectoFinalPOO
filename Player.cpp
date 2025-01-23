@@ -154,12 +154,10 @@ void Player::actualizar(){
 		return;
 	}
 	
-	
-	if(m_truco->verUltimoEnTirar() == 1){
+	if(m_truco->verUltimoEnTirar()==1){
 		cederTurno();
-		return;
 	}
-	
+
 	if(m_envido->ver_status() == 0){
 		if(Keyboard::isKeyPressed(Keyboard::Z)){
 			m_envido->cantar_envido();

@@ -33,8 +33,9 @@ private:
 	//generales
 	bool status = true;
 	bool player1ganador;
-	int aux_envido_stats = 180;
-	
+	int aux_envido_stats = 230;
+	bool turnoaux = true;
+	bool turno2aux = true;
 	
 	//Puntos del truco
 	int puntos_ganador = 0;

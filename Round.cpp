@@ -39,7 +39,6 @@ void Round::calcularPuntosEnvidoP1(){
 		frecuencia[carta.verTipo()]++;
 	}
 	
-	std::cout << frecuencia.size()<<endl;
 	
 	if(frecuencia.size() == 3){
 		for(auto carta : p1){
@@ -115,7 +114,6 @@ void Round::calcularPuntosEnvidoP1(){
 		}
 	}
 	
-	std::cout << puntos_envido_player1 << " <-- Puntos player 1" <<endl;;
 }
 
 void Round::calcularPuntosEnvidoP2(){
@@ -207,7 +205,6 @@ void Round::calcularPuntosEnvidoP2(){
 		}
 	}
 	
-	std::cout << puntos_envido_player2 << " <-- Puntos player 2";
 	
 }
 
@@ -345,7 +342,41 @@ void Round::actualizar(){
 	verificar_estado_truco();
 	verificar_estado_envido();
 	
-	
+	if(envido.ver_status() != 1 and truco.obtenerStatus() != 1){
+		if((player1.verCartasEnMano() == 2 and player2.verCartasEnMano() == 2)){
+			vector<Carta>player1cart = player1.obtener_en_mesa();
+			vector<Carta>player2cart = player2.obtener_en_mesa();
+			
+			if(player1cart[0].verPoder() < player2cart[0].verPoder()){
+				player2.cederTurno();
+				truco.cambiarUltimoEnTirar(2);
+				turnoaux = false;
+			}
+			if(player1cart[0].verPoder() > player2cart[0].verPoder() and turnoaux == true){
+				player1.cederTurno();
+				truco.cambiarUltimoEnTirar(1);
+				turnoaux = false;
+			}
+			
+		}
+		
+		if((player1.verCartasEnMano() == 1 and player2.verCartasEnMano() == 1)){
+			vector<Carta>player1cart = player1.obtener_en_mesa();
+			vector<Carta>player2cart = player2.obtener_en_mesa();
+			
+			if(player1cart[1].verPoder() < player2cart[1].verPoder()){
+				player2.cederTurno();
+				truco.cambiarUltimoEnTirar(2);
+				turno2aux = false;
+			}
+			if(player1cart[0].verPoder() > player2cart[0].verPoder() and turno2aux == true){
+				player1.cederTurno();
+				truco.cambiarUltimoEnTirar(1);
+				turno2aux = false;
+			}
+			
+		}
+	}
 	if(player1.obtenerTurno()){
 		player1.actualizar();
 	}else{
