@@ -16,6 +16,7 @@ private:
 	int player2_puntos = 0;
 	bool jugar_primero = true;
 	int cont = 0;
+	bool aux = true;
 	
 	//Texturas
 	Text text_player1;

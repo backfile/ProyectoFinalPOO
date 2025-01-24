@@ -9,6 +9,7 @@ Round::Round(bool turn_player1) : player1(turn_player1, &mazo, &truco, &envido),
   text.setFillColor(sf::Color::Black);
   text.setFont(font);
   text.setPosition(200, 300);
+  mano_player1 = turn_player1;
 }
 
 
@@ -208,18 +209,79 @@ void Round::calcularPuntosEnvidoP2(){
 	
 }
 
+int Round::obtenerPuntosEnvidoPlayer1(){
+	return puntos_ganados_envido_player1;
+}
+
+int Round::obtenerPuntosEnvidoPlayer2(){
+	return puntos_ganados_envido_player2;
+}
+
+bool Round::obtenerGanadorEnvido(){
+	return envido.obtenerGanador();
+}
+
+bool Round::obtenerFinalizadoEnvido(){
+	return envido.ver_finalizado();
+}
 
 void Round::verificar_estado_envido(){
 	if(envido.ver_status() == 3 and aux_envido_stats > 0){
 		aux_envido_stats--;
 		if(puntos_envido_player1 > puntos_envido_player2){
 			text.setString("Gana el jugador 1 con: " + to_string(puntos_envido_player1) + " sobre: " + to_string(puntos_envido_player2));
-		}else{
+			envido.cambiarGanador(true);
+			envido_listo_para_sumar = true;
+		}else if(puntos_envido_player1 < puntos_envido_player2){
 			text.setString("Gana el jugador 2 con: " + to_string(puntos_envido_player2) + " sobre: " + to_string(puntos_envido_player1));
+			envido.cambiarGanador(false);
+			envido_listo_para_sumar = true;
+		}else{
+			if(mano_player1){
+				text.setString("Gana el jugador 1 con: " + to_string(puntos_envido_player1) + " sobre: " + to_string(puntos_envido_player2)+ " por ser mano");
+				envido.cambiarGanador(true);
+				envido_listo_para_sumar = true;
+			}else{
+				text.setString("Gana el jugador 2 con: " + to_string(puntos_envido_player2) + " sobre: " + to_string(puntos_envido_player1)+ " por ser mano");
+				envido.cambiarGanador(false);
+				envido_listo_para_sumar = false;
+			}
 		}
 	}else{
 		text.setString(" ");
 	}
+	//Repartir puntos
+	
+	
+	if(envido.ver_status() == 3){
+		if(envido.obtenerGanador() == true){
+			puntos_ganados_envido_player1 = envido.obtenerValor();
+			return;
+		}
+		if(envido.obtenerGanador() == false){
+			puntos_ganados_envido_player2 = envido.obtenerValor();
+			return;
+			
+		}
+	}
+	
+	if(envido.ver_status() == 2){
+		if(envido.obtenerRechazado_by()==1){
+			puntos_ganados_envido_player2 = envido.obtenerPrev();
+			envido_listo_para_sumar = true;
+			envido.cambiarGanador(false);
+		}else{
+			puntos_ganados_envido_player1 = envido.obtenerPrev();
+			envido_listo_para_sumar = true;
+			envido.cambiarGanador(true);
+		}
+	}
+	
+	
+}
+
+bool Round::obtener_envido_listo_para_sumar(){
+	return envido_listo_para_sumar;
 }
 
 void Round::verificar_estado_truco(){

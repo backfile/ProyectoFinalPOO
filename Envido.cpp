@@ -53,6 +53,23 @@ void Envido::actualizar(){
 	
 }
 
+bool Envido::obtenerGanador(){
+	return ganadorplayer1;
+}
+
+
+int Envido::obtenerValor(){
+	return valor;
+}
+
+int Envido::obtenerPrev(){
+	return prev;
+}
+
+void Envido::cambiarGanador(bool aux){
+	ganadorplayer1 = aux;
+}
+
 void Envido::modificar_tiro_carta_player1(){
 	tiro_carta_player1 = true;
 	if(tiro_carta_player2 == true){
@@ -110,9 +127,14 @@ void Envido::aceptar(){
 	finalizado = true;
 }
 
-void Envido::rechazar(){
+void Envido::rechazar(int aux){
 	status = 2;
 	finalizado = true;
+	rechazado_by = aux;
+}
+
+int Envido::obtenerRechazado_by(){
+	return rechazado_by;
 }
 
 bool Envido::ver_turno_player_1(){

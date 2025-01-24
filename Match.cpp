@@ -1,4 +1,6 @@
 #include "Match.h"
+#include <iostream>
+using namespace std;
 
 
 Match::Match() {
@@ -33,7 +35,7 @@ void Match::actualizar(){
 	cont ++;
 	if(!round->getStatus())
 	{	
-		
+		aux = true;
 		cont = 0;
 		if(round->getStatusTruco() == 2){
 			player1_puntos += round->getPuntosPlayer1();
@@ -60,6 +62,31 @@ void Match::actualizar(){
 		round = new Round(jugar_primero);
 	}
 	
+	
+	if(round->obtener_envido_listo_para_sumar() == true and aux == true){
+		aux = false;
+		if(round->obtenerGanadorEnvido() == true){
+			//Gano player 1
+			if(round->obtenerPuntosEnvidoPlayer1() == -1){
+				player1_puntos += 30 - player2_puntos;
+			}else{
+				player1_puntos += round->obtenerPuntosEnvidoPlayer1();
+			}
+
+		}else{
+			if(round->obtenerPuntosEnvidoPlayer2() == -1){
+				player2_puntos += 30 - player1_puntos;
+			}else{
+				player2_puntos += round->obtenerPuntosEnvidoPlayer2();
+			}
+	
+		}
+		string puntos_player1 = to_string(player1_puntos);
+		string puntos_player2 = to_string(player2_puntos);
+		text_player1.setString(puntos_player1);
+		text_player2.setString(puntos_player2);
+		
+	}
 	round->actualizar();
 };
 

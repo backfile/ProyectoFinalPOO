@@ -16,7 +16,7 @@ public:
 	void cantar_envido_envido();
 	void cantar_real_envido();
 	void cantar_falta_envido();
-	void rechazar();
+	void rechazar(int aux);
 	void aceptar();
 	bool ver_turno_player_1();
 	bool ver_finalizado();
@@ -29,17 +29,25 @@ public:
 	int ver_status();
 	int ver_tipo_en_juego();
 	void finalizarEnvido();
+	void cambiarGanador(bool aux);
+	bool obtenerGanador();
+	int obtenerValor();
+	int obtenerPrev();
+	int obtenerRechazado_by();
+	
 private:
 	
 	bool m_turno_player_1;
 	bool tiro_carta_player1 = false;
 	bool tiro_carta_player2 = false;
+	bool ganadorplayer1;
 	int m_generated_by;
 	bool finalizado = false;
 	int status = 0; // 0 en espera // 1 request // 2 rechazado // 3 aceptado
 	int tipo_en_juego; // 1 envido // 2 real envido // 3 envido envido // 4 falta envido;
 	int prev = 1;
 	int valor = 1;
+	int rechazado_by;
 	
 	Text text;
 	Font font;

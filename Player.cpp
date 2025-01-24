@@ -83,7 +83,7 @@ void Player::actualizar(){
 				return;
 			}
 			if(Keyboard::isKeyPressed(Keyboard::X)){
-				m_envido->rechazar();
+				m_envido->rechazar(1);
 				cederTurno();
 				return;
 			}
@@ -109,7 +109,7 @@ void Player::actualizar(){
 				return;
 			}
 			if(Keyboard::isKeyPressed(Keyboard::X)){
-				m_envido->rechazar();
+				m_envido->rechazar(1);
 				cederTurno();
 				return;
 			}
@@ -128,7 +128,7 @@ void Player::actualizar(){
 				return;
 			}
 			if(Keyboard::isKeyPressed(Keyboard::X)){
-				m_envido->rechazar();
+				m_envido->rechazar(1);
 				cederTurno();
 				return;
 			}
@@ -146,7 +146,7 @@ void Player::actualizar(){
 				return;
 			}
 			if(Keyboard::isKeyPressed(Keyboard::X)){
-				m_envido->rechazar();
+				m_envido->rechazar(1);
 				cederTurno();
 				return;
 			}

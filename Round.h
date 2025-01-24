@@ -28,6 +28,11 @@ public:
 	bool getPlayer1ganador();
 	void calcularPuntosEnvidoP1();
 	void calcularPuntosEnvidoP2();
+	bool obtenerGanadorEnvido();
+	bool obtenerFinalizadoEnvido();
+	int obtenerPuntosEnvidoPlayer1();
+	int obtenerPuntosEnvidoPlayer2();
+	bool obtener_envido_listo_para_sumar();
 private:
 	
 	//generales
@@ -36,6 +41,8 @@ private:
 	int aux_envido_stats = 230;
 	bool turnoaux = true;
 	bool turno2aux = true;
+	bool envido_listo_para_sumar = false;
+	bool mano_player1;
 	
 	//Puntos del truco
 	int puntos_ganador = 0;
@@ -47,6 +54,8 @@ private:
 	int puntos_envido_player1 = 0;
 	int puntos_envido_player2 = 0;
 	
+	int puntos_ganados_envido_player1 = 0;
+	int puntos_ganados_envido_player2 = 0;
 	
 	//Objetos
 	Text text;
