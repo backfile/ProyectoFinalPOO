@@ -35,6 +35,7 @@ public:
 	int obtenerPrev();
 	int obtenerRechazado_by();
 	
+	
 private:
 	
 	bool m_turno_player_1;
@@ -51,8 +52,29 @@ private:
 	
 	Text text;
 	Font font;
+	
+	
+	//Botones
 	Texture t_envido;
 	Sprite s_envido;
+	
+	Texture t_envidoenvido;
+	Sprite s_envidoenvido;
+	
+	Texture t_realenvido;
+	Sprite s_realenvido;
+	
+	Texture t_faltaenvido;
+	Sprite s_faltaenvido;
+	
+	Texture t_quiero;
+	Sprite s_quiero;
+	
+	Texture t_noquiero;
+	Sprite s_noquiero;
+	
+	int elementos_on[6];
+	// 0-envido 1-envidoenvido 2-realenvido 3-faltaenvido 4-quiero -5noquiero
 };
 
 #endif

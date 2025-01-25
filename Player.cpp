@@ -30,9 +30,9 @@ vector<Carta> Player::obtener_cartas(){
 
 void Player::iniciar(){
 	cartas = m_mazo->Obtener3cartas();
-	cartas[0].actualizarTextura(Vector2f(180, 600));
-	cartas[1].actualizarTextura(Vector2f(400, 600));
-	cartas[2].actualizarTextura(Vector2f(620, 600));
+	cartas[0].actualizarTextura(Vector2f(205, 540));
+	cartas[1].actualizarTextura(Vector2f(400, 540));
+	cartas[2].actualizarTextura(Vector2f(595, 540));
 }
 
 int Player::verCartasEnMano(){

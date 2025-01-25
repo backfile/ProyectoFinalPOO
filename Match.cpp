@@ -7,6 +7,12 @@ Match::Match() {
 	round = new Round(jugar_primero);
 	t_background.loadFromFile("./images/fondo.png");
 	s_background.setTexture(t_background);
+
+	
+	t_repartiendo.loadFromFile("./images/repartiendo.png");
+	s_repartiendo.setTexture(t_repartiendo);
+	s_repartiendo.setOrigin(100, 50);
+	s_repartiendo.setPosition(400, 300);
 	
 	font.loadFromFile("rara.ttf");
 	
@@ -22,12 +28,6 @@ Match::Match() {
 	text_player2.setPosition(750, 50);
 	text_player2.setString("0");
 	
-	
-	espera.setStyle(sf::Text::Bold);
-	espera.setFillColor(sf::Color::Green);
-	espera.setFont(font);
-	espera.setPosition(330, 300);
-	espera.setString("Repartiendo");
 }
 
 
@@ -100,7 +100,7 @@ void Match::dibujar(RenderWindow &w){
 	w.clear(Color(255,255,255,255));
 	w.draw(s_background);
 	if(cont < 100){
-		w.draw(espera);
+		w.draw(s_repartiendo);
 		return;
 	}
 	w.draw(text_player1);

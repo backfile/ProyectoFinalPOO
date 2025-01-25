@@ -23,9 +23,9 @@ vector<Carta> Player2::obtener_cartas(){
 
 void Player2::iniciar(){
 	cartas = m_mazo->Obtener3cartas();
-	cartas[0].actualizarTextura(Vector2f(180, -10));
-	cartas[1].actualizarTextura(Vector2f(400, -10));
-	cartas[2].actualizarTextura(Vector2f(620, -10));
+	cartas[0].actualizarTextura(Vector2f(205, 50));
+	cartas[1].actualizarTextura(Vector2f(400, 50));
+	cartas[2].actualizarTextura(Vector2f(595, 50));
 }
 
 

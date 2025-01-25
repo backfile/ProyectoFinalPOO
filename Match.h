@@ -20,11 +20,13 @@ private:
 	
 	//Texturas
 	Text text_player1;
-	Text espera;
 	Text text_player2;
 	Font font;
 	Texture t_background;
 	Sprite s_background;
+	
+	Texture t_repartiendo;
+	Sprite s_repartiendo;
 	
 };
 

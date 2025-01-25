@@ -10,6 +10,9 @@ Round::Round(bool turn_player1) : player1(turn_player1, &mazo, &truco, &envido),
   text.setFont(font);
   text.setPosition(200, 300);
   mano_player1 = turn_player1;
+  t_botones.loadFromFile("./images/botones/todos.png");
+  s_botones.setTexture(t_botones);
+  
 }
 
 
@@ -399,6 +402,11 @@ void Round::verificar_estado_truco(){
 
 void Round::actualizar(){
 	
+	if(envido.ver_turno_player_1()){
+		s_botones.setPosition(Vector2f(100, 530));
+	}else{
+		s_botones.setPosition(Vector2f(100, 0));
+	}
 	
 	// Analizar truco
 	verificar_estado_truco();
@@ -431,7 +439,7 @@ void Round::actualizar(){
 				truco.cambiarUltimoEnTirar(2);
 				turno2aux = false;
 			}
-			if(player1cart[0].verPoder() > player2cart[0].verPoder() and turno2aux == true){
+			if(player1cart[1].verPoder() > player2cart[1].verPoder() and turno2aux == true){
 				player1.cederTurno();
 				truco.cambiarUltimoEnTirar(1);
 				turno2aux = false;
@@ -464,9 +472,11 @@ bool Round::getStatus(){
 void Round::dibujar(RenderWindow &w){
 	player1.dibujar(w);
 	player2.dibujar(w);
+	w.draw(s_botones);
 	truco.dibujar(w);
 	envido.dibujar(w);
 	w.draw(text);
+	
 
 }
 

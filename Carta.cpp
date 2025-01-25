@@ -22,9 +22,9 @@ void Carta::actualizar(){
 	
 	if(m_en_mano){		
 		if(m_is_selected){
-			m_s.setScale(Vector2f(1.2, 1.2));
+			m_s.setScale(Vector2f(0.8, 0.8));
 		}else{
-			m_s.setScale(Vector2f(1, 1));
+			m_s.setScale(Vector2f(0.7, 0.7));
 		}
 	}else{
 		m_s.setScale(Vector2f(0, 0));
@@ -49,7 +49,7 @@ int Carta::verPoder(){
 }
 
 void Carta::actualizar_mesa(int i){
-	m_s.setScale(Vector2f(0.7, 0.7));
+	m_s.setScale(Vector2f(0.6, 0.6));
 	m_s.setPosition(Vector2f(400+i, 300));
 }
 

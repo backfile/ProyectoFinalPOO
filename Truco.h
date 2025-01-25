@@ -46,8 +46,26 @@ private:
 	
 	Text text;
 	Font font;
+	
+	
+	//Botones
 	Texture t_truco;
 	Sprite s_truco;
+	
+	Texture t_retruco;
+	Sprite s_retruco;
+		
+	Texture t_valecuatro;
+	Sprite s_valecuatro;
+	
+	Texture t_quiero;
+	Sprite s_quiero;
+	
+	Texture t_noquiero;
+	Sprite s_noquiero;
+	
+	int elementos_on[5]; //0 off  //1 on
+	// 0-Truco 1-ReTruco 2-ValeCuatro 3-Quiero 4-NoQuiero
 };
 
 

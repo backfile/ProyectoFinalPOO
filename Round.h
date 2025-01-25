@@ -65,7 +65,8 @@ private:
 	Truco truco;
 	Player player1;
 	Player2 player2;
-	
+	Texture t_botones;
+	Sprite s_botones;
 };
 
 #endif
