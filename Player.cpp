@@ -30,13 +30,17 @@ vector<Carta> Player::obtener_cartas(){
 
 void Player::iniciar(){
 	cartas = m_mazo->Obtener3cartas();
-	cartas[0].actualizarTextura(Vector2f(205, 540));
-	cartas[1].actualizarTextura(Vector2f(400, 540));
-	cartas[2].actualizarTextura(Vector2f(595, 540));
+	cartas[0].actualizarTextura(Vector2f(205, 580));
+	cartas[1].actualizarTextura(Vector2f(400, 580));
+	cartas[2].actualizarTextura(Vector2f(595, 580));
 }
 
 int Player::verCartasEnMano(){
 	return cartas_en_mano;
+}
+
+void Player::restarCartasEnManoPlayer2(){
+	cartas_en_mano_player2--;
 }
 
 
@@ -224,6 +228,7 @@ void Player::actualizar(){
 			if(m_envido->ver_finalizado() == false){
 				m_envido->modificar_tiro_carta_player1();
 			}
+			if((cartas_en_mano == 2 and cartas_en_mano_player2 == 2) or (cartas_en_mano == 1 and cartas_en_mano_player2 == 1)){return;}
 			cederTurno();
 		}
 	}

@@ -23,9 +23,9 @@ vector<Carta> Player2::obtener_cartas(){
 
 void Player2::iniciar(){
 	cartas = m_mazo->Obtener3cartas();
-	cartas[0].actualizarTextura(Vector2f(205, 50));
-	cartas[1].actualizarTextura(Vector2f(400, 50));
-	cartas[2].actualizarTextura(Vector2f(595, 50));
+	cartas[0].actualizarTextura(Vector2f(205, 10));
+	cartas[1].actualizarTextura(Vector2f(400, 10));
+	cartas[2].actualizarTextura(Vector2f(595, 10));
 }
 
 
@@ -222,17 +222,17 @@ void Player2::actualizar(){
 	} 
 	if(Keyboard::isKeyPressed(Keyboard::Space)){
 		if(carta_selected != -1 and cartas[carta_selected].obtenerEnMano() == true){	
+			m_rival->restarCartasEnManoPlayer2();
 			cartas[carta_selected].tirar();
 			cartas_en_mano --;
 			en_mesa.push_back(cartas[carta_selected]);
 			carta_selected = -1;
-			m_rival->cambiarTurno(true);
-			m_truco->modificar_turno_player(true);
-			m_envido->modificar_turno_player(true);
-			m_truco->cambiarUltimoEnTirar(2);
 			if(m_envido->ver_finalizado() == false){
 				m_envido->modificar_tiro_carta_player2();
 			}
+			m_truco->cambiarUltimoEnTirar(2);
+			if(cartas_en_mano == 2 and m_rival->verCartasEnMano() == 2 or cartas_en_mano == 1 and m_rival->verCartasEnMano() == 1){return;}
+			cederTurno();
 		}
 	}
 	

@@ -402,11 +402,7 @@ void Round::verificar_estado_truco(){
 
 void Round::actualizar(){
 	
-	if(envido.ver_turno_player_1()){
-		s_botones.setPosition(Vector2f(100, 530));
-	}else{
-		s_botones.setPosition(Vector2f(100, 0));
-	}
+	
 	
 	// Analizar truco
 	verificar_estado_truco();
@@ -451,6 +447,11 @@ void Round::actualizar(){
 		player1.actualizar();
 	}else{
 		player2.actualizar();
+	}
+	if(player1.obtenerTurno()){
+		s_botones.setPosition(Vector2f(100, 530));
+	}else{
+		s_botones.setPosition(Vector2f(100, 0));
 	}
 	
 	truco.actualizar();
