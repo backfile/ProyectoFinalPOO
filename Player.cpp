@@ -7,7 +7,72 @@
 using namespace std;
 
 Player::Player(bool turno, Mazo *mazo, Truco *truco, Envido *envido) : m_turno(turno),  m_mazo(mazo), m_truco(truco), m_envido(envido){
+	//Repartir cartas
 	iniciar();
+	
+	//Definir tamaño de los botones
+	float anchoBoton = 74.6;
+	float alturaBoton = 35;
+	
+	//Definir posicion base
+	float x_base = 100; 
+	float y_base = 530;
+	
+	//Truco boton
+	TrucoBoton.setSize(sf::Vector2f(74.6, 35));
+	TrucoBoton.setPosition(x_base, y_base);
+	TrucoBoton.setFillColor(sf::Color::Red);
+	
+	//ReTruco boton
+	ReTrucoBoton.setSize(sf::Vector2f(74.6, 35));
+	ReTrucoBoton.setPosition(x_base + anchoBoton, y_base);
+	ReTrucoBoton.setFillColor(sf::Color::Red);
+	
+	//Vale Cuatro boton
+	ValeCuatroBoton.setSize(sf::Vector2f(74.6, 35));
+	ValeCuatroBoton.setPosition(x_base, y_base + alturaBoton);
+	ValeCuatroBoton.setFillColor(sf::Color::Red);
+	
+	//Quiero boton
+	QuieroBoton.setSize(sf::Vector2f(74.6, 35));
+	QuieroBoton.setPosition(x_base + anchoBoton, y_base + alturaBoton);
+	QuieroBoton.setFillColor(sf::Color::Red);
+	
+	// NoQuiero boton
+	NoQuieroBoton.setSize(sf::Vector2f(74.6, 35));
+	NoQuieroBoton.setPosition(x_base + anchoBoton * 2, y_base + alturaBoton);
+	NoQuieroBoton.setFillColor(sf::Color::Red);
+	
+	//Envido boton
+	EnvidoBoton.setSize(sf::Vector2f(74.6, 35));
+	EnvidoBoton.setPosition(x_base + 376.2, y_base);
+	EnvidoBoton.setFillColor(sf::Color::Red);
+	
+	//RealEnvido boton
+	RealEnvidoBoton.setSize(sf::Vector2f(74.6, 35));
+	RealEnvidoBoton.setPosition(x_base + 376.2 + anchoBoton, y_base);
+	RealEnvidoBoton.setFillColor(sf::Color::Red);
+	
+	//EnvidoEnvido boton
+	EnvidoEnvidoBoton.setSize(sf::Vector2f(74.6, 35));
+	EnvidoEnvidoBoton.setPosition(x_base + 376.2, y_base + alturaBoton);
+	EnvidoEnvidoBoton.setFillColor(sf::Color::Red);
+	
+	//FaltaEnvido boton
+	FaltaEnvidoBoton.setSize(sf::Vector2f(74.6, 35));
+	FaltaEnvidoBoton.setPosition(x_base + 376.2 + anchoBoton, y_base + alturaBoton);
+	FaltaEnvidoBoton.setFillColor(sf::Color::Red);
+	
+	//QuieroEnvidoBoton
+	QuieroEnvidoBoton.setSize(sf::Vector2f(74.6, 35));
+	QuieroEnvidoBoton.setPosition(x_base + anchoBoton*2 + 376.2, y_base);
+	QuieroEnvidoBoton.setFillColor(sf::Color::Red);
+	
+	//NoQuieroEnvidoBoton
+	NoQuieroEnvidoBoton.setSize(sf::Vector2f(74.6, 35));
+	NoQuieroEnvidoBoton.setPosition(x_base + anchoBoton*2 + 376.2, y_base + alturaBoton);
+	NoQuieroEnvidoBoton.setFillColor(sf::Color::Red);
+	
 }
 
 
@@ -246,5 +311,16 @@ void Player::dibujar(RenderWindow &m){
 		x.actualizar_mesa(i);
 		x.dibujar(m);
 	}
+	m.draw(TrucoBoton);
+	m.draw(ReTrucoBoton);
+	m.draw(ValeCuatroBoton);
+	m.draw(QuieroBoton);
+	m.draw(NoQuieroBoton);
+	m.draw(EnvidoBoton);
+	m.draw(RealEnvidoBoton);
+	m.draw(EnvidoEnvidoBoton);
+	m.draw(FaltaEnvidoBoton);
+	m.draw(QuieroEnvidoBoton);
+	m.draw(NoQuieroEnvidoBoton);
 	i = 0;
 }	

@@ -239,7 +239,7 @@ void Truco::cantar(){
 	castigo = 1;
 }
 void Truco::dibujar(RenderWindow &w){
-	w.draw(text);
+/*	w.draw(text);*/
 	if(elementos_on[0] == 1){
 		w.draw(s_truco);
 	}

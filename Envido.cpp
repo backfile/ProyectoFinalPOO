@@ -173,7 +173,7 @@ void Envido::modificar_turno_player(bool aux){
 }
 
 void Envido::dibujar(RenderWindow &w){
-	w.draw(text);
+	/*w.draw(text);*/
 	if(elementos_on[0]){
 		w.draw(s_envido);
 	}

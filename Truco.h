@@ -64,6 +64,7 @@ private:
 	Texture t_noquiero;
 	Sprite s_noquiero;
 	
+	
 	int elementos_on[5]; //0 off  //1 on
 	// 0-Truco 1-ReTruco 2-ValeCuatro 3-Quiero 4-NoQuiero
 };

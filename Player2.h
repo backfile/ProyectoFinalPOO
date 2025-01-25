@@ -37,6 +37,21 @@ private:
 	vector<Carta>cartas;
 	vector<Carta>en_mesa;
 	
+	//Botones Truco
+	sf::RectangleShape TrucoBoton;
+	sf::RectangleShape ReTrucoBoton;
+	sf::RectangleShape ValeCuatroBoton;
+	sf::RectangleShape QuieroBoton;
+	sf::RectangleShape NoQuieroBoton;
+	
+	//Botones Envido
+	sf::RectangleShape EnvidoBoton;
+	sf::RectangleShape EnvidoEnvidoBoton;
+	sf::RectangleShape RealEnvidoBoton;
+	sf::RectangleShape FaltaEnvidoBoton;
+	sf::RectangleShape QuieroEnvidoBoton;
+	sf::RectangleShape NoQuieroEnvidoBoton;
+	
 
 };
 

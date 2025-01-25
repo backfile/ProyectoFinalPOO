@@ -8,7 +8,7 @@ using namespace std;
 using namespace sf;
 
 int main(int argc, char *argv[]){
-	RenderWindow w(VideoMode(800,600),"Ejemplo de SFML");
+	RenderWindow w(VideoMode(800,600),"Truco");
 	w.setFramerateLimit(60);
 	
 	//Fondo
