@@ -18,6 +18,7 @@ public:
 	void actualizarTextura(Vector2f posicion);
 	bool obtenerEnMano();
 	Texture obtenerTextura();
+	Sprite obtenerSprite();
 	void tirar();
 	void is_selected(bool aux);
 	int verPoder();

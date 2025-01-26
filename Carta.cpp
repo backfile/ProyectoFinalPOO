@@ -18,6 +18,10 @@ void Carta::actualizarTextura(Vector2f posicion){
 	m_s.setPosition(posicion);
 }
 
+Sprite Carta::obtenerSprite(){
+	return m_s;
+}
+
 void Carta::actualizar(){
 	
 	if(m_en_mano){		

@@ -9,7 +9,7 @@ using namespace std;
 
 class Player2 {
 public:
-	Player2(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Player *rival);
+	Player2(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Player *rival, Window *w);
 	void dibujar(RenderWindow &m);
 	void actualizar();
 	void seleccionarCarta();
@@ -33,6 +33,7 @@ private:
 	Mazo *m_mazo;
 	Truco *m_truco;
 	Envido *m_envido;
+	Window *m_window;
 	
 	vector<Carta>cartas;
 	vector<Carta>en_mesa;
@@ -52,7 +53,12 @@ private:
 	sf::RectangleShape QuieroEnvidoBoton;
 	sf::RectangleShape NoQuieroEnvidoBoton;
 	
+	//Ubicacion del Mouse
+	sf::Vector2i mousePos;
 
+	
+	//Rectangulo que simula la zona donde podes clickear para tirar la carta
+	sf::RectangleShape ZonaTirarCartas;
 };
 
 #endif

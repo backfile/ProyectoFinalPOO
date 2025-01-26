@@ -1,7 +1,7 @@
 #include "Round.h"
 #include <iostream>
 
-Round::Round(bool turn_player1) : player1(turn_player1, &mazo, &truco, &envido), player2(!turn_player1, &mazo, &truco, &envido, &player1), truco(turn_player1), envido(turn_player1){
+Round::Round(bool turn_player1, Window *w) : player1(turn_player1, &mazo, &truco, &envido, w), player2(!turn_player1, &mazo, &truco, &envido, &player1, w), truco(turn_player1), envido(turn_player1){
   calcularPuntosEnvidoP1();
   calcularPuntosEnvidoP2();
   font.loadFromFile("rara.ttf");

@@ -5,7 +5,7 @@
 
 class Match {
 public:
-	Match();
+	Match(Window *w);
 	void actualizar(); //Se ejecuta siempre
 	void dibujar(RenderWindow &w);   //Se ejecuta siempre
 	void obtener_puntos();
@@ -17,6 +17,7 @@ private:
 	bool jugar_primero = true;
 	int cont = 0;
 	bool aux = true;
+	Window *m_window;
 	
 	//Texturas
 	Text text_player1;

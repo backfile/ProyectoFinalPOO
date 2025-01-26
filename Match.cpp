@@ -1,10 +1,12 @@
 #include "Match.h"
 #include <iostream>
+#include <SFML/System/Sleep.hpp>
 using namespace std;
 
 
-Match::Match() {
-	round = new Round(jugar_primero);
+Match::Match(Window *w) {
+	m_window = w;
+	round = new Round(jugar_primero, w);
 	t_background.loadFromFile("./images/fondo.png");
 	s_background.setTexture(t_background);
 
@@ -35,6 +37,7 @@ void Match::actualizar(){
 	cont ++;
 	if(!round->getStatus())
 	{	
+		sf::sleep(sf::seconds(2));
 		aux = true;
 		cont = 0;
 		if(round->getStatusTruco() == 2){
@@ -59,9 +62,12 @@ void Match::actualizar(){
 	
 		
 		delete round;
-		round = new Round(jugar_primero);
+		round = new Round(jugar_primero, m_window);
 	}
 	
+	if(cont < 100){
+		return;
+	}
 	
 	if(round->obtener_envido_listo_para_sumar() == true and aux == true){
 		aux = false;

@@ -10,9 +10,9 @@ using namespace sf;
 int main(int argc, char *argv[]){
 	RenderWindow w(VideoMode(800,600),"Truco");
 	w.setFramerateLimit(60);
-	
+	Window *window = &w;
 	//Fondo
-    Match match;
+    Match match(window);
 	while(w.isOpen()) {
 		Event e;
 		while(w.pollEvent(e)) {

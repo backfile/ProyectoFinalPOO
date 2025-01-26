@@ -9,6 +9,7 @@
 #include "Truco.h"
 #include "Envido.h"
 #include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Window/Mouse.hpp>
 
 
 
@@ -17,7 +18,7 @@ using namespace std;
 
 class Player {
 public:
-	Player(bool turno, Mazo *mazo, Truco *truco, Envido *envido);
+	Player(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Window *w);
 	
 	void dibujar(RenderWindow &m);
 	void actualizar();
@@ -42,7 +43,7 @@ private:
 	Mazo *m_mazo;
 	Truco *m_truco;
 	Envido *m_envido;
-	
+	Window *m_window;
 	
 	vector<Carta>cartas;
 	vector<Carta>en_mesa;
@@ -63,7 +64,11 @@ private:
 	sf::RectangleShape QuieroEnvidoBoton;
 	sf::RectangleShape NoQuieroEnvidoBoton;
 	
+	//Ubicacion del Mouse
+	sf::Vector2i mousePos;
 	
+	//Rectangulo que simula la zona donde podes clickear para tirar la carta
+	sf::RectangleShape ZonaTirarCartas;
 
 };
 
