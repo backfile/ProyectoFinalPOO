@@ -7,7 +7,7 @@
 using namespace std;
 using namespace sf;
 
-Truco::Truco(bool turno_player_1) : m_turno_player_1(turno_player_1){
+Truco::Truco(bool turno_player_1, Envido *envido) : m_turno_player_1(turno_player_1), m_envido(envido){
 	
 	t_truco.loadFromFile("./images/botones/truco.png");
 	s_truco.setTexture(t_truco);
@@ -59,6 +59,15 @@ void Truco::actualizar(){
 		s_quiero.setPosition(Vector2f(100, 0));
 		s_noquiero.setPosition(Vector2f(100, 0));
 		
+	}
+	
+	if(m_envido->ver_status() == 1){
+		elementos_on[0] = 0;
+		elementos_on[1] = 0;
+		elementos_on[2] = 0;
+		elementos_on[3] = 0;
+		elementos_on[4] = 0;	
+		return;
 	}
 	
 	if(status == 0){

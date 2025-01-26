@@ -8,6 +8,7 @@
 
 
 #include <iostream>
+#include "Envido.h"
 using namespace std;
 using namespace sf;
 
@@ -16,7 +17,7 @@ using namespace sf;
 
 class Truco{
 public:
-	Truco(bool turno_player_1);
+	Truco(bool turno_player_1, Envido *envido);
 	
 	void actualizar();
 	void dibujar(RenderWindow &w);
@@ -43,6 +44,8 @@ private:
 	int m_generated_by;	
 	int ultimo_en_tirar;
 	int status = 0; // 0 no iniciado // 1 en espera de respuesta  // 2 rechazado // 3 aceptado
+	
+	Envido *m_envido;
 	
 	Text text;
 	Font font;

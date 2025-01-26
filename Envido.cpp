@@ -78,6 +78,12 @@ void Envido::actualizar(){
 			elementos_on[5] = 0;
 			return;
 		}
+		elementos_on[0] = 0;
+		elementos_on[1] = 0;
+		elementos_on[2] = 0;
+		elementos_on[3] = 0;
+		elementos_on[4] = 0;
+		elementos_on[5] = 0;
 		
 		if(status == 1){
 			if(tipo_en_juego == 1){
@@ -120,6 +126,7 @@ void Envido::actualizar(){
 				elementos_on[5] = 1;
 				return;
 			}
+			
 		}
 	}else{
 		text.setString(" ");

@@ -117,42 +117,26 @@ void Player2::cambiarTurno(bool aux){
 }
 
 void Player2::actualizar(){
-	if(m_truco->obtenerStatus() == 1){
+	
+	if(m_envido->ver_status() == 0 and en_mesa.size() == 0 and m_envido->ver_finalizado() == false){
 		if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 			mousePos = sf::Mouse::getPosition(*m_window);
-			if(m_truco->obtenerGenerated_by() == 1){
-				if(QuieroBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
-					m_truco->aceptar();
-					m_rival->cambiarTurno(true);
-					m_truco->modificar_turno_player(true);
-					m_envido->finalizarEnvido();
-					return;
-				}
-				if(NoQuieroBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
-					m_truco->rechazar();
-					m_rival->cambiarTurno(true);
-					m_truco->modificar_turno_player(true);
-					return;
-				}
-				if(ReTrucoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) and m_truco->obtenerRedisputar() == 2){
-					m_truco->redisputar();
-					m_truco->setGenerated_by(2);
-					m_rival->cambiarTurno(true);
-					m_truco->modificar_turno_player(true);
-					m_envido->finalizarEnvido();
-					return;
-				}
-				if(ValeCuatroBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) and m_truco->obtenerRedisputar() == 1){
-					m_truco->redisputar();
-					m_truco->setGenerated_by(2);
-					m_rival->cambiarTurno(true);
-					m_truco->modificar_turno_player(true);
-					m_envido->finalizarEnvido();
-					return;
-				}
+			if(EnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
+				m_envido->cantar_envido();
+				cederTurno();
+				return;
+			}
+			if(RealEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
+				m_envido->cantar_real_envido();
+				cederTurno();
+				return;
+			}
+			if(FaltaEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
+				m_envido->cantar_falta_envido();
+				cederTurno();
+				return;
 			}
 		}
-		return;
 	}
 	
 	
@@ -239,39 +223,55 @@ void Player2::actualizar(){
 			}
 			
 		}
-			
+		
 		return;
 	}
-
-
 	
-	if(m_truco->verUltimoEnTirar()==2){
+	
+	if(m_truco->obtenerStatus() == 1){
+		if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+			mousePos = sf::Mouse::getPosition(*m_window);
+			if(m_truco->obtenerGenerated_by() == 1){
+				if(QuieroBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
+					m_truco->aceptar();
+					m_rival->cambiarTurno(true);
+					m_truco->modificar_turno_player(true);
+					m_envido->finalizarEnvido();
+					return;
+				}
+				if(NoQuieroBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
+					m_truco->rechazar();
+					return;
+				}
+				if(ReTrucoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) and m_truco->obtenerRedisputar() == 2){
+					m_truco->redisputar();
+					m_truco->setGenerated_by(2);
+					m_rival->cambiarTurno(true);
+					m_truco->modificar_turno_player(true);
+					m_envido->finalizarEnvido();
+					return;
+				}
+				if(ValeCuatroBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) and m_truco->obtenerRedisputar() == 1){
+					m_truco->redisputar();
+					m_truco->setGenerated_by(2);
+					m_rival->cambiarTurno(true);
+					m_truco->modificar_turno_player(true);
+					m_envido->finalizarEnvido();
+					return;
+				}
+			}else{
+				cederTurno();
+			}
+		}
+		return;
+	}
+	
+	if(m_truco->verUltimoEnTirar()==2 and m_truco->obtenerStatus() != 2){
 		cederTurno();
 	}
 	
-	if(m_envido->ver_status() == 0){
-		if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-			mousePos = sf::Mouse::getPosition(*m_window);
-			if(EnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
-				m_envido->cantar_envido();
-				cederTurno();
-				return;
-			}
-			if(RealEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
-				m_envido->cantar_real_envido();
-				cederTurno();
-				return;
-			}
-			if(FaltaEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
-				m_envido->cantar_falta_envido();
-				cederTurno();
-				return;
-			}
-		}
-	}
 	
-	
-	if(m_truco->obtenerStatus() == 3 and (m_truco->obtenerRedisputar() == 2 or m_truco->obtenerRedisputar() == 1)){
+	if((m_truco->obtenerStatus() == 3) and ((m_truco->obtenerRedisputar() == 2 or m_truco->obtenerRedisputar() == 1) and (m_truco->obtenerGenerated_by() == 1))){
 		mousePos = sf::Mouse::getPosition(*m_window);
 		if(sf::Mouse::isButtonPressed(sf::Mouse::Left) and m_truco->obtenerRedisputar() == 2){
 			if(ReTrucoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
