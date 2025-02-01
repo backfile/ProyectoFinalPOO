@@ -247,22 +247,24 @@ void Truco::cantar(){
 	valor = 2;
 	castigo = 1;
 }
-void Truco::dibujar(RenderWindow &w){
+void Truco::dibujar(RenderWindow &w, bool statusRound){
 /*	w.draw(text);*/
-	if(elementos_on[0] == 1){
-		w.draw(s_truco);
-	}
-	if(elementos_on[1] == 1){
-		w.draw(s_retruco);
-	}
-	if(elementos_on[2] == 1){
-		w.draw(s_valecuatro);
-	}
-	if(elementos_on[3] == 1){
-		w.draw(s_quiero);
-	}
-	if(elementos_on[4] == 1){
-		w.draw(s_noquiero);
+	if(statusRound == true){
+		if(elementos_on[0] == 1){
+			w.draw(s_truco);
+		}
+		if(elementos_on[1] == 1){
+			w.draw(s_retruco);
+		}
+		if(elementos_on[2] == 1){
+			w.draw(s_valecuatro);
+		}
+		if(elementos_on[3] == 1){
+			w.draw(s_quiero);
+		}
+		if(elementos_on[4] == 1){
+			w.draw(s_noquiero);
+		}
 	}
 	
 }

@@ -20,7 +20,7 @@ public:
 	Truco(bool turno_player_1, Envido *envido);
 	
 	void actualizar();
-	void dibujar(RenderWindow &w);
+	void dibujar(RenderWindow &w, bool statusRound);
 	void aceptar();
 	void rechazar();
 	void cantar();

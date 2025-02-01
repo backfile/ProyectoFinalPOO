@@ -67,6 +67,9 @@ private:
 	Player2 player2;
 	Texture t_botones;
 	Sprite s_botones;
+	
+	Texture t_stats_envido1;
+	Sprite s_stats_envido1;
 };
 
 #endif

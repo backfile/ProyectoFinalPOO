@@ -10,7 +10,7 @@ using namespace sf;
 class Envido {
 public:
 	Envido(bool turno_player_1);
-	void dibujar(RenderWindow &w);
+	void dibujar(RenderWindow &w, bool statusRound);
 	void actualizar();
 	void cantar_envido();
 	void cantar_envido_envido();
@@ -49,9 +49,6 @@ private:
 	int prev = 1;
 	int valor = 1;
 	int rechazado_by;
-	
-	Text text;
-	Font font;
 	
 	
 	//Botones
