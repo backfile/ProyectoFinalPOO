@@ -101,6 +101,7 @@ void Player2::cederTurno(){
 	m_rival->cambiarTurno(true);
 	m_truco->modificar_turno_player(true);
 	m_envido->modificar_turno_player(true);
+
 };
 
 

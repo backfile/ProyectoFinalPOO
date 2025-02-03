@@ -428,6 +428,17 @@ void Round::actualizar(){
 				truco.cambiarUltimoEnTirar(1);
 				turnoaux = false;
 			}
+			if(player1cart[0].verPoder() == player2cart[0].verPoder() and turnoaux == true){
+				if(mano_player1){
+					player2.cederTurno();
+					truco.cambiarUltimoEnTirar(2);
+					turnoaux = false;
+				}else{
+					player1.cederTurno();
+					truco.cambiarUltimoEnTirar(1);
+					turnoaux = false;
+				}
+			}
 			
 		}
 		
@@ -445,7 +456,17 @@ void Round::actualizar(){
 				truco.cambiarUltimoEnTirar(1);
 				turno2aux = false;
 			}
-			
+			if(player1cart[1].verPoder() == player2cart[1].verPoder() and turnoaux == true){
+				if(mano_player1){
+					player2.cederTurno();
+					truco.cambiarUltimoEnTirar(2);
+					turnoaux = false;
+				}else{
+					player1.cederTurno();
+					truco.cambiarUltimoEnTirar(1);
+					turnoaux = false;
+				}
+			}
 		}
 	}
 	if(player1.obtenerTurno()){

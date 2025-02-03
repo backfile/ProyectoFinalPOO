@@ -8,7 +8,7 @@ Mazo::Mazo(): m_mazo{TODAS} {
 	
 }
 
-vector<Carta>Mazo::Obtener3cartas(){
+vector<Carta> Mazo::Obtener3cartas(){
 	
 	int cont = 0;
 	vector<Carta> cartas3;
@@ -23,7 +23,4 @@ vector<Carta>Mazo::Obtener3cartas(){
 	
 }
 
-void Mazo::reiniciar_mazo(){
-	m_mazo = m_mazo_respaldo;
-}
 

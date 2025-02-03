@@ -11,6 +11,7 @@ int main(int argc, char *argv[]){
 	RenderWindow w(VideoMode(800,600),"Truco");
 	w.setFramerateLimit(60);
 	Window *window = &w;
+	int num = 0;
 	//Fondo
     Match match(window);
 	while(w.isOpen()) {
@@ -24,6 +25,8 @@ int main(int argc, char *argv[]){
 		match.actualizar();
 		match.dibujar(w);
 		w.display();
+		cout << num << endl;
+		num++;
 		
 	}
 	return 0;
