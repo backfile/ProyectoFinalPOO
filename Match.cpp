@@ -33,7 +33,7 @@ Match::Match(Window *w) {
 }
 
 
-void Match::actualizar(){
+void Match::actualizar(Juego &j){
 	cont ++;
 	if(!round->getStatus())
 	{	

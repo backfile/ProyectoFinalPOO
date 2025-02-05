@@ -2,12 +2,13 @@
 #define MATCH_H
 #include "Match.h"
 #include "Round.h"
+#include "Escena.h"
 
-class Match {
+class Match : public Escena {
 public:
 	Match(Window *w);
-	void actualizar(); //Se ejecuta siempre
-	void dibujar(RenderWindow &w);   //Se ejecuta siempre
+	void actualizar(Juego &j) override; //Se ejecuta siempre
+	void dibujar(RenderWindow &w) override;   //Se ejecuta siempre
 	void obtener_puntos();
 	
 private:
