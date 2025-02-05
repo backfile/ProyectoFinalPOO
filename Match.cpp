@@ -1,6 +1,9 @@
 #include "Match.h"
 #include <iostream>
 #include <SFML/System/Sleep.hpp>
+#include "Menu.h"
+#include "Juego.h"
+#include "Ganador.h"
 using namespace std;
 
 
@@ -34,6 +37,15 @@ Match::Match(Window *w) {
 
 
 void Match::actualizar(Juego &j){
+	if(player1_puntos > 29){
+		sf::sleep(sf::seconds(3));
+		j.actualizarEscena(new Ganador(m_window, true, player1_puntos, player2_puntos));
+	}
+	if(player2_puntos > 29){
+		sf::sleep(sf::seconds(3));
+		j.actualizarEscena(new Ganador(m_window, false, player1_puntos, player2_puntos));
+	}
+	
 	cont ++;
 	if(!round->getStatus())
 	{	
@@ -53,6 +65,15 @@ void Match::actualizar(Juego &j){
 			}
 		}
 		
+		if(player1_puntos > 29){
+			sf::sleep(sf::seconds(1));
+			j.actualizarEscena(new Ganador(m_window, true, player1_puntos, player2_puntos));
+		}
+		if(player2_puntos > 29){
+			sf::sleep(sf::seconds(1));
+			j.actualizarEscena(new Ganador(m_window, false, player1_puntos, player2_puntos));
+		}
+		
 		string puntos_player1 = to_string(player1_puntos);
 		string puntos_player2 = to_string(player2_puntos);
 		text_player1.setString(puntos_player1);
@@ -63,11 +84,15 @@ void Match::actualizar(Juego &j){
 		
 		delete round;
 		round = new Round(jugar_primero, m_window);
+		
 	}
+	
+	
 	
 	if(cont < 100){
 		return;
 	}
+	
 	
 	if(round->obtener_envido_listo_para_sumar() == true and aux == true){
 		aux = false;
@@ -93,7 +118,9 @@ void Match::actualizar(Juego &j){
 		text_player2.setString(puntos_player2);
 		
 	}
+	
 	round->actualizar();
+
 };
 
 void Match::obtener_puntos(){

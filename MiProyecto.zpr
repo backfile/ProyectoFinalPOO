@@ -15,7 +15,7 @@ tab_width=4
 tab_use_spaces=0
 explorer_path=.
 inherits_from=
-current_source=Juego.cpp
+current_source=Match.cpp
 path_char=\
 [source]
 path=main.cpp
@@ -41,7 +41,7 @@ path=Player2.cpp
 cursor=95:48
 [source]
 path=Match.cpp
-cursor=35:23
+cursor=40:41
 open=true
 [source]
 path=Round.cpp
@@ -52,7 +52,7 @@ path=Envido.cpp
 cursor=85:22
 [source]
 path=Juego.cpp
-cursor=0:0
+cursor=14:25
 open=true
 [source]
 path=Escena.cpp
@@ -60,7 +60,7 @@ cursor=0:0
 open=true
 [source]
 path=Menu.cpp
-cursor=0:0
+cursor=12:42
 open=true
 [header]
 path=Mazo.h
@@ -84,7 +84,7 @@ marker=16
 marker=64
 [header]
 path=Match.h
-cursor=9:25
+cursor=20:1
 open=true
 [header]
 path=Truco.h
@@ -98,11 +98,11 @@ cursor=0:0
 open=true
 [header]
 path=Juego.h
-cursor=0:0
+cursor=14:16
 open=true
 [header]
 path=Menu.h
-cursor=0:0
+cursor=16:18
 open=true
 [other]
 path=Leeme.txt

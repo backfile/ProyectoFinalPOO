@@ -14,7 +14,7 @@
 
 
 using namespace std;
-
+using namespace sf;
 
 class Player {
 public:
@@ -47,7 +47,7 @@ private:
 	
 	vector<Carta>cartas;
 	vector<Carta>en_mesa;
-	std::vector<sf::RectangleShape> botonesAreas; //Unicacion de cada boton disponible
+	vector<sf::RectangleShape> botonesAreas; //Unicacion de cada boton disponible
 	
 	//Botones Truco
 	sf::RectangleShape TrucoBoton;
