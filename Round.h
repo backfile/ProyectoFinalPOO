@@ -33,6 +33,7 @@ public:
 	int obtenerPuntosEnvidoPlayer1();
 	int obtenerPuntosEnvidoPlayer2();
 	bool obtener_envido_listo_para_sumar();
+	bool actualizarCantoEnPantalla(int num);
 private:
 	
 	//generales
@@ -68,8 +69,21 @@ private:
 	Texture t_botones;
 	Sprite s_botones;
 	
+	//variable que representa el canto actual en pantalla
+	int canto_actual_en_pantalla;  
+	int contador_mostrar_canto_actual = 0;
+	
+	
+	
 	Texture t_stats_envido1;
 	Sprite s_stats_envido1;
+	
+	//Texturas de los cantos en pantalla
+	Texture t_truco_pantalla;
+	Sprite s_truco_pantalla;
+	
+	Texture t_retruco_pantalla;
+	Sprite s_retruco_pantalla;
 };
 
 #endif

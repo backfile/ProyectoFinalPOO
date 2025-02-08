@@ -33,8 +33,8 @@ private:
 	Sprite s_repartiendo;
 	
 	//Palitos
-	Texture t_palito5;
-	Sprite s_palito5;
+	Texture t_madera;
+	Sprite s_madera;
 	
 	sf::RectangleShape palito1;
 	sf::RectangleShape palito2;

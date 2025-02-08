@@ -11,7 +11,7 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Window/Mouse.hpp>
 
-
+class Round;
 
 using namespace std;
 using namespace sf;
@@ -21,7 +21,7 @@ public:
 	Player(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Window *w);
 	
 	void dibujar(RenderWindow &m);
-	void actualizar();
+	void actualizar(Round &round);
 	void cederTurno();
 	void seleccionarCarta();
 	void iniciar();
@@ -39,11 +39,14 @@ private:
 	int cartas_en_mano = 3;
 	bool tiene_responder = false;
 	int cartas_en_mano_player2 = 3;
+	int canto_actual; //Lo lee round
+	
 	//Se comparten
 	Mazo *m_mazo;
 	Truco *m_truco;
 	Envido *m_envido;
 	Window *m_window;
+
 	
 	vector<Carta>cartas;
 	vector<Carta>en_mesa;

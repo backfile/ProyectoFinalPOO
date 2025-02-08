@@ -3,6 +3,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
+#include "Round.h"
 
 using namespace std;
 
@@ -79,6 +80,7 @@ Player::Player(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Window *w) 
 }
 
 
+
 bool Player::obtenerTurno(){
 	return m_turno;
 }
@@ -120,7 +122,7 @@ void Player::cederTurno(){
 
 
 //Escuchar inputs
-void Player::actualizar(){	
+void Player::actualizar(Round &round){	
 	
 	if(m_envido->ver_status() == 0 and en_mesa.size() == 0 and m_envido->ver_finalizado() == false){
 		
@@ -284,6 +286,7 @@ void Player::actualizar(){
 				m_truco->cantar();
 				cederTurno();
 				m_truco->setGenerated_by(1);
+				round.actualizarCantoEnPantalla(1);
 			}
 		}
 		

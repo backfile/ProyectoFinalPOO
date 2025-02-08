@@ -4,6 +4,7 @@
 #include "Carta.h"
 #include "Player.h"
 
+class Round;
 
 using namespace std;
 
@@ -11,7 +12,7 @@ class Player2 {
 public:
 	Player2(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Player *rival, Window *w);
 	void dibujar(RenderWindow &m);
-	void actualizar();
+	void actualizar(Round &round);
 	void seleccionarCarta();
 	bool obtenerTurno();
 	void cederTurno();

@@ -37,6 +37,9 @@ Match::Match(Window *w) {
 	text_player2.setString("0");
 	
 	//Palitos
+	t_madera.loadFromFile("./images/texturamadera.jpg");
+	s_madera.setTexture(t_madera);
+	
 	//Player1
 	
 	palito1.setSize(Vector2f(50, 4));
@@ -443,6 +446,13 @@ Match::Match(Window *w) {
 	Apalito30.setRotation(45);
 	Apalitos.push_back(Apalito30);
 	
+	
+	for(auto &palitos : Apalitos){
+		palitos.setTexture(&t_madera);
+	}
+	for(auto &palitos : palitos){
+		palitos.setTexture(&t_madera);
+	}
 }
 
 

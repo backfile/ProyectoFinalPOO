@@ -4,6 +4,7 @@
 #include <iostream>
 #include "ValoresCartas.h"
 #include "Player.h"
+#include "Round.h"
 using namespace std;
 
 Player2::Player2(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Player* rival, Window *w) : m_rival(rival), m_turno(turno), m_mazo(mazo), m_truco(truco), m_envido(envido), m_window(w){
@@ -117,7 +118,7 @@ void Player2::cambiarTurno(bool aux){
 	m_turno = aux;
 }
 
-void Player2::actualizar(){
+void Player2::actualizar(Round &round){
 	
 	if(m_envido->ver_status() == 0 and en_mesa.size() == 0 and m_envido->ver_finalizado() == false){
 		if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
@@ -250,6 +251,7 @@ void Player2::actualizar(){
 					m_rival->cambiarTurno(true);
 					m_truco->modificar_turno_player(true);
 					m_envido->finalizarEnvido();
+					round.actualizarCantoEnPantalla(2);
 					return;
 				}
 				if(ValeCuatroBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) and m_truco->obtenerRedisputar() == 1){
@@ -277,9 +279,9 @@ void Player2::actualizar(){
 		if(sf::Mouse::isButtonPressed(sf::Mouse::Left) and m_truco->obtenerRedisputar() == 2){
 			if(ReTrucoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 				m_truco->redisputar();
-				
 				m_truco->setGenerated_by(2);
 				cederTurno();
+				round.actualizarCantoEnPantalla(2);
 			}
 		}
 		if(sf::Mouse::isButtonPressed(sf::Mouse::Left) and m_truco->obtenerRedisputar() == 1){

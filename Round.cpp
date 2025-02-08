@@ -18,6 +18,13 @@ Round::Round(bool turn_player1, Window *w) : player1(turn_player1, &mazo, &truco
   s_stats_envido1.setOrigin(100, 100);
   s_stats_envido1.setPosition(400, 300);
   
+  // Cantos en pantalla
+  t_truco_pantalla.loadFromFile("./images/cantos/truco.png");
+  s_truco_pantalla.setTexture(t_truco_pantalla);
+
+  t_retruco_pantalla.loadFromFile("./images/cantos/retruco2.png");
+  s_retruco_pantalla.setTexture(t_retruco_pantalla);
+  
 }
 
 
@@ -407,7 +414,8 @@ void Round::verificar_estado_truco(){
 
 void Round::actualizar(){
 	
-	
+	//Incrementar la variable auxiliar para mostrar cantos en pantalla
+	contador_mostrar_canto_actual++;
 	
 	// Analizar truco
 	verificar_estado_truco();
@@ -470,9 +478,10 @@ void Round::actualizar(){
 		}
 	}
 	if(player1.obtenerTurno()){
-		player1.actualizar();
+		player1.actualizar(*this);
+
 	}else{
-		player2.actualizar();
+		player2.actualizar(*this);
 	}
 	if(player1.obtenerTurno() == true and status == true){
 		s_botones.setPosition(Vector2f(100, 530));
@@ -496,6 +505,11 @@ bool Round::getStatus(){
 	return status;
 }
 
+bool Round::actualizarCantoEnPantalla(int num){
+	contador_mostrar_canto_actual = 0;
+	canto_actual_en_pantalla = num;
+}
+
 void Round::dibujar(RenderWindow &w){
 	player1.dibujar(w);
 	player2.dibujar(w);
@@ -505,8 +519,16 @@ void Round::dibujar(RenderWindow &w){
 	truco.dibujar(w, status);
 	envido.dibujar(w, status);
 	w.draw(text);
-	/*w.draw(s_stats_envido1);*/
 	
-
+	if(contador_mostrar_canto_actual < 180){		
+		if(canto_actual_en_pantalla == 1){
+			w.draw(s_truco_pantalla);
+		}
+		if(canto_actual_en_pantalla == 2){
+			w.draw(s_retruco_pantalla);
+		}
+	}
+	
+	
 }
 
