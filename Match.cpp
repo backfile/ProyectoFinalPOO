@@ -500,7 +500,8 @@ void Match::actualizar(Juego &j){
 		text_player2.setString(puntos_player2);
 		
 		jugar_primero = !jugar_primero;
-	
+		round->actualizarCantoEnPantalla(0);
+		
 		
 		delete round;
 		round = new Round(jugar_primero, m_window);

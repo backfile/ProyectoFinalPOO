@@ -79,11 +79,63 @@ private:
 	Sprite s_stats_envido1;
 	
 	//Texturas de los cantos en pantalla
+	
+	//Player1
 	Texture t_truco_pantalla;
 	Sprite s_truco_pantalla;
 	
 	Texture t_retruco_pantalla;
 	Sprite s_retruco_pantalla;
+	
+	Texture t_valecuatro_pantalla;
+	Sprite s_valecuatro_pantalla;
+	
+	Texture t_quiero_pantalla;
+	Sprite s_quiero_pantalla;
+	
+	Texture t_noquiero_pantalla;
+	Sprite s_noquiero_pantalla;
+	
+	Texture t_envido_pantalla;
+	Sprite s_envido_pantalla;
+	
+	Texture t_envidoenvido_pantalla;
+	Sprite s_envidoenvido_pantalla;
+	
+	Texture t_realenvido_pantalla;
+	Sprite s_realenvido_pantalla;
+	
+	Texture t_faltaenvido_pantalla;
+	Sprite s_faltaenvido_pantalla;
+	
+	//Player2
+	
+	Texture t_truco2_pantalla;
+	Sprite s_truco2_pantalla;
+	
+	Texture t_retruco2_pantalla;
+	Sprite s_retruco2_pantalla;
+
+	Texture t_valecuatro2_pantalla;
+	Sprite s_valecuatro2_pantalla;
+	
+	Texture t_quiero2_pantalla;
+	Sprite s_quiero2_pantalla;
+	
+	Texture t_noquiero2_pantalla;
+	Sprite s_noquiero2_pantalla;
+	
+	Texture t_envido2_pantalla;
+	Sprite s_envido2_pantalla;
+	
+	Texture t_envidoenvido2_pantalla;
+	Sprite s_envidoenvido2_pantalla;
+	
+	Texture t_realenvido2_pantalla;
+	Sprite s_realenvido2_pantalla;
+	
+	Texture t_faltaenvido2_pantalla;
+	Sprite s_faltaenvido2_pantalla;
 };
 
 #endif

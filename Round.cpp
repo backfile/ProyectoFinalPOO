@@ -19,11 +19,64 @@ Round::Round(bool turn_player1, Window *w) : player1(turn_player1, &mazo, &truco
   s_stats_envido1.setPosition(400, 300);
   
   // Cantos en pantalla
+  //player 1
   t_truco_pantalla.loadFromFile("./images/cantos/truco.png");
   s_truco_pantalla.setTexture(t_truco_pantalla);
-
-  t_retruco_pantalla.loadFromFile("./images/cantos/retruco2.png");
+  
+  t_retruco_pantalla.loadFromFile("./images/cantos/retruco.png");
   s_retruco_pantalla.setTexture(t_retruco_pantalla);
+
+  t_valecuatro_pantalla.loadFromFile("./images/cantos/valecuatro.png");
+  s_valecuatro_pantalla.setTexture(t_valecuatro_pantalla);
+  
+  t_quiero_pantalla.loadFromFile("./images/cantos/quiero.png");
+  s_quiero_pantalla.setTexture(t_quiero_pantalla);
+  
+  t_noquiero_pantalla.loadFromFile("./images/cantos/noquiero.png");
+  s_noquiero_pantalla.setTexture(t_noquiero_pantalla);
+  
+  t_envido_pantalla.loadFromFile("./images/cantos/envido.png");
+  s_envido_pantalla.setTexture(t_envido_pantalla);
+  
+  t_envidoenvido_pantalla.loadFromFile("./images/cantos/envidoenvido.png");
+  s_envidoenvido_pantalla.setTexture(t_envidoenvido_pantalla);
+  
+  t_realenvido_pantalla.loadFromFile("./images/cantos/realenvido.png");
+  s_realenvido_pantalla.setTexture(t_realenvido_pantalla);
+  
+  t_faltaenvido_pantalla.loadFromFile("./images/cantos/faltaenvido.png");
+  s_faltaenvido_pantalla.setTexture(t_faltaenvido_pantalla);
+  
+  
+  //player 2
+  
+  t_truco2_pantalla.loadFromFile("./images/cantos/truco2.png");
+  s_truco2_pantalla.setTexture(t_truco2_pantalla);
+  
+  t_retruco2_pantalla.loadFromFile("./images/cantos/retruco2.png");
+  s_retruco2_pantalla.setTexture(t_retruco2_pantalla);
+  
+  t_valecuatro2_pantalla.loadFromFile("./images/cantos/valecuatro2.png");
+  s_valecuatro2_pantalla.setTexture(t_valecuatro2_pantalla);
+  
+  t_quiero2_pantalla.loadFromFile("./images/cantos/quiero2.png");
+  s_quiero2_pantalla.setTexture(t_quiero2_pantalla);
+  
+  t_noquiero2_pantalla.loadFromFile("./images/cantos/noquiero2.png");
+  s_noquiero2_pantalla.setTexture(t_noquiero2_pantalla);
+  
+  t_envido2_pantalla.loadFromFile("./images/cantos/envido2.png");
+  s_envido2_pantalla.setTexture(t_envido2_pantalla);
+  
+  t_envidoenvido2_pantalla.loadFromFile("./images/cantos/envidoenvido2.png");
+  s_envidoenvido2_pantalla.setTexture(t_envidoenvido2_pantalla);
+  
+  t_realenvido2_pantalla.loadFromFile("./images/cantos/realenvido2.png");
+  s_realenvido2_pantalla.setTexture(t_realenvido2_pantalla);
+  
+  t_faltaenvido2_pantalla.loadFromFile("./images/cantos/faltaenvido2.png");
+  s_faltaenvido2_pantalla.setTexture(t_faltaenvido2_pantalla);
+
   
 }
 
@@ -523,10 +576,80 @@ void Round::dibujar(RenderWindow &w){
 	if(contador_mostrar_canto_actual < 180){		
 		if(canto_actual_en_pantalla == 1){
 			w.draw(s_truco_pantalla);
+			return;
 		}
 		if(canto_actual_en_pantalla == 2){
 			w.draw(s_retruco_pantalla);
+			return;
 		}
+		if(canto_actual_en_pantalla == 3){
+			w.draw(s_valecuatro_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 4){
+			w.draw(s_quiero_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 5){
+			w.draw(s_noquiero_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 6){
+			w.draw(s_envido_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 7){
+			w.draw(s_envidoenvido_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 8){
+			w.draw(s_realenvido_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 9){
+			w.draw(s_faltaenvido_pantalla);
+			return;
+		}
+		
+		
+		
+		if(canto_actual_en_pantalla == 10){
+			w.draw(s_truco2_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 11){
+			w.draw(s_retruco2_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 12){
+			w.draw(s_valecuatro2_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 13){
+			w.draw(s_quiero2_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 14){
+			w.draw(s_noquiero2_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 15){
+			w.draw(s_envido2_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 16){
+			w.draw(s_envidoenvido2_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 17){
+			w.draw(s_realenvido2_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 18){
+			w.draw(s_faltaenvido2_pantalla);
+			return;
+		}
+
 	}
 	
 	
