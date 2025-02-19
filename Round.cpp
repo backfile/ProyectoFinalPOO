@@ -574,7 +574,7 @@ void Round::dibujar(RenderWindow &w){
 	}
 	w.draw(text);
 	
-	if(contador_mostrar_canto_actual < 180){		
+	if(contador_mostrar_canto_actual < 180 and status == true){		
 		if(canto_actual_en_pantalla == 1){
 			w.draw(s_truco_pantalla);
 			return;
@@ -589,10 +589,6 @@ void Round::dibujar(RenderWindow &w){
 		}
 		if(canto_actual_en_pantalla == 4){
 			w.draw(s_quiero_pantalla);
-			return;
-		}
-		if(canto_actual_en_pantalla == 5){
-			w.draw(s_noquiero_pantalla);
 			return;
 		}
 		if(canto_actual_en_pantalla == 6){
@@ -630,10 +626,7 @@ void Round::dibujar(RenderWindow &w){
 			w.draw(s_quiero2_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 14){
-			w.draw(s_noquiero2_pantalla);
-			return;
-		}
+		
 		if(canto_actual_en_pantalla == 15){
 			w.draw(s_envido2_pantalla);
 			return;
@@ -650,9 +643,18 @@ void Round::dibujar(RenderWindow &w){
 			w.draw(s_faltaenvido2_pantalla);
 			return;
 		}
-
+		
 	}
-	
+	if(contador_mostrar_canto_actual < 180){
+		if(canto_actual_en_pantalla == 14){
+			w.draw(s_noquiero2_pantalla);
+			return;
+		}
+		if(canto_actual_en_pantalla == 5){
+			w.draw(s_noquiero_pantalla);
+			return;
+		}
+	}
 	
 }
 
