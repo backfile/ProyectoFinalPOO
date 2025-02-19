@@ -4,6 +4,7 @@
 Round::Round(bool turn_player1, Window *w) : player1(turn_player1, &mazo, &truco, &envido, w), player2(!turn_player1, &mazo, &truco, &envido, &player1, w), truco(turn_player1, &envido), envido(turn_player1){
   calcularPuntosEnvidoP1();
   calcularPuntosEnvidoP2();
+
   font.loadFromFile("rara.ttf");
   text.setStyle(sf::Text::Bold);
   text.setFillColor(sf::Color::Black);
@@ -97,7 +98,7 @@ int Round::getPuntosGanador(){
 
 
 
-void Round::calcularPuntosEnvidoP1(){
+int Round::calcularPuntosEnvidoP1(){
 	
 	//Player 1 puntos
 	
@@ -187,7 +188,7 @@ void Round::calcularPuntosEnvidoP1(){
 	
 }
 
-void Round::calcularPuntosEnvidoP2(){
+int Round::calcularPuntosEnvidoP2(){
 	
 	//Player 2 puntos
 	
@@ -276,7 +277,7 @@ void Round::calcularPuntosEnvidoP2(){
 		}
 	}
 	
-	
+	return puntos_envido_player2;
 }
 
 int Round::obtenerPuntosEnvidoPlayer1(){

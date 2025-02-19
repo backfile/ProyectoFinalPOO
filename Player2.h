@@ -27,6 +27,7 @@ public:
 	void definirBotJuego();
 	void jugar();
 	bool Exepcion();
+	void setPuntosEnvido(int aux);
 	void cambiarTurno(bool aux);
 	void setRival(Player *aux);
 	vector<Carta> obtener_en_mesa();
@@ -35,8 +36,10 @@ public:
 private:
 	
 	bool m_turno;
+	bool aux = true;
 	int carta_selected = -1;
 	int cartas_en_mano = 3;
+	int puntos_envido;
 	Player* m_rival;
 	
 	//Se comparten	

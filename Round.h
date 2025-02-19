@@ -26,8 +26,8 @@ public:
 	int getPuntosPlayer2();
 	int getPuntosGanador();
 	bool getPlayer1ganador();
-	void calcularPuntosEnvidoP1();
-	void calcularPuntosEnvidoP2();
+	int calcularPuntosEnvidoP1();
+	int calcularPuntosEnvidoP2();
 	bool obtenerGanadorEnvido();
 	bool obtenerFinalizadoEnvido();
 	int obtenerPuntosEnvidoPlayer1();

@@ -10,7 +10,7 @@ using namespace std;
 
 Player2::Player2(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Player* rival, Window *w) : m_rival(rival), m_turno(turno), m_mazo(mazo), m_truco(truco), m_envido(envido), m_window(w){
 	iniciar();
-	definirBotJuego();
+	
 	//Definir tamaño de los botones
 	float anchoBoton = 74.6;
 	float alturaBoton = 35;
@@ -119,8 +119,13 @@ void Player2::cambiarTurno(bool aux){
 	m_turno = aux;
 }
 
+void Player2::setPuntosEnvido(int aux){
+	puntos_envido = aux;
+}
+
 void Player2::jugar(){
 	vector<Carta>aux = m_rival->obtener_en_mesa();
+	
 
 	//Si es parda tirar la mas alta
 	if(!aux.empty() and !en_mesa.empty()){
@@ -283,6 +288,7 @@ void Player2::definirBotJuego(){
 		sum  += carta.verPoder();
 	}
 	
+	//Definir el estilo de juego para el "truco"
 	if(sum >= 26){
 		botjuego.truco = 0;
 	}
@@ -291,6 +297,18 @@ void Player2::definirBotJuego(){
 	}
 	if(sum < 17){
 		botjuego.truco = 2;
+	}
+	
+	//Definir el estilo de juego para el "envido"
+	
+	if(puntos_envido < 25){
+		botjuego.envido = 0;
+	}
+	if(puntos_envido >= 25 and puntos_envido <= 30){
+		botjuego.envido = 1;
+	}
+	if(puntos_envido > 30){
+		botjuego.envido = 2;
 	}
 }
 
@@ -319,12 +337,75 @@ bool Player2::Exepcion(){
 }
 
 void Player2::actualizar(Round &round){
+	if(aux){
+		puntos_envido = round.calcularPuntosEnvidoP2();
+		definirBotJuego();
+		aux = false;
+	}
 	
 	//Juego de la maquina
 	sf::sleep(sf::seconds(2));
 	
-	
 	//Cantos y excepciones
+	
+	//Envido en caso 0
+	if(botjuego.envido == 0 and m_envido->ver_finalizado() == false){
+		if(m_envido->ver_status() == 1){
+			m_envido->rechazar(2);
+			cederTurno();
+			round.actualizarCantoEnPantalla(14);
+			return;
+		}
+	}
+	
+	//Envido en caso 1
+	if(botjuego.envido == 1 and m_envido->ver_finalizado() == false){
+		if(m_envido->ver_status() == 1){
+			if(m_envido->ver_tipo_en_juego() != 1){
+				m_envido->rechazar(2);
+				cederTurno();
+				round.actualizarCantoEnPantalla(14);
+			}else{
+				m_envido->aceptar();
+				cederTurno();
+				round.actualizarCantoEnPantalla(13);
+			}
+		}
+		if(m_envido->ver_status() == 0){
+			m_envido->cantar_envido();
+			cederTurno();
+			round.actualizarCantoEnPantalla(15);
+			return;
+		}
+		return;
+	}
+	
+	//Envido en caso 2
+	if(botjuego.envido == 2 and m_envido->ver_finalizado() == false){
+		if(m_envido->ver_status() == 0){
+			m_envido->cantar_envido();
+			cederTurno();
+			round.actualizarCantoEnPantalla(15);
+			return;
+		}
+		if(m_envido->ver_status() == 1){
+			if(m_envido->ver_tipo_en_juego() == 1){
+				m_envido->cantar_envido_envido();
+				cederTurno();
+				round.actualizarCantoEnPantalla(16);
+				return;
+			}
+			if(m_envido->ver_tipo_en_juego() == 3){
+				m_envido->cantar_falta_envido();
+				cederTurno();
+				round.actualizarCantoEnPantalla(18);
+				return;
+			}
+			
+		}
+	}
+	
+	
 	
 	//Truco en caso 2 o exepcion
 	if(botjuego.truco == 2 or Exepcion()){
@@ -397,6 +478,7 @@ void Player2::actualizar(Round &round){
 	if(m_truco->verUltimoEnTirar()==2 and m_truco->obtenerStatus() != 2){
 		cederTurno();
 	}
+	
 	//Tirar carta correspondiente a la situacion
 	jugar();
 	
