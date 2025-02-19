@@ -574,7 +574,7 @@ void Round::dibujar(RenderWindow &w){
 	}
 	w.draw(text);
 	
-	if(contador_mostrar_canto_actual < 180 and status == true){		
+	if(contador_mostrar_canto_actual < 140 and status == true){		
 		if(canto_actual_en_pantalla == 1){
 			w.draw(s_truco_pantalla);
 			return;
@@ -645,7 +645,7 @@ void Round::dibujar(RenderWindow &w){
 		}
 		
 	}
-	if(contador_mostrar_canto_actual < 180){
+	if(contador_mostrar_canto_actual < 140){
 		if(canto_actual_en_pantalla == 14){
 			w.draw(s_noquiero2_pantalla);
 			return;

@@ -162,7 +162,7 @@ void Player2::jugar(){
 				aux2 = cartas[i].verPoder();
 			}else{
 				//En caso de que sea parda
-				if(indice == -1 and cartas[i].verPoder() == power_rival){
+				if(indice == -1 and cartas[i].verPoder() == power_rival ){
 					indice = i;
 				}
 			}
@@ -356,11 +356,19 @@ void Player2::actualizar(Round &round){
 			return;
 		}
 		if(Exepcion()){
-			if(m_truco->obtenerStatus() == 3 and m_truco->obtenerRedisputar() > 0  and m_truco->obtenerGenerated_by() == 1){
+			if(m_truco->obtenerStatus() == 3 and m_truco->obtenerRedisputar() == 2  and m_truco->obtenerGenerated_by() == 1){
+				m_truco->redisputar();
+				round.actualizarCantoEnPantalla(11);
+				m_truco->setGenerated_by(2);
+				cederTurno();
+				return;
+			}
+			if(m_truco->obtenerStatus() == 3 and m_truco->obtenerRedisputar() == 1  and m_truco->obtenerGenerated_by() == 1){
 				m_truco->redisputar();
 				round.actualizarCantoEnPantalla(12);
 				m_truco->setGenerated_by(2);
 				cederTurno();
+				return;
 			}
 		}
 	}
