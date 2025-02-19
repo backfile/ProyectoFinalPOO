@@ -6,6 +6,12 @@
 
 class Round;
 
+struct BotJuego{
+	int envido;
+	int truco;
+};
+
+
 using namespace std;
 
 class Player2 {
@@ -18,6 +24,9 @@ public:
 	void cederTurno();
 	void iniciar();
 	int verCartasEnMano();
+	void definirBotJuego();
+	void jugar();
+	bool Exepcion();
 	void cambiarTurno(bool aux);
 	void setRival(Player *aux);
 	vector<Carta> obtener_en_mesa();
@@ -60,6 +69,10 @@ private:
 	
 	//Rectangulo que simula la zona donde podes clickear para tirar la carta
 	sf::RectangleShape ZonaTirarCartas;
+	
+	//Datos de la jubilidad que el bot adaptará en la ronda
+	BotJuego botjuego;
+	
 };
 
 #endif

@@ -530,12 +530,14 @@ void Round::actualizar(){
 			}
 		}
 	}
-	if(player1.obtenerTurno()){
-		player1.actualizar(*this);
-
-	}else{
-		player2.actualizar(*this);
+	if(status){
+		if(player1.obtenerTurno()){
+			player1.actualizar(*this);
+		}else{
+			player2.actualizar(*this);
+		}
 	}
+	
 	if(player1.obtenerTurno() == true and status == true){
 		s_botones.setPosition(Vector2f(100, 530));
 	}else if(player1.obtenerTurno() == false and status == true){

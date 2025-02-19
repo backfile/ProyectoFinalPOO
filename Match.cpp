@@ -5,6 +5,7 @@
 #include "Juego.h"
 #include "Ganador.h"
 #include <SFML/Graphics/RectangleShape.hpp>
+#include <fstream>
 using namespace std;
 
 
@@ -456,7 +457,13 @@ Match::Match(Window *w) {
 }
 
 
+//void Match::GuardarPartida(){
+//	ofstream arch("partidas.dat", ios::binary)
+//}
+
 void Match::actualizar(Juego &j){
+	
+	
 	if(player1_puntos > 29){
 		sf::sleep(sf::seconds(3));
 		j.actualizarEscena(new Ganador(m_window, true, player1_puntos, player2_puntos));
@@ -467,6 +474,10 @@ void Match::actualizar(Juego &j){
 	}
 	
 	cont ++;
+	if(cont < 100){
+		return;
+	}
+	
 	if(!round->getStatus())
 	{	
 		sf::sleep(sf::seconds(2));
@@ -503,16 +514,14 @@ void Match::actualizar(Juego &j){
 		round->actualizarCantoEnPantalla(0);
 		
 		
+		/*GuardarPartida();*/
 		delete round;
 		round = new Round(jugar_primero, m_window);
 		
 	}
 	
 	
-	
-	if(cont < 100){
-		return;
-	}
+
 	
 	
 	if(round->obtener_envido_listo_para_sumar() == true and aux == true){
@@ -533,6 +542,7 @@ void Match::actualizar(Juego &j){
 			}
 	
 		}
+		//borrar creo
 		string puntos_player1 = to_string(player1_puntos);
 		string puntos_player2 = to_string(player2_puntos);
 		text_player1.setString(puntos_player1);

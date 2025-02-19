@@ -44,7 +44,7 @@ private:
 	bool ganadorplayer1;
 	int m_generated_by;
 	bool finalizado = false;
-	int status = 0; // 0 en espera // 1 request // 2 rechazado // 3 aceptado
+	int status = 0; // 0 no iniciado // 1 request // 2 rechazado // 3 aceptado
 	int tipo_en_juego; // 1 envido // 2 real envido // 3 envido envido // 4 falta envido;
 	int prev = 1;
 	int valor = 1;
