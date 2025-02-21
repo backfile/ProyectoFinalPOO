@@ -410,7 +410,11 @@ void Player2::actualizar(Round &round){
 				round.actualizarCantoEnPantalla(18);
 				return;
 			}
-			
+			if(m_envido->ver_tipo_en_juego() == 4){
+				m_envido->aceptar();
+				cederTurno();
+				round.actualizarCantoEnPantalla(13);
+			}
 		}
 	}
 	
