@@ -284,19 +284,28 @@ void Player2::jugar(){
 
 void Player2::definirBotJuego(){
 	int sum = 0;
+	int cont_cartas_buenas = 0; // Identificar cuantas cartas >= que un 3 el bot tiene
 	for(auto carta : cartas){
 		sum  += carta.verPoder();
+		if(carta.verPoder() <= 5){
+			cont_cartas_buenas++;
+		}
 	}
 	
 	//Definir el estilo de juego para el "truco"
-	if(sum >= 26){
+	if(sum > 26){
 		botjuego.truco = 0;
 	}
-	if(sum >= 17 and sum < 26){
+	if(sum >= 17 and sum <= 26){
 		botjuego.truco = 1;
 	}
 	if(sum < 17){
 		botjuego.truco = 2;
+	}
+	
+	//Cambiar el modo de juego en caso de que este en modo 0 y tenga una buena carta
+	if(botjuego.truco == 0 and cont_cartas_buenas > 0){
+		botjuego.truco = 1;
 	}
 	
 	//Definir el estilo de juego para el "envido"
@@ -455,6 +464,20 @@ void Player2::actualizar(Round &round){
 	}
 	//Truco en caso 0
 	if(botjuego.truco == 0){
+		//Excepcion a las reglas en caso de que tu ultima carta sea muy buena
+		if(cartas_en_mano == 1 and m_rival->verCartasEnMano() == 1){
+			for(auto carta : cartas){
+				if(carta.obtenerEnMano() == true){
+					if(carta.verPoder() <= 6){
+						m_truco->aceptar();
+						m_envido->finalizarEnvido();
+						round.actualizarCantoEnPantalla(13);
+						cederTurno();
+						return;
+					}
+				}
+			}
+		}
 		if(m_truco->obtenerStatus() == 1){
 			m_truco->rechazar();
 			round.actualizarCantoEnPantalla(14);
@@ -465,6 +488,18 @@ void Player2::actualizar(Round &round){
 	//Truco en caso 1
 	if(botjuego.truco == 1){
 		if(m_truco->obtenerStatus() == 1){
+			//Excepcion a las reglas en caso de que tu ultima carta sea muy mala
+			if(cartas_en_mano == 1 and m_rival->verCartasEnMano() == 1){
+				for(auto carta : cartas){
+					if(carta.obtenerEnMano() == true){
+						if(carta.verPoder() > 8){
+							m_truco->rechazar();
+							round.actualizarCantoEnPantalla(14);
+							return;
+						}
+					}
+				}
+			}
 			m_truco->aceptar();
 			m_envido->finalizarEnvido();
 			round.actualizarCantoEnPantalla(13);
