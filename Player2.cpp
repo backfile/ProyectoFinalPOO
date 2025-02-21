@@ -303,7 +303,7 @@ void Player2::definirBotJuego(){
 		botjuego.truco = 2;
 	}
 	
-	//Cambiar el modo de juego en caso de que este en modo 0 y tenga una buena carta
+	//Cambiar el modo de juego en caso de que este en modo 0 y tenga al menos una buena carta
 	if(botjuego.truco == 0 and cont_cartas_buenas > 0){
 		botjuego.truco = 1;
 	}
@@ -339,6 +339,9 @@ bool Player2::Exepcion(){
 			aux2 = true;
 		}
 		if(aux[2].verPoder() > aux_poder){
+			aux2 = true;
+		}
+		if(aux[0].verPoder() > en_mesa[0].verPoder() and aux[2].verPoder() == aux_poder){
 			aux2 = true;
 		}
 	}
@@ -502,6 +505,13 @@ void Player2::actualizar(Round &round){
 							return;
 						}
 					}
+				}
+			}
+			if(cartas_en_mano == 0 and m_rival->verCartasEnMano() == 1){
+				if(en_mesa[2].verPoder() > 8){
+					m_truco->rechazar();
+					round.actualizarCantoEnPantalla(14);
+					return;
 				}
 			}
 			m_truco->aceptar();

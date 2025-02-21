@@ -32,6 +32,7 @@ void Juego::actualizarEscena(Escena *nuevaEscena){
 	siguiente = nuevaEscena;
 }
 
+
 Juego::~Juego(){
 	delete actual;
 }
