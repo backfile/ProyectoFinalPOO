@@ -476,6 +476,7 @@ void Round::actualizar(){
 	// Analizar truco
 	verificar_estado_truco();
 	verificar_estado_envido();
+	if(aux_envido_stats < 230 and aux_envido_stats > 0){return;}
 	
 	if(envido.ver_status() != 1 and truco.obtenerStatus() != 1){
 		if((player1.verCartasEnMano() == 2 and player2.verCartasEnMano() == 2)){
