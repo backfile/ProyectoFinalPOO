@@ -43,6 +43,69 @@ Match::Match(Window *w) {
 	
 	//Player1
 	
+	sf::RectangleShape palito1;
+	sf::RectangleShape palito2;
+	sf::RectangleShape palito3;
+	sf::RectangleShape palito4;
+	sf::RectangleShape palito5;
+	sf::RectangleShape palito6;
+	sf::RectangleShape palito7;
+	sf::RectangleShape palito8;
+	sf::RectangleShape palito9;
+	sf::RectangleShape palito10;
+	sf::RectangleShape palito11;
+	sf::RectangleShape palito12;
+	sf::RectangleShape palito13;
+	sf::RectangleShape palito14;
+	sf::RectangleShape palito15;
+	sf::RectangleShape palito16;
+	sf::RectangleShape palito17;
+	sf::RectangleShape palito18;
+	sf::RectangleShape palito19;
+	sf::RectangleShape palito20;
+	sf::RectangleShape palito21;
+	sf::RectangleShape palito22;
+	sf::RectangleShape palito23;
+	sf::RectangleShape palito24;
+	sf::RectangleShape palito25;
+	sf::RectangleShape palito26;
+	sf::RectangleShape palito27;
+	sf::RectangleShape palito28;
+	sf::RectangleShape palito29;
+	sf::RectangleShape palito30;
+	
+	
+	sf::RectangleShape Apalito1;
+	sf::RectangleShape Apalito2;
+	sf::RectangleShape Apalito3;
+	sf::RectangleShape Apalito4;
+	sf::RectangleShape Apalito5;
+	sf::RectangleShape Apalito6;
+	sf::RectangleShape Apalito7;
+	sf::RectangleShape Apalito8;
+	sf::RectangleShape Apalito9;
+	sf::RectangleShape Apalito10;
+	sf::RectangleShape Apalito11;
+	sf::RectangleShape Apalito12;
+	sf::RectangleShape Apalito13;
+	sf::RectangleShape Apalito14;
+	sf::RectangleShape Apalito15;
+	sf::RectangleShape Apalito16;
+	sf::RectangleShape Apalito17;
+	sf::RectangleShape Apalito18;
+	sf::RectangleShape Apalito19;
+	sf::RectangleShape Apalito20;
+	sf::RectangleShape Apalito21;
+	sf::RectangleShape Apalito22;
+	sf::RectangleShape Apalito23;
+	sf::RectangleShape Apalito24;
+	sf::RectangleShape Apalito25;
+	sf::RectangleShape Apalito26;
+	sf::RectangleShape Apalito27;
+	sf::RectangleShape Apalito28;
+	sf::RectangleShape Apalito29;
+	sf::RectangleShape Apalito30;
+	
 	palito1.setSize(Vector2f(50, 4));
 	palito1.setPosition(Vector2f(9, 550));
 	palito1.setOrigin(Vector2f(0, 4));
@@ -457,20 +520,26 @@ Match::Match(Window *w) {
 }
 
 
-//void Match::GuardarPartida(){
-//	ofstream arch("partidas.dat", ios::binary)
-//}
-
 void Match::actualizar(Juego &j){
 	
 	
-	if(player1_puntos > 29){
-		sf::sleep(sf::seconds(3));
-		j.actualizarEscena(new Ganador(m_window, true, player1_puntos, player2_puntos));
-	}
-	if(player2_puntos > 29){
-		sf::sleep(sf::seconds(3));
-		j.actualizarEscena(new Ganador(m_window, false, player1_puntos, player2_puntos));
+	if(player1_puntos > 2 or player2_puntos > 2){
+		
+		if(player1_puntos > 2){
+			sf::sleep(sf::seconds(3));
+			j.actualizarEscena(new Ganador(m_window, true, player1_puntos, player2_puntos));
+		}
+		if(player2_puntos > 2){
+			sf::sleep(sf::seconds(3));
+			j.actualizarEscena(new Ganador(m_window, false, player1_puntos, player2_puntos));
+		}
+		
+		/*GuardarPartida();*/
+		Partida partida;
+		partida.player1puntos = player1_puntos;
+		partida.player2puntos = player2_puntos;
+		partida.player1win = true;
+		j.agregarPartida(partida);
 	}
 	
 	cont ++;
@@ -496,13 +565,23 @@ void Match::actualizar(Juego &j){
 			}
 		}
 		
-		if(player1_puntos > 29){
-			sf::sleep(sf::seconds(1));
-			j.actualizarEscena(new Ganador(m_window, true, player1_puntos, player2_puntos));
-		}
-		if(player2_puntos > 29){
-			sf::sleep(sf::seconds(1));
-			j.actualizarEscena(new Ganador(m_window, false, player1_puntos, player2_puntos));
+		if(player1_puntos > 2 or player2_puntos > 2){
+			
+			if(player1_puntos > 2){
+				sf::sleep(sf::seconds(1));
+				j.actualizarEscena(new Ganador(m_window, true, player1_puntos, player2_puntos));
+			}
+			if(player2_puntos > 2){
+				sf::sleep(sf::seconds(1));
+				j.actualizarEscena(new Ganador(m_window, false, player1_puntos, player2_puntos));
+			}
+			
+			/*GuardarPartida();*/
+			Partida partida;
+			partida.player1puntos = player1_puntos;
+			partida.player2puntos = player2_puntos;
+			partida.player1win = true;
+			j.agregarPartida(partida);
 		}
 		
 		string puntos_player1 = to_string(player1_puntos);
@@ -514,7 +593,6 @@ void Match::actualizar(Juego &j){
 		round->actualizarCantoEnPantalla(0);
 		
 		
-		/*GuardarPartida();*/
 		delete round;
 		round = new Round(jugar_primero, m_window);
 		

@@ -2,6 +2,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include "Match.h"
 #include "Juego.h"
+#include "Historial.h"
 
 Menu::Menu(Window *w) : m_window(w) {
 	t_fondo.loadFromFile("images/fondomenu.png");
@@ -20,13 +21,23 @@ Menu::Menu(Window *w) : m_window(w) {
 }
 
 void Menu::actualizar(Juego &j){
+	
 	mousePos = sf::Mouse::getPosition(*m_window);
+	
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 		mousePos = sf::Mouse::getPosition(*m_window);
 		if(NuevaPartidaBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 			j.actualizarEscena(new Match(m_window));
 		}
 	}
+	
+	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+		mousePos = sf::Mouse::getPosition(*m_window);
+		if(HistorialBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
+			j.actualizarEscena(new Historial(m_window));
+		}
+	}
+	
 	if(NuevaPartidaBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 		NuevaPartidaBoton_porEncima = true;
 	}else{

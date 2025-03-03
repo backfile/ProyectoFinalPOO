@@ -1,12 +1,8 @@
 #ifndef HISTORIAL_H
 #define HISTORIAL_H
 #include "Escena.h"
+#include "Juego.h"
 
-struct Partida{
-	int ganadorplayer1;
-	int puntos_player1;
-	int puntos_player2;
-};
 
 class Historial : public Escena{
 public:
@@ -14,11 +10,17 @@ public:
 	void actualizar(Juego &j) override; //Se ejecuta siempre
 	void dibujar(RenderWindow &w) override;   //Se ejecuta siempre
 private:
+	bool primera_vez = true;
+	
 	vector<Partida>v;
-	
 	Window *m_window;
-	
 	sf::Vector2i mousePos;
+	
+	Texture t_background;
+	Sprite s_background;
+	
+	vector<Text>texts;
+	Font font;
 };
 
 #endif
