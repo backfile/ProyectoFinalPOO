@@ -523,22 +523,30 @@ Match::Match(Window *w) {
 void Match::actualizar(Juego &j){
 	
 	
-	if(player1_puntos > 2 or player2_puntos > 2){
+	if(player1_puntos >= puntos_para_ganar or player2_puntos >= puntos_para_ganar){
 		
-		if(player1_puntos > 2){
+		Partida partida;
+		
+		if(player1_puntos >= puntos_para_ganar){
 			sf::sleep(sf::seconds(3));
 			j.actualizarEscena(new Ganador(m_window, true, player1_puntos, player2_puntos));
+			partida.player1win = true;
 		}
-		if(player2_puntos > 2){
+		if(player2_puntos >= puntos_para_ganar){
 			sf::sleep(sf::seconds(3));
 			j.actualizarEscena(new Ganador(m_window, false, player1_puntos, player2_puntos));
+			partida.player1win = false;
 		}
 		
 		/*GuardarPartida();*/
-		Partida partida;
-		partida.player1puntos = player1_puntos;
-		partida.player2puntos = player2_puntos;
-		partida.player1win = true;
+		if(partida.player1win){			
+			partida.player1puntos = puntos_para_ganar;
+			partida.player2puntos = player2_puntos;
+		}else{
+			partida.player1puntos = player1_puntos;
+			partida.player2puntos = puntos_para_ganar;
+		}
+		
 		j.agregarPartida(partida);
 	}
 	
@@ -565,22 +573,25 @@ void Match::actualizar(Juego &j){
 			}
 		}
 		
-		if(player1_puntos > 2 or player2_puntos > 2){
+		if(player1_puntos >= puntos_para_ganar or player2_puntos >= puntos_para_ganar){
 			
-			if(player1_puntos > 2){
+			Partida partida;
+			
+			if(player1_puntos >= puntos_para_ganar){
 				sf::sleep(sf::seconds(1));
 				j.actualizarEscena(new Ganador(m_window, true, player1_puntos, player2_puntos));
+				partida.player1win = true;
 			}
-			if(player2_puntos > 2){
+			if(player2_puntos >= puntos_para_ganar){
 				sf::sleep(sf::seconds(1));
 				j.actualizarEscena(new Ganador(m_window, false, player1_puntos, player2_puntos));
+				partida.player1win = false;
 			}
 			
 			/*GuardarPartida();*/
-			Partida partida;
 			partida.player1puntos = player1_puntos;
 			partida.player2puntos = player2_puntos;
-			partida.player1win = true;
+			
 			j.agregarPartida(partida);
 		}
 		

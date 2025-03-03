@@ -31,9 +31,8 @@ Historial::Historial(Window *w) : m_window(w){
 	
 	for(size_t i=0;i<texts.size();i++) { 
 		texts[i].setStyle(sf::Text::Bold);
-		texts[i].setFillColor(sf::Color::Black);
 		texts[i].setFont(font);
-		texts[i].setPosition(140, 50);
+		texts[i].setPosition(140, 120);
 	}
 }
 
@@ -49,7 +48,12 @@ void Historial::actualizar(Juego &j){
 			aux ++;
 			string puntos = to_string(v[i].player1puntos);
 			string puntos2 = to_string(v[i].player2puntos);
-			texts[i].move(0, aux*100);
+			if(v[i].player1win){
+				texts[i].setFillColor(sf::Color::Green);
+			}else{
+				texts[i].setFillColor(sf::Color::Red);
+			}
+			texts[i].move(0, aux*80);
 			texts[i].setString("Tus puntos: "+ puntos + "                 " + "Puntos del rival: " + puntos2);
 			
 		}

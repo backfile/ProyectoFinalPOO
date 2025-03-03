@@ -17,6 +17,7 @@ private:
 	int player2_puntos = 0;
 	bool jugar_primero = true;
 	int cont = 0;
+	int puntos_para_ganar = 2;
 	bool aux = true;
 	Window *m_window;
 	
