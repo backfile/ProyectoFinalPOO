@@ -1,11 +1,21 @@
 #include "Historial.h"
 #include <iostream>
+#include "Menu.h"
 using namespace std;
 
 Historial::Historial(Window *w) : m_window(w){
 	t_background.loadFromFile("./images/fondohistorial.png");
 	s_background.setTexture(t_background);
 	font.loadFromFile("rara.ttf");
+	
+	flechaBoton.setSize(Vector2f(137, 45));
+	flechaBoton.setPosition(617, 505);
+	
+	t_flecha.loadFromFile("./images/retroceder.png");
+	s_flecha.setTexture(t_flecha);
+	
+	t_flecha_encima.loadFromFile("./images/retroceder_encima.png");
+	s_flecha_encima.setTexture(t_flecha_encima);
 	
 	Text text1;
 	Text text2;
@@ -45,6 +55,20 @@ void Historial::actualizar(Juego &j){
 		}
 	}
 	
+	mousePos = sf::Mouse::getPosition(*m_window);
+	if(flechaBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
+		flecha_porEncima = true;
+	}else{
+		flecha_porEncima = false;
+	}
+	
+	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+		mousePos = sf::Mouse::getPosition(*m_window);
+		if(flechaBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
+			j.actualizarEscena(new Menu(m_window));
+		}
+	}
+	
 }
 
 void Historial::dibujar(RenderWindow &w){
@@ -52,4 +76,11 @@ void Historial::dibujar(RenderWindow &w){
 	for(size_t i=0;i<v.size();i++) { 
 		w.draw(texts[i]);
 	}
+	if(flecha_porEncima){
+		w.draw(s_flecha_encima);
+	}else{
+		w.draw(s_flecha);
+	}
+	
+	
 }

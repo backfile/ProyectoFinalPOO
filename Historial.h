@@ -11,6 +11,7 @@ public:
 	void dibujar(RenderWindow &w) override;   //Se ejecuta siempre
 private:
 	bool primera_vez = true;
+	bool flecha_porEncima = false;
 	
 	vector<Partida>v;
 	Window *m_window;
@@ -21,6 +22,14 @@ private:
 	
 	vector<Text>texts;
 	Font font;
+	
+	Texture t_flecha;
+	Sprite s_flecha;
+	
+	Texture t_flecha_encima;
+	Sprite s_flecha_encima;
+	
+	sf::RectangleShape flechaBoton;
 };
 
 #endif
