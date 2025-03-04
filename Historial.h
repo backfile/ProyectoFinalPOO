@@ -20,6 +20,8 @@ private:
 	Texture t_background;
 	Sprite s_background;
 	
+	Text vacio;
+	
 	vector<Text>texts;
 	Font font;
 	

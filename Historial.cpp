@@ -17,6 +17,12 @@ Historial::Historial(Window *w) : m_window(w){
 	t_flecha_encima.loadFromFile("./images/retroceder_encima.png");
 	s_flecha_encima.setTexture(t_flecha_encima);
 	
+	vacio.setFont(font);
+	vacio.setPosition(230, 300);
+	vacio.setString("No hay partidas guardadas!");
+	vacio.setColor(sf::Color::Black);
+	vacio.setStyle(sf::Text::Bold | sf::Text::Underlined);
+	
 	Text text1;
 	Text text2;
 	Text text3;
@@ -33,6 +39,7 @@ Historial::Historial(Window *w) : m_window(w){
 		texts[i].setStyle(sf::Text::Bold);
 		texts[i].setFont(font);
 		texts[i].setPosition(120, 120);
+		texts[i].setStyle(sf::Text::Bold | sf::Text::Underlined);
 	}
 }
 
@@ -77,9 +84,14 @@ void Historial::actualizar(Juego &j){
 
 void Historial::dibujar(RenderWindow &w){
 	w.draw(s_background);
-	for(size_t i=0;i<v.size();i++) { 
-		w.draw(texts[i]);
+	if(!v.empty()){
+		for(size_t i=0;i<v.size();i++) { 
+			w.draw(texts[i]);
+		}
+	}else{
+		w.draw(vacio);
 	}
+	
 	if(flecha_porEncima){
 		w.draw(s_flecha_encima);
 	}else{
