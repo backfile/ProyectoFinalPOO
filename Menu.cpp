@@ -3,6 +3,7 @@
 #include "Match.h"
 #include "Juego.h"
 #include "Historial.h"
+#include "Eleccion.h"
 
 Menu::Menu(Window *w) : m_window(w) {
 	t_fondo.loadFromFile("images/fondomenu.png");
@@ -27,7 +28,7 @@ void Menu::actualizar(Juego &j){
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 		mousePos = sf::Mouse::getPosition(*m_window);
 		if(NuevaPartidaBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
-			j.actualizarEscena(new Match(m_window));
+			j.actualizarEscena(new Eleccion(m_window));
 		}
 	}
 	

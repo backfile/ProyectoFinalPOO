@@ -32,7 +32,7 @@ Historial::Historial(Window *w) : m_window(w){
 	for(size_t i=0;i<texts.size();i++) { 
 		texts[i].setStyle(sf::Text::Bold);
 		texts[i].setFont(font);
-		texts[i].setPosition(140, 120);
+		texts[i].setPosition(120, 120);
 	}
 }
 
@@ -54,7 +54,7 @@ void Historial::actualizar(Juego &j){
 				texts[i].setFillColor(sf::Color::Red);
 			}
 			texts[i].move(0, aux*80);
-			texts[i].setString("Tus puntos: "+ puntos + "                 " + "Puntos del rival: " + puntos2);
+			texts[i].setString("#"+to_string(aux+1)+ "  Tus puntos: "+ puntos + "                 " + "Puntos del rival: " + puntos2);
 			
 		}
 	}

@@ -6,7 +6,7 @@
 
 class Match : public Escena {
 public:
-	Match(Window *w);
+	Match(Window *w, int puntos_a_jugar);
 	void actualizar(Juego &j) override; //Se ejecuta siempre
 	void dibujar(RenderWindow &w) override;   //Se ejecuta siempre
 	void obtener_puntos();
@@ -17,7 +17,7 @@ private:
 	int player2_puntos = 0;
 	bool jugar_primero = true;
 	int cont = 0;
-	int puntos_para_ganar = 3;
+	int puntos_para_ganar;;
 	bool aux = true;
 	Window *m_window;
 	

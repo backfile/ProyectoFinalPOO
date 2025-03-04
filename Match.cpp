@@ -9,7 +9,7 @@
 using namespace std;
 
 
-Match::Match(Window *w) {
+Match::Match(Window *w, int puntos_a_jugar) : puntos_para_ganar(puntos_a_jugar) {
 	m_window = w;
 	round = new Round(jugar_primero, w);
 	t_background.loadFromFile("./images/fondo.png");
@@ -589,8 +589,13 @@ void Match::actualizar(Juego &j){
 			}
 			
 			/*GuardarPartida();*/
-			partida.player1puntos = player1_puntos;
-			partida.player2puntos = player2_puntos;
+			if(partida.player1win){			
+				partida.player1puntos = puntos_para_ganar;
+				partida.player2puntos = player2_puntos;
+			}else{
+				partida.player1puntos = player1_puntos;
+				partida.player2puntos = puntos_para_ganar;
+			}
 			
 			j.agregarPartida(partida);
 		}
@@ -618,14 +623,14 @@ void Match::actualizar(Juego &j){
 		if(round->obtenerGanadorEnvido() == true){
 			//Gano player 1
 			if(round->obtenerPuntosEnvidoPlayer1() == -1){
-				player1_puntos += 30 - player2_puntos;
+				player1_puntos += puntos_para_ganar - player2_puntos;
 			}else{
 				player1_puntos += round->obtenerPuntosEnvidoPlayer1();
 			}
 
 		}else{
 			if(round->obtenerPuntosEnvidoPlayer2() == -1){
-				player2_puntos += 30 - player1_puntos;
+				player2_puntos += puntos_para_ganar - player1_puntos;
 			}else{
 				player2_puntos += round->obtenerPuntosEnvidoPlayer2();
 			}
@@ -658,26 +663,35 @@ void Match::dibujar(RenderWindow &w){
 	}
 	
 	
-	// Mostrar todos los puntos con transparencia baja
-	for(auto palito : palitos){
-		palito.setFillColor(sf::Color(255, 255, 255, 50)); // Inicia con transparencia baja
-		w.draw(palito);
+	// Mostrar todos los puntos con transparencia baja segun a cuanto se juega
+
+	
+	for(size_t i=0;i<palitos.size();i++) { 
+		if(i < puntos_para_ganar){
+			palitos[i].setFillColor(sf::Color(255, 255, 255, 50)); // Inicia con transparencia baja
+			w.draw(palitos[i]);
+		}
 	}
-	for(auto palito : Apalitos){
-		palito.setFillColor(sf::Color(255, 255, 255, 50)); // Inicia con transparencia baja
-		w.draw(palito);
+	
+	for(size_t i=0;i<Apalitos.size();i++) { 
+		if(i < puntos_para_ganar){
+			Apalitos[i].setFillColor(sf::Color(255, 255, 255, 50)); // Inicia con transparencia baja
+			w.draw(Apalitos[i]);
+		}
 	}
 	
 	
 	//Mostrar puntos ganados sin transparencia
 	for(int i=0;i<player1_puntos;i++) { 
-		if(player1_puntos <= 30){
+		if(i <= puntos_para_ganar){
+			palitos[i].setFillColor(sf::Color(255, 255, 255));
 			w.draw(palitos[i]);
 		}
 	}	
 	
 	for(int i=0;i<player2_puntos;i++) { 
-		if(player2_puntos <= 30){
+		if(i <= puntos_para_ganar){
+			Apalitos[i].setFillColor(sf::Color(255, 255, 255));
 			w.draw(Apalitos[i]);
 		}
 	}	
