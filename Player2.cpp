@@ -167,7 +167,7 @@ void Player2::jugar(){
 				aux2 = cartas[i].verPoder();
 			}else{
 				//En caso de que sea parda
-				if(indice == -1 and cartas[i].verPoder() == power_rival ){
+				if(indice == -1 and cartas[i].verPoder() == power_rival and cartas[i].obtenerEnMano() == true){
 					indice = i;
 				}
 			}
