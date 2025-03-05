@@ -525,29 +525,25 @@ void Match::actualizar(Juego &j){
 	
 	if(player1_puntos >= puntos_para_ganar or player2_puntos >= puntos_para_ganar){
 		
-		Partida partida;
-		
 		if(player1_puntos >= puntos_para_ganar){
 			sf::sleep(sf::seconds(3));
-			j.actualizarEscena(new Ganador(m_window, true));
-			partida.player1win = true;
+			j.actualizarEscena(new Ganador(m_window, true, puntos_para_ganar, player2_puntos));
 		}
 		if(player2_puntos >= puntos_para_ganar){
 			sf::sleep(sf::seconds(3));
-			j.actualizarEscena(new Ganador(m_window, false));
-			partida.player1win = false;
+			j.actualizarEscena(new Ganador(m_window, false, player1_puntos, puntos_para_ganar));
 		}
 		
 		/*GuardarPartida();*/
-		if(partida.player1win){			
-			partida.player1puntos = puntos_para_ganar;
-			partida.player2puntos = player2_puntos;
-		}else{
-			partida.player1puntos = player1_puntos;
-			partida.player2puntos = puntos_para_ganar;
-		}
-		
-		j.agregarPartida(partida);
+//		if(partida.player1win){			
+//			partida.player1puntos = puntos_para_ganar;
+//			partida.player2puntos = player2_puntos;
+//		}else{
+//			partida.player1puntos = player1_puntos;
+//			partida.player2puntos = puntos_para_ganar;
+//		}
+//		
+//		j.agregarPartida(partida);
 	}
 	
 	cont ++;
@@ -579,25 +575,23 @@ void Match::actualizar(Juego &j){
 			
 			if(player1_puntos >= puntos_para_ganar){
 				sf::sleep(sf::seconds(1));
-				j.actualizarEscena(new Ganador(m_window, true));
-				partida.player1win = true;
+				j.actualizarEscena(new Ganador(m_window, true, puntos_para_ganar, player2_puntos));
 			}
 			if(player2_puntos >= puntos_para_ganar){
 				sf::sleep(sf::seconds(1));
-				j.actualizarEscena(new Ganador(m_window, false));
-				partida.player1win = false;
+				j.actualizarEscena(new Ganador(m_window, false, player1_puntos, puntos_para_ganar));
 			}
 			
 			/*GuardarPartida();*/
-			if(partida.player1win){			
-				partida.player1puntos = puntos_para_ganar;
-				partida.player2puntos = player2_puntos;
-			}else{
-				partida.player1puntos = player1_puntos;
-				partida.player2puntos = puntos_para_ganar;
-			}
-			
-			j.agregarPartida(partida);
+//			if(partida.player1win){			
+//				partida.player1puntos = puntos_para_ganar;
+//				partida.player2puntos = player2_puntos;
+//			}else{
+//				partida.player1puntos = player1_puntos;
+//				partida.player2puntos = puntos_para_ganar;
+//			}
+//			
+//			j.agregarPartida(partida);
 		}
 		
 		string puntos_player1 = to_string(player1_puntos);

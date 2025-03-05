@@ -16,8 +16,11 @@ void Juego::jugar(){
 	while(w.isOpen()) {
 		Event e;
 		while(w.pollEvent(e)) {
-			if(e.type == Event::Closed)
+			if(e.type == Event::Closed){
 				w.close();	
+			}else{
+				actual->ProcessEvent(*this, e);
+			}
 		}
 		actual->actualizar(*this);
 		actual->dibujar(w);

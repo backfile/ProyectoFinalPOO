@@ -11,6 +11,7 @@ struct Partida{
 	bool player1win;
 	int player1puntos;
 	int player2puntos;
+	char nombre[9];
 };
 
 

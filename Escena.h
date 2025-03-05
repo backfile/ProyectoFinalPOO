@@ -11,6 +11,7 @@ class Juego;
 class Escena {
 public:
 	Escena();
+	virtual void ProcessEvent(Juego &j, Event &event) {}
 	virtual void actualizar(Juego &j) = 0;
 	virtual void dibujar(RenderWindow &w) = 0;
 private:
