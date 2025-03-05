@@ -6,7 +6,7 @@ using namespace std;
 Historial::Historial(Window *w) : m_window(w){
 	t_background.loadFromFile("./images/fondohistorial.png");
 	s_background.setTexture(t_background);
-	font.loadFromFile("rara.ttf");
+	font.loadFromFile("./utils/rara.ttf");
 	
 	flechaBoton.setSize(Vector2f(137, 45));
 	flechaBoton.setPosition(617, 505);
@@ -20,7 +20,6 @@ Historial::Historial(Window *w) : m_window(w){
 	vacio.setFont(font);
 	vacio.setPosition(230, 300);
 	vacio.setString("No hay partidas guardadas!");
-	vacio.setColor(sf::Color::Black);
 	vacio.setStyle(sf::Text::Bold | sf::Text::Underlined);
 	
 	Text text1;
@@ -39,7 +38,9 @@ Historial::Historial(Window *w) : m_window(w){
 		texts[i].setStyle(sf::Text::Bold);
 		texts[i].setFont(font);
 		texts[i].setPosition(120, 120);
-		texts[i].setStyle(sf::Text::Bold | sf::Text::Underlined);
+		texts[i].setStyle(sf::Text::Bold);
+		texts[i].setOutlineColor(sf::Color(0,0,0,255));
+		texts[i].setOutlineThickness(1.5);
 	}
 }
 
@@ -61,7 +62,7 @@ void Historial::actualizar(Juego &j){
 				texts[i].setFillColor(sf::Color::Red);
 			}
 			texts[i].move(0, aux*80);
-			texts[i].setString("#"+to_string(aux+1)+ "  Tus puntos: "+ puntos + "                 " + "Puntos del rival: " + puntos2);
+			texts[i].setString("#"+to_string(aux+1)+ "  Tus puntos: "+ puntos + " --------- " + "Puntos del rival: " + puntos2);
 			
 		}
 	}

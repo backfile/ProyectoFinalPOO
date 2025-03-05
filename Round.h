@@ -44,6 +44,7 @@ private:
 	bool turno2aux = true;
 	bool envido_listo_para_sumar = false;
 	bool mano_player1;
+	bool envido_gano_player1;
 	
 	//Puntos del truco
 	int puntos_ganador = 0;
@@ -59,7 +60,8 @@ private:
 	int puntos_ganados_envido_player2 = 0;
 	
 	//Objetos
-	Text text;
+	Text text_player1;
+	Text text_player2;
 	Font font;
 	Mazo mazo;
 	Envido envido;
@@ -73,6 +75,12 @@ private:
 	int canto_actual_en_pantalla;  
 	int contador_mostrar_canto_actual = 0;
 	
+	//Texturas para mostrar los puntos del envido
+	Texture t_envido_ganaste;
+	Sprite s_envido_ganaste;
+	
+	Texture t_envido_perdiste;
+	Sprite s_envido_perdiste;
 	
 	
 	Texture t_stats_envido1;

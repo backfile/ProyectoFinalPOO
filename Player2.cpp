@@ -380,7 +380,8 @@ void Player2::actualizar(Round &round){
 			}else{
 				m_envido->aceptar();
 				cederTurno();
-				round.actualizarCantoEnPantalla(13);
+				/*round.actualizarCantoEnPantalla(13);*/
+				round.actualizarCantoEnPantalla(0);
 			}
 		}
 		if(m_envido->ver_status() == 0){
@@ -416,7 +417,8 @@ void Player2::actualizar(Round &round){
 			if(m_envido->ver_tipo_en_juego() == 4){
 				m_envido->aceptar();
 				cederTurno();
-				round.actualizarCantoEnPantalla(13);
+				/*round.actualizarCantoEnPantalla(13);*/
+				round.actualizarCantoEnPantalla(0);
 			}
 		}
 	}

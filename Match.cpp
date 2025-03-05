@@ -23,7 +23,7 @@ Match::Match(Window *w, int puntos_a_jugar) : puntos_para_ganar(puntos_a_jugar) 
 	
 
 	
-	font.loadFromFile("rara.ttf");
+	font.loadFromFile("./utils/rara.ttf");
 	
 	text_player1.setStyle(sf::Text::Bold);
 	text_player1.setFillColor(sf::Color::White);
@@ -683,14 +683,14 @@ void Match::dibujar(RenderWindow &w){
 	
 	//Mostrar puntos ganados sin transparencia
 	for(int i=0;i<player1_puntos;i++) { 
-		if(i <= puntos_para_ganar){
+		if(i < puntos_para_ganar){
 			palitos[i].setFillColor(sf::Color(255, 255, 255));
 			w.draw(palitos[i]);
 		}
 	}	
 	
 	for(int i=0;i<player2_puntos;i++) { 
-		if(i <= puntos_para_ganar){
+		if(i < puntos_para_ganar){
 			Apalitos[i].setFillColor(sf::Color(255, 255, 255));
 			w.draw(Apalitos[i]);
 		}

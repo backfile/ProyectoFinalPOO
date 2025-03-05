@@ -31,7 +31,7 @@ Truco::Truco(bool turno_player_1, Envido *envido) : m_turno_player_1(turno_playe
 	s_noquiero.setPosition(Vector2f(100, 530));
 	
 	
-	font.loadFromFile("rara.ttf");
+	font.loadFromFile("./utils/rara.ttf");
 	text.setStyle(sf::Text::Bold);
 	text.setFillColor(sf::Color::Black);
 	text.setFont(font);

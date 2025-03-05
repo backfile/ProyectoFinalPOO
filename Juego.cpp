@@ -39,7 +39,7 @@ void Juego::actualizarEscena(Escena *nuevaEscena){
 vector<Partida> Juego::obtenerHistorial(){
 	Partida partida;
 	vector<Partida>aux;
-	ifstream arch("historial.dat", ios::binary|ios::ate);
+	ifstream arch("./utils/historial.dat", ios::binary|ios::ate);
 	if (not arch.is_open()) throw runtime_error("No se pudo abrir el archivo");
 	int tam_bytes = arch.tellg();
 	int cant_partidas = tam_bytes / sizeof(partida);
@@ -58,7 +58,7 @@ void Juego::agregarPartida(Partida partida){
 	if(aux.size() > 5){
 		aux.erase(aux.begin());
 	}
-	ofstream arch("historial.dat", ios::binary);
+	ofstream arch("./utils/historial.dat", ios::binary);
 	if (not arch.is_open()) throw runtime_error("No se pudo abrir el archivo");
 
 	for(int i=0;i<aux.size();i++) { 

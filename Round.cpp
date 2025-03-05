@@ -4,13 +4,25 @@
 Round::Round(bool turn_player1, Window *w) : player1(turn_player1, &mazo, &truco, &envido, w), player2(!turn_player1, &mazo, &truco, &envido, &player1, w), truco(turn_player1, &envido), envido(turn_player1){
   calcularPuntosEnvidoP1();
   calcularPuntosEnvidoP2();
-
-  font.loadFromFile("rara.ttf");
-  text.setStyle(sf::Text::Bold);
-  text.setFillColor(sf::Color::Black);
-  text.setFont(font);
-  text.setPosition(200, 300);
   mano_player1 = turn_player1;
+  
+  
+  font.loadFromFile("./utils/rara.ttf");
+  text_player1.setStyle(sf::Text::Bold);
+  text_player1.setFont(font);
+  text_player1.setPosition(307, 290);
+  
+  text_player2.setStyle(sf::Text::Bold);
+  text_player2.setFont(font);
+  text_player2.setPosition(307, 347);
+  
+  
+  
+  t_envido_ganaste.loadFromFile("./images/envido_ganaste.png");
+  s_envido_ganaste.setTexture(t_envido_ganaste);
+  
+  t_envido_perdiste.loadFromFile("./images/envido_perdiste.png");
+  s_envido_perdiste.setTexture(t_envido_perdiste);
   
   t_botones.loadFromFile("./images/botones/todos.png");
   s_botones.setTexture(t_botones);
@@ -300,26 +312,34 @@ void Round::verificar_estado_envido(){
 	if(envido.ver_status() == 3 and aux_envido_stats > 0){
 		aux_envido_stats--;
 		if(puntos_envido_player1 > puntos_envido_player2){
-			text.setString("Gana el jugador 1 con: " + to_string(puntos_envido_player1) + " sobre: " + to_string(puntos_envido_player2));
+			envido_gano_player1 = true;
 			envido.cambiarGanador(true);
 			envido_listo_para_sumar = true;
+			
 		}else if(puntos_envido_player1 < puntos_envido_player2){
-			text.setString("Gana el jugador 2 con: " + to_string(puntos_envido_player2) + " sobre: " + to_string(puntos_envido_player1));
+			//Depende quien lo canto mostrar una cosa u otra
+			envido_gano_player1 = false;
 			envido.cambiarGanador(false);
 			envido_listo_para_sumar = true;
+			
 		}else{
 			if(mano_player1){
-				text.setString("Gana el jugador 1 con: " + to_string(puntos_envido_player1) + " sobre: " + to_string(puntos_envido_player2)+ " por ser mano");
+				envido_gano_player1 = true;
 				envido.cambiarGanador(true);
 				envido_listo_para_sumar = true;
+				
 			}else{
-				text.setString("Gana el jugador 2 con: " + to_string(puntos_envido_player2) + " sobre: " + to_string(puntos_envido_player1)+ " por ser mano");
+				envido_gano_player1 = false;
 				envido.cambiarGanador(false);
 				envido_listo_para_sumar = false;
+				
 			}
 		}
+		text_player1.setString("Tus puntos: " + to_string(puntos_envido_player1));
+		text_player2.setString("Sus puntos: " + to_string(puntos_envido_player2));
 	}else{
-		text.setString(" ");
+		text_player1.setString(" ");
+		text_player2.setString(" ");
 	}
 	//Repartir puntos
 	
@@ -567,6 +587,18 @@ bool Round::actualizarCantoEnPantalla(int num){
 void Round::dibujar(RenderWindow &w){
 	player1.dibujar(w);
 	player2.dibujar(w);
+	
+	//Cartel de ganaste o perdiste
+	if(envido.ver_status() == 3 and aux_envido_stats > 0){
+		if(envido_gano_player1){
+			w.draw(s_envido_ganaste);
+		}else{
+			w.draw(s_envido_perdiste);
+		}
+		w.draw(text_player1);
+		w.draw(text_player2);
+	}
+	
 	if(status == true){
 		w.draw(s_botones);
 	}
@@ -574,7 +606,7 @@ void Round::dibujar(RenderWindow &w){
 		truco.dibujar(w, status);
 		envido.dibujar(w, status);
 	}
-	w.draw(text);
+	
 	
 	if(contador_mostrar_canto_actual < 140 and status == true){		
 		if(canto_actual_en_pantalla == 1){
