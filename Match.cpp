@@ -529,12 +529,12 @@ void Match::actualizar(Juego &j){
 		
 		if(player1_puntos >= puntos_para_ganar){
 			sf::sleep(sf::seconds(3));
-			j.actualizarEscena(new Ganador(m_window, true, player1_puntos, player2_puntos));
+			j.actualizarEscena(new Ganador(m_window, true));
 			partida.player1win = true;
 		}
 		if(player2_puntos >= puntos_para_ganar){
 			sf::sleep(sf::seconds(3));
-			j.actualizarEscena(new Ganador(m_window, false, player1_puntos, player2_puntos));
+			j.actualizarEscena(new Ganador(m_window, false));
 			partida.player1win = false;
 		}
 		
@@ -579,12 +579,12 @@ void Match::actualizar(Juego &j){
 			
 			if(player1_puntos >= puntos_para_ganar){
 				sf::sleep(sf::seconds(1));
-				j.actualizarEscena(new Ganador(m_window, true, player1_puntos, player2_puntos));
+				j.actualizarEscena(new Ganador(m_window, true));
 				partida.player1win = true;
 			}
 			if(player2_puntos >= puntos_para_ganar){
 				sf::sleep(sf::seconds(1));
-				j.actualizarEscena(new Ganador(m_window, false, player1_puntos, player2_puntos));
+				j.actualizarEscena(new Ganador(m_window, false));
 				partida.player1win = false;
 			}
 			
