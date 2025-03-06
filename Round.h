@@ -15,7 +15,7 @@ class Round {
 public:
 	//Empezar partida en el constructor
 	
-	Round(bool turn_player1, Window *w);
+	Round(bool turn_player1, Window *w, int puntos_a_jugar, int player1puntos);
 	void verificar_estado_truco();
 	void verificar_estado_envido();
 	void actualizar();

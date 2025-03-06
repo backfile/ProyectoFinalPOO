@@ -1,7 +1,7 @@
 #include "Round.h"
 #include <iostream>
 
-Round::Round(bool turn_player1, Window *w) : player1(turn_player1, &mazo, &truco, &envido, w), player2(!turn_player1, &mazo, &truco, &envido, &player1, w), truco(turn_player1, &envido), envido(turn_player1){
+Round::Round(bool turn_player1, Window *w, int puntos_a_jugar, int puntosplayer1) : player1(turn_player1, &mazo, &truco, &envido, w), player2(!turn_player1, &mazo, &truco, &envido, &player1, w, puntos_a_jugar, puntosplayer1), truco(turn_player1, &envido), envido(turn_player1){
   calcularPuntosEnvidoP1();
   calcularPuntosEnvidoP2();
   mano_player1 = turn_player1;

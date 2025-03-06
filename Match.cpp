@@ -11,7 +11,7 @@ using namespace std;
 
 Match::Match(Window *w, int puntos_a_jugar) : puntos_para_ganar(puntos_a_jugar) {
 	m_window = w;
-	round = new Round(jugar_primero, w);
+	round = new Round(jugar_primero, w, puntos_para_ganar, player1_puntos);
 	t_background.loadFromFile("./images/fondo.png");
 	s_background.setTexture(t_background);
 
@@ -533,17 +533,6 @@ void Match::actualizar(Juego &j){
 			sf::sleep(sf::seconds(3));
 			j.actualizarEscena(new Ganador(m_window, false, player1_puntos, puntos_para_ganar));
 		}
-		
-		/*GuardarPartida();*/
-//		if(partida.player1win){			
-//			partida.player1puntos = puntos_para_ganar;
-//			partida.player2puntos = player2_puntos;
-//		}else{
-//			partida.player1puntos = player1_puntos;
-//			partida.player2puntos = puntos_para_ganar;
-//		}
-//		
-//		j.agregarPartida(partida);
 	}
 	
 	cont ++;
@@ -582,16 +571,6 @@ void Match::actualizar(Juego &j){
 				j.actualizarEscena(new Ganador(m_window, false, player1_puntos, puntos_para_ganar));
 			}
 			
-			/*GuardarPartida();*/
-//			if(partida.player1win){			
-//				partida.player1puntos = puntos_para_ganar;
-//				partida.player2puntos = player2_puntos;
-//			}else{
-//				partida.player1puntos = player1_puntos;
-//				partida.player2puntos = puntos_para_ganar;
-//			}
-//			
-//			j.agregarPartida(partida);
 		}
 		
 		string puntos_player1 = to_string(player1_puntos);
@@ -604,7 +583,7 @@ void Match::actualizar(Juego &j){
 		
 		
 		delete round;
-		round = new Round(jugar_primero, m_window);
+		round = new Round(jugar_primero, m_window, puntos_para_ganar, player1_puntos);
 		
 	}
 	

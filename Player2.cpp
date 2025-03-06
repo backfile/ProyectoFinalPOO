@@ -8,7 +8,7 @@
 #include <SFML/System/Sleep.hpp>
 using namespace std;
 
-Player2::Player2(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Player* rival, Window *w) : m_rival(rival), m_turno(turno), m_mazo(mazo), m_truco(truco), m_envido(envido), m_window(w){
+Player2::Player2(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Player* rival, Window *w, int m_puntos_a_jugar, int puntosplayer1) : m_player1puntos(puntosplayer1), m_rival(rival), m_turno(turno), m_mazo(mazo), m_truco(truco), m_envido(envido), m_window(w), m_puntos_a_jugar(m_puntos_a_jugar){
 	iniciar();
 	
 	//Definir tamaño de los botones
@@ -348,6 +348,13 @@ bool Player2::Exepcion(){
 	return aux2;
 }
 
+bool Player2::Exepcion2(){
+	if(m_puntos_a_jugar - m_player1puntos == 1){
+		return true;
+	}
+	return false;
+}
+
 void Player2::actualizar(Round &round){
 	if(aux){
 		puntos_envido = round.calcularPuntosEnvidoP2();
@@ -359,6 +366,25 @@ void Player2::actualizar(Round &round){
 	sf::sleep(sf::seconds(2));
 	
 	//Cantos y excepciones
+	
+	
+	if(Exepcion2()){
+		if(m_envido->ver_finalizado() == false){
+			if(m_envido->ver_status() == 1){
+				m_envido->aceptar();
+				cederTurno();
+				round.actualizarCantoEnPantalla(0);
+				return;
+			}
+		}
+		if(m_truco->obtenerStatus() == 1 and m_truco->obtenerGenerated_by() == 1){
+			m_truco->aceptar();
+			round.actualizarCantoEnPantalla(13);
+			return;
+		}
+		
+	}
+	
 	
 	//Envido en caso 0
 	if(botjuego.envido == 0 and m_envido->ver_finalizado() == false){

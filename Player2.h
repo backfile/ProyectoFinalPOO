@@ -16,7 +16,7 @@ using namespace std;
 
 class Player2 {
 public:
-	Player2(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Player *rival, Window *w);
+	Player2(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Player *rival, Window *w, int m_puntos_a_jugar, int puntosplayer1);
 	void dibujar(RenderWindow &m);
 	void actualizar(Round &round);
 	void seleccionarCarta();
@@ -27,6 +27,7 @@ public:
 	void definirBotJuego();
 	void jugar();
 	bool Exepcion();
+	bool Exepcion2();
 	void setPuntosEnvido(int aux);
 	void cambiarTurno(bool aux);
 	void setRival(Player *aux);
@@ -40,6 +41,8 @@ private:
 	int carta_selected = -1;
 	int cartas_en_mano = 3;
 	int puntos_envido;
+	int m_puntos_a_jugar;
+	int m_player1puntos;
 	Player* m_rival;
 	
 	//Se comparten	
