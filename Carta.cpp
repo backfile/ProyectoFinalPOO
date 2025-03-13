@@ -13,7 +13,7 @@ Carta::Carta(string imageFile, int power, int tipo, int numero) {
 	
 }
 
-void Carta::actualizarTextura(Vector2f posicion, bool player1){
+void Carta::actualizarTextura(Vector2f posicion, bool player1){                                               
 	if(player1){
 		//Parte de adelante de la carta
 		m_t.loadFromFile(m_textureFile);
@@ -30,11 +30,12 @@ Sprite Carta::obtenerSprite(){
 	return m_s;
 }
 
+
 void Carta::actualizar(){
 	
 	if(m_en_mano){		
 		if(m_is_selected){
-			m_s.setScale(Vector2f(1, 1));
+			m_s.setScale(Vector2f(0.7, 0.7));
 		}else{
 			m_s.setScale(Vector2f(0.9, 0.9));
 		}
@@ -61,7 +62,7 @@ int Carta::verPoder(){
 }
 
 void Carta::actualizar_mesa(int i){
-	//Al tirarla a la mesa, mostrar siempre la parte de adelante
+	//Al tirarla a la mesa, mostrar siempre la parte de adelante x el player 2
 	m_t.loadFromFile(m_textureFile);
 	m_s.setTexture(m_t);
 	//Cambiar la escala y la posicion segun la cantidad de cartas tiradas previamente
@@ -69,8 +70,16 @@ void Carta::actualizar_mesa(int i){
 	m_s.setPosition(Vector2f(400+i, 300));
 }
 
+void Carta::actualizarPosicion(Vector2f posicion){
+	m_s.setPosition(posicion);
+}
+
 void Carta::is_selected(bool aux){
 	m_is_selected = aux;
+}
+
+void Carta::actualizarOrigen(Vector2f origen){
+	m_s.setOrigin(origen);
 }
 
 void Carta::tirar(){

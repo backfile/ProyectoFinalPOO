@@ -16,9 +16,11 @@ public:
 	void actualizar();
 	void actualizar_mesa(int i);
 	void actualizarTextura(Vector2f posicion, bool player1);
+	void actualizarPosicion(Vector2f posicion);
 	bool obtenerEnMano();
 	Texture obtenerTextura();
 	Sprite obtenerSprite();
+	void actualizarOrigen(Vector2f origen);
 	void tirar();
 	void is_selected(bool aux);
 	int verPoder();

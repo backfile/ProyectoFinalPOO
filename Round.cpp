@@ -585,8 +585,8 @@ bool Round::actualizarCantoEnPantalla(int num){
 }
 
 void Round::dibujar(RenderWindow &w){
-	player1.dibujar(w);
 	player2.dibujar(w);
+	player1.dibujar(w);
 	
 	//Cartel de ganaste o perdiste
 	if(envido.ver_status() == 3 and aux_envido_stats > 0){

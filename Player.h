@@ -41,6 +41,7 @@ private:
 	int cartas_en_mano_player2 = 3;
 	int canto_actual; //Lo lee round
 	
+	
 	//Se comparten
 	Mazo *m_mazo;
 	Truco *m_truco;
