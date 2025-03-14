@@ -19,6 +19,8 @@ class Truco{
 public:
 	Truco(bool turno_player_1, Envido *envido);
 	
+	enum Status {NO_INICIADO, EN_ESPERA, RECHAZADO, ACEPTADO};
+	
 	void actualizar();
 	void dibujar(RenderWindow &w, bool statusRound);
 	void aceptar();
@@ -43,7 +45,7 @@ private:
 	int castigo = 0;
 	int m_generated_by;	
 	int ultimo_en_tirar;
-	int status = 0; // 0 no iniciado // 1 en espera de respuesta  // 2 rechazado // 3 aceptado
+	int status = NO_INICIADO; 
 	
 	Envido *m_envido;
 	

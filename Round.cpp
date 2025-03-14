@@ -28,10 +28,7 @@ Round::Round(bool turn_player1, Window *w, int puntos_a_jugar, int puntosplayer1
   s_botones.setTexture(t_botones);
   s_botones.setPosition(Vector2f(100, 530));
   
-  t_stats_envido1.loadFromFile("./images/2.png");
-  s_stats_envido1.setTexture(t_stats_envido1);
-  s_stats_envido1.setOrigin(100, 100);
-  s_stats_envido1.setPosition(400, 300);
+
   
   // Cantos en pantalla
   //player 1
@@ -496,7 +493,7 @@ void Round::actualizar(){
 	// Analizar truco
 	verificar_estado_truco();
 	verificar_estado_envido();
-	if(aux_envido_stats < 230 and aux_envido_stats > 0){return;}
+	if(aux_envido_stats < 230 and aux_envido_stats > 0){return;} // Bloquea la ejecucion mientras se muestran los puntos del envido
 	
 	if(envido.ver_status() != 1 and truco.obtenerStatus() != 1){
 		if((player1.verCartasEnMano() == 2 and player2.verCartasEnMano() == 2)){
@@ -608,83 +605,84 @@ void Round::dibujar(RenderWindow &w){
 	}
 	
 	
+	
 	if(contador_mostrar_canto_actual < 140 and status == true){		
-		if(canto_actual_en_pantalla == 1){
+		if(canto_actual_en_pantalla == P1_TRUCO){
 			w.draw(s_truco_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 2){
+		if(canto_actual_en_pantalla == P1_RETRUCO){
 			w.draw(s_retruco_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 3){
+		if(canto_actual_en_pantalla == P1_VALECUATRO){
 			w.draw(s_valecuatro_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 4){
+		if(canto_actual_en_pantalla == P1_QUIERO){
 			w.draw(s_quiero_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 6){
+		if(canto_actual_en_pantalla == P1_ENVIDO){
 			w.draw(s_envido_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 7){
+		if(canto_actual_en_pantalla == P1_ENVIDOENVIDO){
 			w.draw(s_envidoenvido_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 8){
+		if(canto_actual_en_pantalla == P1_REALENVIDO){
 			w.draw(s_realenvido_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 9){
+		if(canto_actual_en_pantalla == P1_FALTAENVIDO){
 			w.draw(s_faltaenvido_pantalla);
 			return;
 		}
 		
 		
 		
-		if(canto_actual_en_pantalla == 10){
+		if(canto_actual_en_pantalla == P2_TRUCO){
 			w.draw(s_truco2_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 11){
+		if(canto_actual_en_pantalla == P2_RETRUCO){
 			w.draw(s_retruco2_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 12){
+		if(canto_actual_en_pantalla == P2_VALECUATRO){
 			w.draw(s_valecuatro2_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 13){
+		if(canto_actual_en_pantalla == P2_QUIERO){
 			w.draw(s_quiero2_pantalla);
 			return;
 		}
 		
-		if(canto_actual_en_pantalla == 15){
+		if(canto_actual_en_pantalla == P2_ENVIDO){
 			w.draw(s_envido2_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 16){
+		if(canto_actual_en_pantalla == P2_ENVIDOENVIDO){
 			w.draw(s_envidoenvido2_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 17){
+		if(canto_actual_en_pantalla == P2_REALENVIDO){
 			w.draw(s_realenvido2_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 18){
+		if(canto_actual_en_pantalla == P2_FALTAENVIDO){
 			w.draw(s_faltaenvido2_pantalla);
 			return;
 		}
 		
 	}
 	if(contador_mostrar_canto_actual < 140){
-		if(canto_actual_en_pantalla == 14){
+		if(canto_actual_en_pantalla == P2_NOQUIERO){
 			w.draw(s_noquiero2_pantalla);
 			return;
 		}
-		if(canto_actual_en_pantalla == 5){
+		if(canto_actual_en_pantalla == P1_NOQUIERO){
 			w.draw(s_noquiero_pantalla);
 			return;
 		}

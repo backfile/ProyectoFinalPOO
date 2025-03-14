@@ -2,14 +2,14 @@
 #define PLAYER_H
 #include <vector>
 #include "Carta.h"
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <string>
 #include "ValoresCartas.h"
 #include "Mazo.h"
 #include "Truco.h"
 #include "Envido.h"
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Window/Mouse.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <string>
 
 class Round;
 

@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Round.h"
 
+
 using namespace std;
 
 Player::Player(bool turno, Mazo *mazo, Truco *truco, Envido *envido, Window *w) : m_turno(turno),  m_mazo(mazo), m_truco(truco), m_envido(envido), m_window(w){
@@ -126,62 +127,61 @@ void Player::cederTurno(){
 void Player::actualizar(Round &round){	
 	
 	if(carta_selected == -1){		
-		if(m_envido->ver_status() == 0 and en_mesa.size() == 0 and m_envido->ver_finalizado() == false){
+		if(m_envido->ver_status() == Envido::NO_INICIADO and en_mesa.size() == 0 and m_envido->ver_finalizado() == false){
 			
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 				mousePos = sf::Mouse::getPosition(*m_window);
 				if(EnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 					m_envido->cantar_envido();
 					cederTurno();
-					round.actualizarCantoEnPantalla(6);
+					round.actualizarCantoEnPantalla(P1_ENVIDO);
 					return;
 				}
 				if(RealEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 					m_envido->cantar_real_envido();
 					cederTurno();
-					round.actualizarCantoEnPantalla(8);
+					round.actualizarCantoEnPantalla(P1_REALENVIDO);
 					return;
 				}
 				if(FaltaEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 					m_envido->cantar_falta_envido();
 					cederTurno();
-					round.actualizarCantoEnPantalla(9);
+					round.actualizarCantoEnPantalla(P1_FALTAENVIDO);
 					return;
 				}
 			}
 		}
 		
 		
-		if(m_envido->ver_status() == 1){
+		if(m_envido->ver_status() == Envido::EN_ESPERA){
 			
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 				
 				mousePos = sf::Mouse::getPosition(*m_window);
 				
-				if(m_envido->ver_tipo_en_juego() == 1){
+				if(m_envido->ver_tipo_en_juego() == Envido::ENVIDO){
 					if(QuieroEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 						m_envido->aceptar();
 						cederTurno();
-						/*round.actualizarCantoEnPantalla(4);*/
-						round.actualizarCantoEnPantalla(0);
+						round.actualizarCantoEnPantalla(NADA);
 						return;
 					}
 					if(NoQuieroEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 						m_envido->rechazar(1);
 						cederTurno();
-						round.actualizarCantoEnPantalla(5);
+						round.actualizarCantoEnPantalla(P1_NOQUIERO);
 						return;
 					}
 					if(EnvidoEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 						m_envido->cantar_envido_envido();
 						cederTurno();
-						round.actualizarCantoEnPantalla(7);
+						round.actualizarCantoEnPantalla(P1_ENVIDOENVIDO);
 						return;
 					}
 					if(FaltaEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 						m_envido->cantar_falta_envido();
 						cederTurno();
-						round.actualizarCantoEnPantalla(9);
+						round.actualizarCantoEnPantalla(P1_FALTAENVIDO);
 						return;
 					}
 					return;
@@ -189,62 +189,60 @@ void Player::actualizar(Round &round){
 				
 				//
 				
-				if(m_envido->ver_tipo_en_juego() == 2){
+				if(m_envido->ver_tipo_en_juego() == Envido::REALENVIDO){
 					if(QuieroEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 						m_envido->aceptar();
 						cederTurno();
-						/*round.actualizarCantoEnPantalla(4);*/
-						round.actualizarCantoEnPantalla(0);
+						round.actualizarCantoEnPantalla(NADA);
 						return;
 					}
 					if(NoQuieroEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 						m_envido->rechazar(1);
 						cederTurno();
-						round.actualizarCantoEnPantalla(5);
+						round.actualizarCantoEnPantalla(P1_NOQUIERO);
 						return;
 					}
 					if(FaltaEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 						m_envido->cantar_falta_envido();
 						cederTurno();
-						round.actualizarCantoEnPantalla(9);
+						round.actualizarCantoEnPantalla(P1_FALTAENVIDO);
 						return;
 					}
 				}
 				//
-				if(m_envido->ver_tipo_en_juego() == 3){
+				if(m_envido->ver_tipo_en_juego() == Envido::ENVIDOENVIDO){
 					
 					if(QuieroEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 						m_envido->aceptar();
 						cederTurno();
-						/*round.actualizarCantoEnPantalla(4);*/
-						round.actualizarCantoEnPantalla(0);
+						round.actualizarCantoEnPantalla(NADA);
 						return;
 					}
 					if(NoQuieroEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 						m_envido->rechazar(1);
 						cederTurno();
-						round.actualizarCantoEnPantalla(5);
+						round.actualizarCantoEnPantalla(P1_NOQUIERO);
 						return;
 					}
 					if(FaltaEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 						m_envido->cantar_falta_envido();
 						cederTurno();
-						round.actualizarCantoEnPantalla(9);
+						round.actualizarCantoEnPantalla(P1_FALTAENVIDO);
 						return;
 					}
 				}
 				//
-				if(m_envido->ver_tipo_en_juego() == 4){
+				if(m_envido->ver_tipo_en_juego() == Envido::FALTAENVIDO){
 					if(QuieroEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 						m_envido->aceptar();
 						cederTurno();
-						round.actualizarCantoEnPantalla(0);
+						round.actualizarCantoEnPantalla(NADA);
 						return;
 					}
 					if(NoQuieroEnvidoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 						m_envido->rechazar(1);
 						cederTurno();
-						round.actualizarCantoEnPantalla(5);
+						round.actualizarCantoEnPantalla(P1_NOQUIERO);
 						return;
 					}
 				}
@@ -253,7 +251,7 @@ void Player::actualizar(Round &round){
 			return;
 		}
 		
-		if(m_truco->obtenerStatus() == 1){
+		if(m_truco->obtenerStatus() == Truco::EN_ESPERA){
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 				if(m_truco->obtenerGenerated_by() == 2){
 					
@@ -264,12 +262,12 @@ void Player::actualizar(Round &round){
 						m_truco->aceptar();
 						m_envido->finalizarEnvido();
 						cederTurno();
-						round.actualizarCantoEnPantalla(4);
+						round.actualizarCantoEnPantalla(P1_QUIERO);
 						return;
 					}
 					if(NoQuieroBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 						m_truco->rechazar();
-						round.actualizarCantoEnPantalla(5);
+						round.actualizarCantoEnPantalla(P1_NOQUIERO);
 						return;
 					}
 					if(ReTrucoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) and m_truco->obtenerRedisputar() == 2) {
@@ -277,7 +275,7 @@ void Player::actualizar(Round &round){
 						m_truco->setGenerated_by(1);
 						m_envido->finalizarEnvido();
 						cederTurno();
-						round.actualizarCantoEnPantalla(2);
+						round.actualizarCantoEnPantalla(P1_RETRUCO);
 						return;
 					}
 					if(ValeCuatroBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) and m_truco->obtenerRedisputar() == 1) {
@@ -285,7 +283,7 @@ void Player::actualizar(Round &round){
 						m_truco->setGenerated_by(1);
 						m_envido->finalizarEnvido();
 						cederTurno();
-						round.actualizarCantoEnPantalla(3);
+						round.actualizarCantoEnPantalla(P1_VALECUATRO);
 						return;
 					}
 				}else{
@@ -296,42 +294,42 @@ void Player::actualizar(Round &round){
 		
 		
 		
-		if(m_truco->verUltimoEnTirar()==1 and m_truco->obtenerStatus() != 2){
+		if(m_truco->verUltimoEnTirar()==1 and m_truco->obtenerStatus() != Truco::RECHAZADO){
 			cederTurno();
 			return;
 		}
 
 		
 		
-		if(m_truco->obtenerStatus() == 0){
+		if(m_truco->obtenerStatus() == Truco::NO_INICIADO){
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 				mousePos = sf::Mouse::getPosition(*m_window);
 				if(TrucoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 					m_truco->cantar();
 					cederTurno();
 					m_truco->setGenerated_by(1);
-					round.actualizarCantoEnPantalla(1);
+					round.actualizarCantoEnPantalla(P1_TRUCO);
 					return;
 				}
 			}
 			
 		}
 		
-		if((m_truco->obtenerStatus() == 3) and ((m_truco->obtenerRedisputar() == 2 or m_truco->obtenerRedisputar() == 1) and (m_truco->obtenerGenerated_by() == 2))){
+		if((m_truco->obtenerStatus() == Truco::ACEPTADO) and ((m_truco->obtenerRedisputar() == 2 or m_truco->obtenerRedisputar() == 1) and (m_truco->obtenerGenerated_by() == 2))){
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 				mousePos = sf::Mouse::getPosition(*m_window);
 				if(ReTrucoBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) and m_truco->obtenerRedisputar() == 2){			
 					m_truco->redisputar();
 					m_truco->setGenerated_by(1);
 					cederTurno();
-					round.actualizarCantoEnPantalla(2);
+					round.actualizarCantoEnPantalla(P1_RETRUCO);
 					return;
 				}
 				if(ValeCuatroBoton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) and m_truco->obtenerRedisputar() == 1){			
 					m_truco->redisputar();
 					m_truco->setGenerated_by(1);
 					cederTurno();
-					round.actualizarCantoEnPantalla(3);
+					round.actualizarCantoEnPantalla(P1_VALECUATRO);
 					return;
 				}
 			}
@@ -340,46 +338,7 @@ void Player::actualizar(Round &round){
 	}
 	
 	
-//	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-//		mousePos = sf::Mouse::getPosition(*m_window);
-//		if(cartas[0].obtenerSprite().getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
-//			carta_selected = 0;
-//			cartas[0].is_selected(true);
-//			cartas[1].is_selected(false);
-//			cartas[2].is_selected(false);
-//			return;
-//		}
-//		if(cartas[1].obtenerSprite().getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
-//			carta_selected = 1;
-//			cartas[0].is_selected(false);
-//			cartas[1].is_selected(true);
-//			cartas[2].is_selected(false);
-//			return;
-//		}
-//		if(cartas[2].obtenerSprite().getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
-//			carta_selected = 2;
-//			cartas[0].is_selected(false);
-//			cartas[1].is_selected(false);
-//			cartas[2].is_selected(true);
-//			return;
-//		} 
-//		if(ZonaTirarCartas.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
-//			if(carta_selected != -1 and cartas[carta_selected].obtenerEnMano() == true){	
-//				cartas[carta_selected].tirar();
-//				cartas_en_mano --;
-//				en_mesa.push_back(cartas[carta_selected]);
-//				carta_selected = -1;
-//				m_truco->cambiarUltimoEnTirar(1);
-//				if(m_envido->ver_finalizado() == false){
-//					m_envido->modificar_tiro_carta_player1();
-//				}
-//				if((cartas_en_mano == 2 and cartas_en_mano_player2 == 2) or (cartas_en_mano == 1 and cartas_en_mano_player2 == 1)){return;}
-//				cederTurno();
-//			}
-//		}
-//	}
-	
-	
+	//Sistema de arrastre de cartas
 	mousePos = sf::Mouse::getPosition(*m_window);
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left) and cartas[0].obtenerSprite().getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
 		if(carta_selected == -1 or carta_selected == 0){

@@ -370,16 +370,16 @@ void Player2::actualizar(Round &round){
 	
 	if(Exepcion2()){
 		if(m_envido->ver_finalizado() == false){
-			if(m_envido->ver_status() == 1){
+			if(m_envido->ver_status() == Envido::EN_ESPERA){
 				m_envido->aceptar();
 				cederTurno();
-				round.actualizarCantoEnPantalla(0);
+				round.actualizarCantoEnPantalla(NADA);
 				return;
 			}
 		}
-		if(m_truco->obtenerStatus() == 1 and m_truco->obtenerGenerated_by() == 1){
+		if(m_truco->obtenerStatus() == Truco::EN_ESPERA and m_truco->obtenerGenerated_by() == 1){
 			m_truco->aceptar();
-			round.actualizarCantoEnPantalla(13);
+			round.actualizarCantoEnPantalla(P2_QUIERO);
 			return;
 		}
 		
@@ -388,32 +388,31 @@ void Player2::actualizar(Round &round){
 	
 	//Envido en caso 0
 	if(botjuego.envido == 0 and m_envido->ver_finalizado() == false){
-		if(m_envido->ver_status() == 1){
+		if(m_envido->ver_status() == Envido::EN_ESPERA){
 			m_envido->rechazar(2);
 			cederTurno();
-			round.actualizarCantoEnPantalla(14);
+			round.actualizarCantoEnPantalla(P2_NOQUIERO);
 			return;
 		}
 	}
 	
 	//Envido en caso 1
 	if(botjuego.envido == 1 and m_envido->ver_finalizado() == false){
-		if(m_envido->ver_status() == 1){
-			if(m_envido->ver_tipo_en_juego() != 1){
+		if(m_envido->ver_status() == Envido::EN_ESPERA){
+			if(m_envido->ver_tipo_en_juego() != Envido::Envido){
 				m_envido->rechazar(2);
 				cederTurno();
-				round.actualizarCantoEnPantalla(14);
+				round.actualizarCantoEnPantalla(P2_NOQUIERO);
 			}else{
 				m_envido->aceptar();
 				cederTurno();
-				/*round.actualizarCantoEnPantalla(13);*/
-				round.actualizarCantoEnPantalla(0);
+				round.actualizarCantoEnPantalla(NADA);
 			}
 		}
-		if(m_envido->ver_status() == 0){
+		if(m_envido->ver_status() == Envido::NO_INICIADO){
 			m_envido->cantar_envido();
 			cederTurno();
-			round.actualizarCantoEnPantalla(15);
+			round.actualizarCantoEnPantalla(P2_ENVIDO);
 			return;
 		}
 		return;
@@ -421,30 +420,29 @@ void Player2::actualizar(Round &round){
 	
 	//Envido en caso 2
 	if(botjuego.envido == 2 and m_envido->ver_finalizado() == false){
-		if(m_envido->ver_status() == 0){
+		if(m_envido->ver_status() == Envido::NO_INICIADO){
 			m_envido->cantar_envido();
 			cederTurno();
-			round.actualizarCantoEnPantalla(15);
+			round.actualizarCantoEnPantalla(P2_ENVIDO);
 			return;
 		}
-		if(m_envido->ver_status() == 1){
-			if(m_envido->ver_tipo_en_juego() == 1){
+		if(m_envido->ver_status() == Envido::EN_ESPERA){
+			if(m_envido->ver_tipo_en_juego() == Envido::ENVIDO){
 				m_envido->cantar_envido_envido();
 				cederTurno();
-				round.actualizarCantoEnPantalla(16);
+				round.actualizarCantoEnPantalla(P2_ENVIDOENVIDO);
 				return;
 			}
-			if(m_envido->ver_tipo_en_juego() == 3){
+			if(m_envido->ver_tipo_en_juego() == Envido::ENVIDOENVIDO){
 				m_envido->cantar_falta_envido();
 				cederTurno();
-				round.actualizarCantoEnPantalla(18);
+				round.actualizarCantoEnPantalla(P2_FALTAENVIDO);
 				return;
 			}
-			if(m_envido->ver_tipo_en_juego() == 4){
+			if(m_envido->ver_tipo_en_juego() == Envido::FALTAENVIDO){
 				m_envido->aceptar();
 				cederTurno();
-				/*round.actualizarCantoEnPantalla(13);*/
-				round.actualizarCantoEnPantalla(0);
+				round.actualizarCantoEnPantalla(NADA);
 			}
 		}
 	}
@@ -453,44 +451,44 @@ void Player2::actualizar(Round &round){
 	
 	//Truco en caso 2 o exepcion
 	if(botjuego.truco == 2 or Exepcion()){
-		if(m_truco->obtenerStatus() == 0){
+		if(m_truco->obtenerStatus() == Truco::NO_INICIADO){
 			m_truco->cantar();
 			m_truco->setGenerated_by(2);
 			cederTurno();
-			round.actualizarCantoEnPantalla(10);
+			round.actualizarCantoEnPantalla(P2_TRUCO);
 			return;
 		}
-		if(m_truco->obtenerStatus() == 1 and m_truco->obtenerRedisputar() == 2 and m_truco->obtenerGenerated_by() == 1){
+		if(m_truco->obtenerStatus() == Truco::EN_ESPERA and m_truco->obtenerRedisputar() == 2 and m_truco->obtenerGenerated_by() == 1){
 			m_truco->redisputar();
-			round.actualizarCantoEnPantalla(11);
+			round.actualizarCantoEnPantalla(P2_RETRUCO);
 			m_truco->setGenerated_by(2);
 			cederTurno();
 			return;
 		}
-		if(m_truco->obtenerStatus() == 1 and m_truco->obtenerRedisputar() == 1  and m_truco->obtenerGenerated_by() == 1){
+		if(m_truco->obtenerStatus() == Truco::EN_ESPERA and m_truco->obtenerRedisputar() == 1  and m_truco->obtenerGenerated_by() == 1){
 			m_truco->redisputar();
-			round.actualizarCantoEnPantalla(12);
+			round.actualizarCantoEnPantalla(P2_VALECUATRO);
 			m_truco->setGenerated_by(2);
 			cederTurno();
 			return;
 		}
-		if(m_truco->obtenerStatus() == 1 and m_truco->obtenerRedisputar() == 0  and m_truco->obtenerGenerated_by() == 1){
+		if(m_truco->obtenerStatus() == Truco::EN_ESPERA and m_truco->obtenerRedisputar() == 0  and m_truco->obtenerGenerated_by() == 1){
 			m_truco->aceptar();
 			cederTurno();
-			round.actualizarCantoEnPantalla(13);
+			round.actualizarCantoEnPantalla(P2_QUIERO);
 			return;
 		}
 		if(Exepcion()){
-			if(m_truco->obtenerStatus() == 3 and m_truco->obtenerRedisputar() == 2  and m_truco->obtenerGenerated_by() == 1){
+			if(m_truco->obtenerStatus() == Truco::ACEPTADO and m_truco->obtenerRedisputar() == 2  and m_truco->obtenerGenerated_by() == 1){
 				m_truco->redisputar();
-				round.actualizarCantoEnPantalla(11);
+				round.actualizarCantoEnPantalla(P2_RETRUCO);
 				m_truco->setGenerated_by(2);
 				cederTurno();
 				return;
 			}
-			if(m_truco->obtenerStatus() == 3 and m_truco->obtenerRedisputar() == 1  and m_truco->obtenerGenerated_by() == 1){
+			if(m_truco->obtenerStatus() == Truco::ACEPTADO and m_truco->obtenerRedisputar() == 1  and m_truco->obtenerGenerated_by() == 1){
 				m_truco->redisputar();
-				round.actualizarCantoEnPantalla(12);
+				round.actualizarCantoEnPantalla(P2_VALECUATRO);
 				m_truco->setGenerated_by(2);
 				cederTurno();
 				return;
@@ -506,30 +504,30 @@ void Player2::actualizar(Round &round){
 					if(carta.verPoder() <= 6){
 						m_truco->aceptar();
 						m_envido->finalizarEnvido();
-						round.actualizarCantoEnPantalla(13);
+						round.actualizarCantoEnPantalla(P2_QUIERO);
 						cederTurno();
 						return;
 					}
 				}
 			}
 		}
-		if(m_truco->obtenerStatus() == 1){
+		if(m_truco->obtenerStatus() == Truco::EN_ESPERA){
 			m_truco->rechazar();
-			round.actualizarCantoEnPantalla(14);
+			round.actualizarCantoEnPantalla(P2_NOQUIERO);
 			return;
 		}
 	}
 	
 	//Truco en caso 1
 	if(botjuego.truco == 1){
-		if(m_truco->obtenerStatus() == 1){
+		if(m_truco->obtenerStatus() == Truco::EN_ESPERA){
 			//Excepcion a las reglas en caso de que tu ultima carta sea muy mala
 			if(cartas_en_mano == 1 and m_rival->verCartasEnMano() == 1){
 				for(auto carta : cartas){
 					if(carta.obtenerEnMano() == true){
 						if(carta.verPoder() > 8){
 							m_truco->rechazar();
-							round.actualizarCantoEnPantalla(14);
+							round.actualizarCantoEnPantalla(P2_NOQUIERO);
 							return;
 						}
 					}
@@ -538,13 +536,13 @@ void Player2::actualizar(Round &round){
 			if(cartas_en_mano == 0 and m_rival->verCartasEnMano() == 1){
 				if(en_mesa[2].verPoder() > 8){
 					m_truco->rechazar();
-					round.actualizarCantoEnPantalla(14);
+					round.actualizarCantoEnPantalla(P2_NOQUIERO);
 					return;
 				}
 			}
 			m_truco->aceptar();
 			m_envido->finalizarEnvido();
-			round.actualizarCantoEnPantalla(13);
+			round.actualizarCantoEnPantalla(P2_QUIERO);
 			cederTurno();
 			return;
 		}
