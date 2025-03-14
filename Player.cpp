@@ -290,11 +290,12 @@ void Player::actualizar(Round &round){
 					cederTurno();
 				}
 			}
+			return;
 		}
 		
 		
 		
-		if(m_truco->verUltimoEnTirar()==1 and m_truco->obtenerStatus() != Truco::RECHAZADO){
+		if(m_truco->verUltimoEnTirar()==1 and m_truco->obtenerStatus() != Truco::RECHAZADO and m_truco->obtenerStatus() != Truco::EN_ESPERA){
 			cederTurno();
 			return;
 		}

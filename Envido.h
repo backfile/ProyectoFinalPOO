@@ -12,7 +12,7 @@ public:
 	Envido(bool turno_player_1);
 	
 	enum Status {NO_INICIADO, EN_ESPERA, RECHAZADO, ACEPTADO};
-	enum Tipo {ENVIDO = 1, REALENVIDO, ENVIDOENVIDO, FALTAENVIDO}
+	enum Tipo {ENVIDO = 1, REALENVIDO, ENVIDOENVIDO, FALTAENVIDO};
 	
 	void dibujar(RenderWindow &w, bool statusRound);
 	void actualizar();

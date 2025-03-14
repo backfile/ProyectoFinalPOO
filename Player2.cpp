@@ -399,7 +399,7 @@ void Player2::actualizar(Round &round){
 	//Envido en caso 1
 	if(botjuego.envido == 1 and m_envido->ver_finalizado() == false){
 		if(m_envido->ver_status() == Envido::EN_ESPERA){
-			if(m_envido->ver_tipo_en_juego() != Envido::Envido){
+			if(m_envido->ver_tipo_en_juego() != Envido::ENVIDO){
 				m_envido->rechazar(2);
 				cederTurno();
 				round.actualizarCantoEnPantalla(P2_NOQUIERO);
