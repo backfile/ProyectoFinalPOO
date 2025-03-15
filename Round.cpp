@@ -306,7 +306,7 @@ bool Round::obtenerFinalizadoEnvido(){
 }
 
 void Round::verificar_estado_envido(){
-	if(envido.ver_status() == 3 and aux_envido_stats > 0){
+	if(envido.ver_status() == Envido::ACEPTADO and aux_envido_stats > 0){
 		aux_envido_stats--;
 		if(puntos_envido_player1 > puntos_envido_player2){
 			envido_gano_player1 = true;
@@ -338,10 +338,9 @@ void Round::verificar_estado_envido(){
 		text_player1.setString(" ");
 		text_player2.setString(" ");
 	}
+	
 	//Repartir puntos
-	
-	
-	if(envido.ver_status() == 3){
+	if(envido.ver_status() == Envido::ACEPTADO){
 		if(envido.obtenerGanador() == true){
 			puntos_ganados_envido_player1 = envido.obtenerValor();
 			return;
@@ -353,7 +352,7 @@ void Round::verificar_estado_envido(){
 		}
 	}
 	
-	if(envido.ver_status() == 2){
+	if(envido.ver_status() == Envido::RECHAZADO){
 		if(envido.obtenerRechazado_by()==1){
 			puntos_ganados_envido_player2 = envido.obtenerPrev();
 			envido_listo_para_sumar = true;
@@ -373,6 +372,8 @@ bool Round::obtener_envido_listo_para_sumar(){
 }
 
 void Round::verificar_estado_truco(){
+
+
 	vector<Carta>player1tiradas = player1.obtener_en_mesa();
 	vector<Carta>player2tiradas = player2.obtener_en_mesa();
 	
@@ -482,43 +483,32 @@ void Round::verificar_estado_truco(){
 	
 }
 	
-	
-
-
-void Round::actualizar(){
-	
-	//Incrementar la variable auxiliar para mostrar cantos en pantalla
-	contador_mostrar_canto_actual++;
-	
-	// Analizar truco
-	verificar_estado_truco();
-	verificar_estado_envido();
-	if(aux_envido_stats < 230 and aux_envido_stats > 0){return;} // Bloquea la ejecucion mientras se muestran los puntos del envido
-	
-	if(envido.ver_status() != 1 and truco.obtenerStatus() != 1){
+void Round::forzar_turno(){
+	if(envido.ver_status() != Envido::EN_ESPERA and truco.obtenerStatus() != Envido::EN_ESPERA){
 		if((player1.verCartasEnMano() == 2 and player2.verCartasEnMano() == 2)){
 			vector<Carta>player1cart = player1.obtener_en_mesa();
 			vector<Carta>player2cart = player2.obtener_en_mesa();
 			
+			//Forzar ultimo en tirar
 			if(player1cart[0].verPoder() < player2cart[0].verPoder()){
 				player2.cederTurno();
 				truco.cambiarUltimoEnTirar(2);
-				turnoaux = false;
+				return;
 			}
-			if(player1cart[0].verPoder() > player2cart[0].verPoder() and turnoaux == true){
+			if(player1cart[0].verPoder() > player2cart[0].verPoder()){
 				player1.cederTurno();
 				truco.cambiarUltimoEnTirar(1);
-				turnoaux = false;
+				return;
 			}
-			if(player1cart[0].verPoder() == player2cart[0].verPoder() and turnoaux == true){
+			if(player1cart[0].verPoder() == player2cart[0].verPoder()){
 				if(mano_player1){
 					player2.cederTurno();
 					truco.cambiarUltimoEnTirar(2);
-					turnoaux = false;
+					return;
 				}else{
 					player1.cederTurno();
 					truco.cambiarUltimoEnTirar(1);
-					turnoaux = false;
+					return;
 				}
 			}
 			
@@ -531,26 +521,44 @@ void Round::actualizar(){
 			if(player1cart[1].verPoder() < player2cart[1].verPoder()){
 				player2.cederTurno();
 				truco.cambiarUltimoEnTirar(2);
-				turno2aux = false;
+				return;
 			}
-			if(player1cart[1].verPoder() > player2cart[1].verPoder() and turno2aux == true){
+			if(player1cart[1].verPoder() > player2cart[1].verPoder()){
 				player1.cederTurno();
 				truco.cambiarUltimoEnTirar(1);
-				turno2aux = false;
+				return;
 			}
-			if(player1cart[1].verPoder() == player2cart[1].verPoder() and turnoaux == true){
+			if(player1cart[1].verPoder() == player2cart[1].verPoder()){
 				if(mano_player1){
 					player2.cederTurno();
 					truco.cambiarUltimoEnTirar(2);
-					turnoaux = false;
+					return;
 				}else{
 					player1.cederTurno();
 					truco.cambiarUltimoEnTirar(1);
-					turnoaux = false;
+					return;
 				}
 			}
 		}
 	}
+}	
+
+
+void Round::actualizar(){
+	
+	//Incrementar la variable auxiliar para mostrar cantos en pantalla
+	contador_mostrar_canto_actual++;
+	
+	// Analizar truco Y envido para ver si hay que hacer alguna accion
+	verificar_estado_truco();
+	verificar_estado_envido();
+	
+	if(aux_envido_stats < 230 and aux_envido_stats > 0){return;} // Bloquea la ejecucion mientras se muestran los puntos del envido
+	
+	// Funcion de que no importa quien fue el ultimo en tirar, juegue el que gano la mano
+	forzar_turno();
+	
+	//Tome el control el que tenga el turno
 	if(status){
 		if(player1.obtenerTurno()){
 			player1.actualizar(*this);

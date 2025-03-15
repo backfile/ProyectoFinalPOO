@@ -35,6 +35,7 @@ public:
 	int calcularPuntosEnvidoP2();
 	bool obtenerGanadorEnvido();
 	bool obtenerFinalizadoEnvido();
+	void forzar_turno();
 	int obtenerPuntosEnvidoPlayer1();
 	int obtenerPuntosEnvidoPlayer2();
 	bool obtener_envido_listo_para_sumar();
